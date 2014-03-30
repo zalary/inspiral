@@ -1,0 +1,2 @@
+# Inspiral
+### a Sails application
