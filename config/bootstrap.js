@@ -8,6 +8,10 @@
  * http://sailsjs.org/#documentation
  */
 
+ module.exports = {
+  appName: 'Inspiral'
+ }
+
 module.exports.bootstrap = function (cb) {
 
   // It's very important to trigger this callack method when you are finished 
