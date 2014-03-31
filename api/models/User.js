@@ -33,11 +33,11 @@ module.exports = {
     encryptedPassword: {
       type: 'string'
     }
-    
+
   },
 
   beforeCreate: function (values, next) {
-    // 
+    //Check that password is correct and matches confirmation.
     if (!values.password || values.password != values.confirmation) {
       return next({err: ["Password doesn't match password confirmation."]});
     }
