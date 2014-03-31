@@ -40,7 +40,7 @@ module.exports = {
       //Render user show page after successful user creation
       // res.json(user);
       // req.session.flash = {};
-      res.redirect('/user/show'+user.id);
+      res.redirect('/user/show/'+user.id);
     });
   },
 
