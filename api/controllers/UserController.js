@@ -16,11 +16,75 @@
  */
 
 module.exports = {
-    
+
   'new': function(req, res) {
     res.view();
   },
 
+  create: function (req, res, next) {
+
+    //Creating a user with params from signup form
+    User.create( req.params.all(), function userCreated (err, user) {
+
+      //Checking if errors, and logging those errors
+      if (err) {
+        console.log(err);
+        req.session.flash = {
+          err: err
+        }
+
+        //If error, go back to signup page
+        return res.redirect('/user/new');
+      }
+
+      //Render user show page after successful user creation
+      // res.json(user);
+      // req.session.flash = {};
+      res.redirect('/user/show/'+user.id);
+    });
+  },
+
+  // render the profile view
+  show: function (req, res, next) {
+    User.findOne(req.param('id'), function foundUser (err, user) {
+      if (err) return next(err);
+      if (!user) return next();
+      res.view({
+        user: user
+      });
+    });
+  },
+
+  index: function (req, res, next) {
+    // returns an array of users
+    User.find(function foundUsers (err, users) {
+      if (err) return next(err);
+      // if (!user) return next();
+      res.view({
+        users: users
+      });
+    });
+  },
+
+  edit: function (req, res, next) {
+    User.findOne(req.param('id'), function foundUser (err, user) {
+      if (err) return next(err);
+      if (!user) return next();
+
+      res.view({
+        user: user
+      });
+    });
+  },
+
+  update: function (req, res, next) {
+    User.update(req.param('id'), req.params.all(), function userUpdated (err) {
+      if (err) {
+        return res.redirect('/user/edit/' + req.param('id'));
+      }
+      res.redirect('/user/show/' + req.param('id'));
+    });
+  },
 
   /**
    * Overrides for the settings in `config/controllers.js`
@@ -28,5 +92,5 @@ module.exports = {
    */
   _config: {}
 
-  
+
 };
