@@ -16,17 +16,39 @@
  */
 
 module.exports = {
-    
+
   'new': function(req, res) {
+    res.locals.flash = _.clone(req.session.flash);
     res.view();
+    req.session.flash = {};
   },
 
+  create: function (req, res, next) {
 
+    //Creating a user with params from signup form
+    User.create( req.params.all(), function userCreated (err, user) {
+
+      //Checking if errors, and logging those errors
+      if (err) {
+        console.log(err);
+        req.session.flash = {
+          err: err
+        }
+
+        //If error, go back to signup page
+        return res.redirect('/user/new');
+      }
+
+      //Render user show page after successful user creation
+      res.json(user);
+      req.session.flash = {};
+    });
+  },
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to UserController)
    */
   _config: {}
 
-  
+
 };
