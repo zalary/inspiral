@@ -63,6 +63,7 @@ module.exports = function (grunt) {
     'linker/js/backbone.js',
     'linker/js/backbone/model/*',
     'linker/js/backbone/collection/*',
+    'linker/js/backbone/views/inspiration-input-view.js',
     'linker/js/backbone/views/*',
 
     // All of the rest of your app scripts imported here

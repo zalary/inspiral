@@ -8,7 +8,6 @@
       var text = this.$el.children('input[type="text"]').val();
       if (text !== "") {
         var inspirationModel = new InspirationModel({text: text});
-        console.log("works");
         this.collection.add(inspirationModel);
         //clear the input
         this.$el.children('input[type="text"]').val('');
