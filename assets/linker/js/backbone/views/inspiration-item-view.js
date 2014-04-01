@@ -4,7 +4,7 @@ var itemTemplateHtml = $('#templates .inspiration-item').html(),
     itemTemplate = _.template(itemTemplateHtml);
 
     window.InspirationView = Backbone.View.extend({
-      tagName: 'article',
+      tagName: 'li',
       className: 'inspiration',
       template: itemTemplate,
       render: function() {

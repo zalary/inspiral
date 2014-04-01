@@ -23,6 +23,6 @@
 
   window.inspirationListView = new InspirationListView({
     collection: inspirationCollection,
-    el: '#inspiration-todo-list'
+    el: '#inspiration-todo-list ul'
   });
 })();
