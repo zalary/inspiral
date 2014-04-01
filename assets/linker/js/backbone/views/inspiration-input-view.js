@@ -4,10 +4,20 @@
       "click #submit": "addOne"
     },
     addOne: function(e) {
-      console.log(this);
       var text = this.$el.children('input[type="text"]').val();
+      var new_inspiration = document.querySelector('#new-inspiration');
+      var original_creator_id = new_inspiration.dataset.userid;
+      var done_status = $('input[type="checkbox"]').val();
+      if (done_status) {
+        done_status = 1;
+      };
       if (text !== "") {
-        var inspirationModel = new InspirationModel({text: text});
+        var inspirationModel = new InspirationModel({
+          text: text,
+          original_creator_id: original_creator_id,
+          user_id: original_creator_id,
+          done: done_status
+        });
         this.collection.add(inspirationModel);
         //clear the input
         this.$el.children('input[type="text"]').val('');
