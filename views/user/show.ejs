@@ -10,7 +10,15 @@ var session_user = <%= session.User.id %>
 </div>
 
 <div id="add-inspiration">
-  <input type="text" placeholder="Enter something inspiring!" />
+  <input id="new-inspiration" type="text" data-userid="<%= user.id %>" placeholder="Enter something inspiring!" />
+
+  <div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" value="true"> I'm a done thing
+      </span>
+        <input type="text" class="form-control">
+  </div>
+
   <input type="button" value="Add Inspiration" id="submit" />
 </div>
 
