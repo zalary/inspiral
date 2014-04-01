@@ -1,4 +1,7 @@
 (function() {
+
+  // Displays the contents of the collection to the show page on load
+  // and updates when a new one is added.
   window.InspirationListView = Backbone.View.extend({
     initialize: function() {
       // this.collection.on('add', this.addOne, this);
@@ -7,7 +10,6 @@
       this.render();
     },
     render: function() {
-      console.log("render function for collection is called!");
       this.addAll();
     },
     addAll: function() {
