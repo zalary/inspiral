@@ -2,7 +2,11 @@
 <div id="templates">
 
   <script class="inspiration-item" type="text/template">
-    {{= text }} - {{= done }}
+    {{= text }} - {{= done }} - {{= original_creator_id }} 
+
+    <a href="/user/edit/<%= user.id %>" class="btn btn-sm btn-primary">Edit</a>
+
+    <a href="/inspiration/create?text={{= text }}&city=Austin&original_creator_id={{= original_creator_id }}&done=0&user_id={{= session_user }}" class="btn btn-sm btn-primary this-inspires">This inspires me!</a>
   </script>
 
 </div>
