@@ -16,8 +16,10 @@
           <img src="http://zandytech.com/inspiral/yellow_sunrise.jpg">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+              <h1>Be Happy!</h1>
+              <p>Research out of Stanford University proves that random acts of kindness actually cause greater happiness.
+                <br/> <br/> <br/> <br/>
+              </p>
               <p><a class="btn btn-lg btn-primary" href="#signinup" role="button">Get started now</a></p>
             </div>
           </div>
@@ -29,8 +31,10 @@
           <img src="http://zandytech.com/inspiral/mesh.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <h1>Be Compassionate</h1>
+              <p>In fact, studies consistently show that we feel happier ... and people who are kind and compassionate are usually the most successful.
+              <br/> <br/> <br />
+              </p>
               <p><a class="btn btn-lg btn-primary" href="#signinup" role="button">Get started now</a></p>
             </div>
           </div>
@@ -39,8 +43,10 @@
           <img src="http://zandytech.com/inspiral/spiral1.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <h1>Be Healthy!</h1>
+              <p>Researchers analyzed the blood of 80 healthy volunteers who were asked about what made them happy. Those with the least self-centered lives had healthier biomarkers than those whose lives were pretty much “all about me.”
+               <br/> <br/> <br />
+             </p>
               <p><a class="btn btn-lg btn-primary" href="#signinup" role="button">Get started now</a></p>
             </div>
           </div>
@@ -101,8 +107,7 @@
         <div class="col-lg-4">
           <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
           <h2>Heading</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
@@ -149,32 +154,19 @@
 
       <div class="row featurette">
         <a name="signinup">
-        <div class="col-md-7">
+        <div class="col-md-12">
           <h2 class="featurette-heading">Get started now
-         <!--    <span class="text-muted">Create an account or login.</span> -->
+         <!--<span class="text-muted">create an account or login.</span> -->
           </h2>
-          <p class="lead left"><form action="/user/create" method="POST" class="form-signin">
-  <h3 class="form-signin-heading text-muted">Create an account</h2>
+          <div class="lead left">
+            <iframe src="/user/new" scrolling="no" frameborder="0"></iframe>
+          </div>
+          <div class="lead right">
+            <iframe src="/session/new" scrolling="no" frameborder="0"></iframe>
+          </div>
 
-  <input type="text" class="form-control" placeholder="your name" name="name">
-
-  <input type="text" class="form-control" placeholder="username" name="username">
-
-  <input type="email" class="form-control" placeholder="email address" name="email">
-
-  <input type="password" class="form-control" placeholder="password" name="password">
-
-  <input type="password" class="form-control" placeholder="password-confirmation" name="confirmation">
-  </br>
-
-  <input type="submit" class="btn btn-lg btn-primary btn-block" value="Create Account"/>
-  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-</form>
-</p>
         </div>
-        <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
+
       </div>
 
       <hr class="featurette-divider">
