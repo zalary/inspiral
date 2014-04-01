@@ -7,20 +7,29 @@ var session_user = <%= session.User.id %>
 
 <div class='container'>
   <h1><%= user.name %>'s Inspiral Dashboard</h1>
-</div>
 
-<div id="add-inspiration">
-  <input id="new-inspiration" type="text" data-userid="<%= user.id %>" placeholder="Enter something inspiring!" />
 
-  <div class="input-group">
+
+<% if ((session.authenticated) && (session.User.id == user.id)) { %>
+
+  <div id="add-inspiration">
+    <input type="text" data-userid="<%= user.id %>" id="new-inspiration" placeholder="Enter something inspiring!" /> <br />
+    <input type="button" value="Add Inspiration" id="submit" class="btn btn-info btn-lg" />
+      <div class="input-group">
       <span class="input-group-addon">
         <input type="checkbox" value="true"> I'm a done thing
       </span>
         <input type="text" class="form-control">
-  </div>
+      </div>
 
   <input type="button" value="Add Inspiration" id="submit" />
-</div>
+  </div>
+
+<% } %>
+
+
+</div> <!-- end container -->
+
 
 <div id="inspiration-todo-list">
   <ul></ul>

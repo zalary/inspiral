@@ -1,9 +1,22 @@
+div.container.marketing {
+    padding-top: 50px;
+}
+
 .form-control {
   margin-bottom: 5px;
 }
 
-.left {
-  width: 50%;
+.left, .right {
+    width: 50%;
+    float: left;
+}
+
+iframe {
+  width: 400px;
+  height: 500px;
+  float: left;
+  padding: 10px;
+
 }
 
 #nav.affix {
@@ -22,3 +35,32 @@
 }
 
 .carousel { margin-bottom: 0px; }
+
+
+#add-inspiration input[type="text"] {
+    margin: 20px;
+    width:500px;
+    overflow:hidden;
+    background-color:#EEE;
+    color:#222;
+    font-weight:normal;
+    font-size:24px;
+    resize:none;
+    line-height:40px;
+    padding-left:100px;
+    padding-right:100px;
+    padding-top:35px;
+    padding-bottom:34px;
+    background-repeat:repeat-y, repeat;
+    -webkit-border-radius:12px;
+    border-radius:12px;
+    -webkit-box-shadow: 0px 2px 14px #444;
+    box-shadow: 0px 2px 14px #444;
+    border-top:1px solid #EFEFEF;
+    border-bottom:1px solid #EFEFEF;
+
+}
+
+#add-inspiration input[type="button"] {
+     margin-left: 350px;
+    }
