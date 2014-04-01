@@ -1,13 +1,11 @@
 <div class='container'>
-<h1><%= user.name %>'s Inspiral Dashboard</h1>
-<a href="/user/edit/<%= user.id %>" class="btn btn-sm btn-primary">Edit</a>
+  <h1><%= user.name %>'s Inspiral Dashboard</h1>
+  <a href="/user/edit/<%= user.id %>" class="btn btn-sm btn-primary">Edit</a>
 </div>
 
 <div id="add-inspiration">
-<input type="text" placeholder="Enter something inspiring!" />
-<input type="button" value="Add Inspiration" id="submit">
-
+  <input type="text" placeholder="Enter something inspiring!" />
+  <input type="button" value="Add Inspiration" id="submit" />
 </div> <!-- end dashboard_template -->
 
-<div id="inspiration-todo-list">
-</div>
+<div id="inspiration-todo-list"></div>

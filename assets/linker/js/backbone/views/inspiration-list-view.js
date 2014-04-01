@@ -1,10 +1,13 @@
 (function() {
-  var InspirationListView = Backbone.View.extend({
+  window.InspirationListView = Backbone.View.extend({
     initialize: function() {
-      this.collection.on('add', this.addOne, this);
-      this.collection.on('reset', this.addAll, this);
+      // this.collection.on('add', this.addOne, this);
+      // this.collection.on('reset', this.addAll, this);
+      this.listenTo(this.collection, 'add', this.addOne);
+      this.render();
     },
     render: function() {
+      console.log("render function for collection is called!");
       this.addAll();
     },
     addAll: function() {
@@ -13,11 +16,12 @@
       return this;
     },
     addOne: function(inspirationModel) {
-      var inspirationView = new InspirationView({model: inspirationModel});
+      window.inspirationView = new InspirationView({model: inspirationModel});
       this.$el.append(inspirationView.render().el);
     }
   });
-    var inspirationListView = new InspirationListView({
+
+  window.inspirationListView = new InspirationListView({
     collection: inspirationCollection,
     el: '#inspiration-todo-list'
   });
