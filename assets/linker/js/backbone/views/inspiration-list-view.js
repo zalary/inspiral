@@ -13,18 +13,26 @@
       this.addAll();
     },
     addAll: function() {
-      this.$el.empty();
+      this.$("#done").empty();
+      this.$("#notdone").empty();
       this.collection.forEach(this.addOne, this);
       return this;
     },
     addOne: function(inspirationModel) {
+
       window.inspirationView = new InspirationView({model: inspirationModel});
-      this.$el.append(inspirationView.render().el);
+      if(inspirationModel.get("done") === true ) {
+        this.$("#done").append(inspirationView.render().el);
+      }else{
+        this.$("#notdone").append(inspirationView.render().el);
+      }
     }
   });
 
+
   window.inspirationListView = new InspirationListView({
     collection: inspirationCollection,
-    el: '#inspiration-todo-list ul'
+    el: '#inspiration-todo-list'
   });
+
 })();
