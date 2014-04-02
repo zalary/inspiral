@@ -52,15 +52,18 @@ module.exports.routes = {
 
   */
 
-  'get /login': 'AuthController.login',
+  // Location: config/routes.js
+  'get /login': "AuthController.login",
+  'post /login': 'AuthController.process',
   'get /logout': 'AuthController.logout',
-  'get /register': 'AuthController.register',
 
-  'post /auth/local': 'AuthController.callback',
-  'post /auth/local/:action': 'AuthController.callback',
+  //'get /register': 'AuthController.register',
 
-  'get /auth/:provider': 'AuthController.provider',
-  'get /auth/:provider/callback': 'AuthController.callback',
+  //'post /auth/local': 'AuthController.callback',
+  //'post /auth/local/:action': 'AuthController.callback',
+
+  //'get /auth/:provider': 'AuthController.provider',
+  //'get /auth/:provider/callback': 'AuthController.callback',
 
   /*
   // Alternatively, you can use the more verbose syntax:
