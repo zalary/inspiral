@@ -30,6 +30,11 @@ module.exports = {
       unique: true
     },
 
+    passports: {
+      collection: 'Passport',
+      via: 'user'
+    }
+
     encryptedPassword: {
       type: 'string'
     }
