@@ -50,22 +50,7 @@ module.exports.routes = {
   // with an `inbox` action.
   '/': 'MessageController.inbox'
 
-  */
 
-  // Location: config/routes.js
-  'get /login': "AuthController.login",
-  'post /login': 'AuthController.process',
-  'get /logout': 'AuthController.logout',
-
-  //'get /register': 'AuthController.register',
-
-  //'post /auth/local': 'AuthController.callback',
-  //'post /auth/local/:action': 'AuthController.callback',
-
-  //'get /auth/:provider': 'AuthController.provider',
-  //'get /auth/:provider/callback': 'AuthController.callback',
-
-  /*
   // Alternatively, you can use the more verbose syntax:
   '/': {
     controller: 'MessageController',
@@ -93,8 +78,24 @@ module.exports.routes = {
 
   // You would want to define the following route to handle your form:
   'post /signup': 'UserController.signup'
+  */
 
 
+  // Location: config/routes.js
+  //'get /login': 'AuthController.login',
+  //'post /login': 'AuthController.process',
+  //'get /logout': 'AuthController.logout',
+
+  //'get /register': 'AuthController.register',
+
+  //'post /auth/local': 'AuthController.callback',
+  //'post /auth/local/:action': 'AuthController.callback',
+
+  //'get /auth/:provider': 'AuthController.provider',
+  //'get /auth/:provider/callback': 'AuthController.callback',
+
+
+  /*
   // What about the ever-popular "vanity URLs" aka URL slugs?
   // (you might remember doing this with `mod_rewrite` in Apache)
   //

@@ -32,25 +32,20 @@ module.exports = {
       unique: true
     },
 
-    passports: {
-      collection: 'Passport',
-      via: 'user'
-    }
-
     password: {
       type: 'string',
       required: true
-    }
+    },
 
-  //Override toJSON method to remove password from API
-  toJSON: function() {
-      var obj = this.toObject();
-      // Remove the password object value
-      delete obj.password;
-      // return the new object without password
-      return obj;
-    }
-  },
+    //Override toJSON method to remove password from API
+    toJSON: function() {
+        var obj = this.toObject();
+        // Remove the password object value
+        delete obj.password;
+        // return the new object without password
+        return obj;
+      }
+    },
 
   beforeCreate: function (user, cb) {
     bcrypt.genSalt(10, function(err, salt) {
