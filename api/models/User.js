@@ -37,23 +37,25 @@ module.exports = {
       via: 'user'
     }
 
-    encryptedPassword: {
-      type: 'string'
+    password: {
+      type: 'string',
+      required: true
     }
 
   },
 
-  beforeCreate: function (values, next) {
-    //Check that password is correct and matches confirmation.
-    if (!values.password || values.password != values.confirmation) {
-      return next({err: ["Password doesn't match password confirmation."]});
-    }
-
-    require('bcrypt').hash(values.password, 10, function passwordEncrypted(err, encryptedPassword) {
-      if (err) return next(err);
-      values.encryptedPassword = encryptedPassword;
-      next();
+  beforeCreate: function (user, cb) {
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(user.password, salt, function(err, hash) {
+        if (err) {
+          console.log(err);
+          cb(err);
+        }else{
+          user.password = hash;
+          cb(null, user);
+        }
+      });
     });
-  }
 
+  }
 };
