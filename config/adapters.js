@@ -36,4 +36,6 @@ module.exports.adapters = {
   //   password: 'YOUR_MYSQL_PASSWORD',
   //   database: 'YOUR_MYSQL_DB'
   // }
+
+
 };

@@ -12,4 +12,5 @@ var itemTemplateHtml = $('#templates .inspiration-item').html(),
         return this;
       }
     });
+
 })();
