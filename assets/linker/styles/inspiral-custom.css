@@ -64,3 +64,8 @@ iframe {
 #add-inspiration input[type="button"] {
      margin-left: 350px;
     }
+
+ul.list-group {
+width: 500px;
+margin: 20px 90px 20px;
+}

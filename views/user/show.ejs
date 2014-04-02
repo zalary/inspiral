@@ -8,23 +8,19 @@ var session_user = <%= session.User.id %>
 <div class='container'>
   <h1><%= user.name %>'s Inspiral Dashboard</h1>
 
-
 <% if ((session.authenticated) && (session.User.id == user.id)) { %>
 
   <div id="add-inspiration">
     <input type="text" data-userid="<%= user.id %>" id="new-inspiration" placeholder="Enter something inspiring!" /> <br />
-    <input type="button" value="Add Inspiration" id="submit" class="btn btn-info btn-lg" />
 
-
-  <div class="input-group">
-
-      <span class="input-group-addon">
+  <div>
+      <span class="input_done">
         <input type="checkbox" value="true"> I'm a done thing
       </span>
-        <input type="text" class="form-control">
-      </div>
+    </div>
 
-  <input type="button" value="Add Inspiration" id="submit" />
+    <input type="button" value="Add Inspiration" id="submit" class="btn btn-info btn-lg" />
+
 
 </div>
 
@@ -37,7 +33,7 @@ var session_user = <%= session.User.id %>
 
 
 <div id="inspiration-todo-list">
-  <ul></ul>
+  <ul class="list-group"></ul>
 </div>
 
 
