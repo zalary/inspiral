@@ -8,6 +8,7 @@
 
 module.exports = {
 
+  adapter: 'postgres',
   schema: true,
 
   attributes: {
