@@ -65,7 +65,17 @@ iframe {
      margin-left: 350px;
     }
 
-ul.list-group {
-width: 500px;
-margin: 20px 90px 20px;
+
+#inspiration-todo-list {
+    width: 900px;
+    margin: 20px 90px 20px;
+}
+#inspiration-todo-list .done {
+    float: right;
+    width: 300px;
+}
+
+#inspiration-todo-list .notdone {
+    float: left;
+    width: 500px;
 }
