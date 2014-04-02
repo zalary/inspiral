@@ -33,7 +33,7 @@ module.exports.routes = {
   //
   // (This would also work if you had a file at: `/views/home.ejs`)
   '/': {
-    view: 'home/index'
+    view: 'home/index',
   }
 
   /*
@@ -50,7 +50,19 @@ module.exports.routes = {
   // with an `inbox` action.
   '/': 'MessageController.inbox'
 
+  */
 
+  'get /login': 'AuthController.login',
+  'get /logout': 'AuthController.logout',
+  'get /register': 'AuthController.register',
+
+  'post /auth/local': 'AuthController.callback',
+  'post /auth/local/:action': 'AuthController.callback',
+
+  'get /auth/:provider': 'AuthController.provider',
+  'get /auth/:provider/callback': 'AuthController.callback',
+
+  /*
   // Alternatively, you can use the more verbose syntax:
   '/': {
     controller: 'MessageController',
