@@ -29,11 +29,13 @@
     addOne: function(inspirationModel) {
 
       window.inspirationView = new InspirationView({model: inspirationModel});
-      if(inspirationModel.get("done") === true ) {
-        this.$("#done").append(inspirationView.render().el);
-      }else{
-        this.$("#notdone").append(inspirationView.render().el);
-      }
+      if  (inspirationModel.get("user_id") === show_user_id) {
+        if (inspirationModel.get("done") === true ) {
+          this.$("#done").append(inspirationView.render().el);
+        }else{
+         this.$("#notdone").append(inspirationView.render().el);
+        }
+     }
     }
   });
 
