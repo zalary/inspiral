@@ -19,11 +19,15 @@ module.exports.policies = {
   
   '*': "authenticated",
   UserController: {
+    "new" : true,
     "create": true,
     },
+  SessionController: {
+    "new" : true,
+  },
   AuthController: {
     '*': true,
-  }
+  } 
 
   //'*': 'flash',
 
