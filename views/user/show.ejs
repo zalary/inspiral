@@ -1,7 +1,7 @@
 
 <script>
 var show_user_id = <%= user.id %>
-var session_user = <%= session.User.id %>
+ var session_user = 0; 
 </script>
 
 <%- partial ('js_templates.html.ejs') %>
@@ -9,28 +9,7 @@ var session_user = <%= session.User.id %>
 <div class='container'>
   <h1><%= user.name %>'s Inspiral Dashboard</h1>
 
-<% if ((session.authenticated) && (session.User.id == user.id)) { %>
 
-  <div id="add-inspiration">
-    <input type="text" data-userid="<%= user.id %>" id="new-inspiration" placeholder="Enter something inspiring!" /> <br />
-
-
-  <div>
-
-      <span class="input_done">
-        <input type="checkbox"> I'm a done thing
-      </span>
-    </div>
-
-
-    <input type="button" value="Add Inspiration" id="submit" class="btn btn-info btn-lg" />
-
-
-</div>
-
-
-
-<% } %>
 
 
 </div> <!-- end container -->
@@ -47,5 +26,42 @@ var session_user = <%= session.User.id %>
   </div>
 </div>
 
+<script>
+$(document).ready(function() {
+  // Handler for .ready() called.
+$("#add-inspiration").appendTo(".container");
+
+});
+</script>
+
+
+
+<% if (!(session.authenticated)) { %>
+<%return false; } else { %>
+<% if (session.User.id == user.id) { %>
+<script>
+session_user = <%= session.User.id %>
+</script>
+
+
+  <div id="add-inspiration">
+    <input type="text" data-userid="<%= user.id %>" id="new-inspiration" placeholder="Enter something inspiring!" /> <br />
+
+  <div>
+
+      <span class="input_done">
+        <input type="checkbox"> I'm a done thing
+      </span>
+    </div>
+
+
+    <input type="button" value="Add Inspiration" id="submit" class="btn btn-info btn-lg" />
+
+
+</div>
+
+
+
+<% } } %>
 
 
