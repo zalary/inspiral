@@ -2,7 +2,7 @@
 
 window.InspirationCollection = Backbone.Collection.extend({
   url: '/inspiration',
-  model: InspirationModel,
+  model: InspirationModel
   //onlyDone: function() {
     //var doneItems = this.where({done: true});
     //return doneItems;
