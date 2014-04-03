@@ -9,7 +9,6 @@
     log_story: function() {
           datastring = "inspirationid=1&pinned_by=2&pinned_from=1";
           $.get("http://localhost:1337/story/create?" + datastring + "");
-          alert('hi');
     },
     initialize: function() {
       // this.collection.on('add', this.addOne, this);
@@ -29,7 +28,7 @@
     addOne: function(inspirationModel) {
 
       window.inspirationView = new InspirationView({model: inspirationModel});
-      if  (inspirationModel.get("user_id") === show_user_id) {
+      if  (inspirationModel.get("user_id") == show_user_id) {
         if (inspirationModel.get("done") === true ) {
           this.$("#done").append(inspirationView.render().el);
         }else{
