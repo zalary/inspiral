@@ -79,3 +79,7 @@ iframe {
     float: left;
     width: 500px;
 }
+
+#friend-share-email-input {
+    width: 250px;
+}
