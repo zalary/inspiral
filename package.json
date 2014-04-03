@@ -11,11 +11,13 @@
     "optimist": "0.3.4",
     "sails-postgresql": "~0.9.7",
     "bcrypt": "^0.7.7",
-    "sails-mongo": "~0.9.7"
+    "sails-mongo": "~0.9.7",
+    "mocha": ">= 0"
   },
   "scripts": {
     "start": "node app.js",
-    "debug": "node debug app.js"
+    "debug": "node debug app.js",
+    "test": "./node_modules/.bin/mocha --reporter spec --require tests/testHelper.js tests/index.js --colors"
   },
   "main": "app.js",
   "repository": "",
