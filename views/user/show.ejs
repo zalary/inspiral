@@ -47,5 +47,14 @@ var session_user = <%= session.User.id %>
   </div>
 </div>
 
+<script type="text/javascript">
+  $('#share-inspiration-test').on('click', function(e) {
+    e.preventDefault();
+    console.log('send mail?');
+
+    eventEmitter.emit('shareThisInspiration');
+    });
+</script>
+
 
 
