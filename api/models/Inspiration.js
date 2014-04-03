@@ -9,16 +9,36 @@
 module.exports = {
 
   attributes: {
-  	
-  	/* e.g.
-  	nickname: 'string'
-  	*/
+    
+    //user_id: 'integer',
+    //original_creator_id: 'integer', //this should be static once it's created
+    //text: 'string', //static for now
+    //city: 'string',
+    //done: 'boolean'
 
-    user_id: 'integer',
-    original_creator_id: 'integer', //this should be static once it's created
-    text: 'string', //static for now
-    city: 'string',
-    done: 'boolean'
+     user_id: {
+      type: 'integer',
+      required: true
+    },
+
+    original_creator_id: {
+      type: 'integer',
+      required: true
+    },
+
+    text: {
+      type: 'string',
+      required: true
+    },
+
+    city: {
+      type: 'string'
+    },
+
+    done: {
+      type: 'boolean'
+    }
+
   }
 
 };

@@ -37,5 +37,10 @@ module.exports.adapters = {
   //   database: 'YOUR_MYSQL_DB'
   // }
 
+  //DEVELOPMENT ONLY
+
+   disk: {
+    module: 'sails-disk'
+  }
 
 };

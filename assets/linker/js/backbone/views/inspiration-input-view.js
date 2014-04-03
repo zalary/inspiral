@@ -17,9 +17,11 @@
       // add it to the the collection
       var new_inspiration = document.querySelector('#new-inspiration');
       var original_creator_id = new_inspiration.dataset.userid;
-      var done_status = $('input[type="checkbox"]').val();
-      if (done_status) {
+      var done_status = $('input[type="checkbox"]').prop('checked');
+     // console.log(done_status);
+      if (done_status === "true") {
         done_status = 1;
+        //console.log(done_status);
       };
 
       if (text !== "") {
