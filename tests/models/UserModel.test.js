@@ -9,9 +9,9 @@ var uuid = require('node-uuid');
 
 function UserStub () {
   return {
-    username: 'GNU/Linux',
-    name: "linux",
-    email: "linux@albertosouza.net",
+    username: 'inspiral',
+    name: "Inspiral",
+    email: "inspiral@zalary.oib.com",
     password: "321456",
     confirmation: "321456"
   };
