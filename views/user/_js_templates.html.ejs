@@ -4,7 +4,29 @@
   <!-- For the want to do column -->
   <script class="inspiration-item" type="text/template">
 
-    <a href="#" class="btn btn-default btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span> share</a>
+     <!-- button trigger modal -->
+    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+      <span class="glyphicon glyphicon-share-alt"></span>share
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Invite your friends to join in spreading kindness</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Share inspiration!</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <a class="inspire_link" href="/inspiration/create?text={{= text }}&city=Austin&original_creator_id={{= original_creator_id }}&done=0&user_id={{= session_user }}" class="btn btn-sm btn-primary this-inspires">This inspires me!</a>   {{= text }}
 
@@ -13,7 +35,10 @@
   <!-- For the done column -->
   <script class="done-inspiration-item" type="text/template">
 
-    <a href="#" class="btn btn-default btn-info btn-sm"><span class="glyphicon glyphicon-share-alt"></span> share</a>
+    <a href="#" class="btn btn-default btn-primary btn-sm"><span class="glyphicon glyphicon-share-alt"></span> share</a>
+
+    // <a href="#" class="btn btn-default btn-info btn-sm"><span class="glyphicon glyphicon-share-alt"></span> share</a>
+
 
     <a class="inspire_link" href="/inspiration/create?text={{= text }}&city=Austin&original_creator_id={{= original_creator_id }}&done=0&user_id={{= session_user }}" class="btn btn-sm btn-primary this-inspires">This inspires me!</a>   {{= text }}
 

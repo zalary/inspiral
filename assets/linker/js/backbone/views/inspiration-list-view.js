@@ -4,7 +4,7 @@
   // and updates when a new one is added.
   window.InspirationListView = Backbone.View.extend({
     events: {
-      'click a': 'log_story',
+      'click a.inspire_link': 'log_story',
     },
     log_story: function() {
           datastring = "inspirationid=1&pinned_by=2&pinned_from=1";
