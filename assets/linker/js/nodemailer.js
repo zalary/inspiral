@@ -4,15 +4,15 @@ var nodemailer = require("nodemailer");
 var smtpTransport = nodemailer.createTransport("SMTP", {
   service: "Mandrill",
   auth: {
-    user: "kabeaty@gmail.com",
-    pass: "sAL7ANf4RCEIz1GyizhdgQ"
+    user: MANDRILL_USER,
+    pass: MANDRILL_SECRET
   }
 });
 
 //Set up email data
 var mailOptions = {
-  from: "kabeaty@gmail.com",
-  to: "zalary@gmail.com",
+  from: MANDRILL_USER,
+  to: "",
   subject: "Hello friend!",
   text: "Join me in sharing inspirations!"
 }
