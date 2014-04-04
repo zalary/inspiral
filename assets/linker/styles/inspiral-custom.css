@@ -1,3 +1,7 @@
+body {
+    background: #000000;
+}
+
 div.container.marketing {
     padding-top: 50px;
 }
@@ -78,4 +82,18 @@ iframe {
 #inspiration-todo-list .notdone {
     float: left;
     width: 500px;
+}
+
+.masonry-container {
+    background: #FE4365;
+    color: black;
+    font-size: 24px;
+    opacity: 0.85;
+}
+
+.inspire_link {
+    font-size: 16px;
+    opacity: 0.5;
+    background: black;
+    border: 5px;
 }

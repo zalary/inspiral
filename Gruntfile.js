@@ -61,6 +61,7 @@ module.exports = function (grunt) {
     'linker/js/jquery.validate.min.js',
     'linker/js/underscore.js',
     'linker/js/backbone.js',
+    'linker/js/masonry.pkgd.min.js',
     'linker/js/utils.js',
     'linker/js/backbone/model/*',
     'linker/js/backbone/collection/*',
