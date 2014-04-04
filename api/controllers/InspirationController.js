@@ -18,11 +18,10 @@
 module.exports = {
 
  'new': function(req, res) {
-   
+
   },
 
-
-  create: function(req, res, next) { 
+  create: function(req, res, next) {
    Inspiration.create(req.params.all(), function inspirationCreated(err, inspiration) {
       if (err) {
        console.log(err);
@@ -30,7 +29,7 @@ module.exports = {
      //socket stuff
       inspiration.save(function(err, inspiration){
         if (err) return next(err);
-     Inspiration.publishCreate(inspiration); 
+     Inspiration.publishCreate(inspiration);
 
      //Inspiration.publishCreate(inspiration.id) {
        //new_inspiration: true,
@@ -41,9 +40,7 @@ module.exports = {
    })
 
   },
-  
-    
-  
+
  subscribe: function(req, res) {
 
      Inspiration.find(function foundInspirations(err, inspirations) {
@@ -57,12 +54,22 @@ module.exports = {
      });
 
    },
-                     
+
+   index: function (req, res, next) {
+    // returns an array of inspirations
+    Inspiration.find(function foundInspirations (err, inspirations) {
+      if (err) return next(err);
+      res.view({
+        inspirations: inspirations
+      });
+    });
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to InspirationController)
    */
   _config: {}
 
-  
+
 };

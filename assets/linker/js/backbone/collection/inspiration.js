@@ -16,7 +16,6 @@ window.InspirationCollection = Backbone.Collection.extend({
 
 window.inspirationCollection = new InspirationCollection();
 inspirationCollection.fetch();
-  console.log("inspiration collection: ", inspirationCollection);
 
 inspirationCollection.on('add', function(inspirationCollection) {
   inspirationCollection.save();

@@ -10,7 +10,7 @@
 
 (function (io) {
 
-  // as soon as this file is loaded, connect automatically, 
+  // as soon as this file is loaded, connect automatically,
   var socket = io.connect();
   if (typeof console !== 'undefined') {
     log('Connecting to Sails.js...');
@@ -30,23 +30,23 @@
       //log('New comet message received :: ', message);
       //////////////////////////////////////////////////////
 
-    
+
 
      // Listen for the socket 'message'
      socket.on('message', inspirationReceivedFromServer);
-  
+
      // Subscribe to the user model classroom and instance room
      socket.get('/inspiration/subscribe');
 
 
     ///////////////////////////////////////////////////////////
     // Here's where you'll want to add any custom logic for
-    // when the browser establishes its socket connection to 
+    // when the browser establishes its socket connection to
     // the Sails.js server.
     ///////////////////////////////////////////////////////////
     log(
-        'Socket is now connected and globally accessible as `socket`.\n' + 
-        'e.g. to send a GET request to Sails, try \n' + 
+        'Socket is now connected and globally accessible as `socket`.\n' +
+        'e.g. to send a GET request to Sails, try \n' +
         '`socket.get("/", function (response) ' +
         '{ console.log(response); })`'
     );
@@ -63,11 +63,11 @@
 
   // Simple log function to keep the example simple
   function log () {
-    if (typeof console !== 'undefined') {
-      console.log.apply(console, arguments);
-    }
+  //   if (typeof console !== 'undefined') {
+  //     console.log.apply(console, arguments);
+  //   }
   }
-  
+
 
 })(
 
@@ -82,6 +82,44 @@
 
    // This message has to do with the User Model
   var inspirationId = message.id
- 
+  updateInspirationInDom(message);
 
+  };
+
+  function updateInspirationInDom(message) {
+
+    //Check what page we're on
+    var page = document.location.pathname;
+
+    page = page.replace(/(\/)$/, '');
+
+    switch (page) {
+
+      case '/inspiration/index':
+
+      if (message.verb === 'create') {
+        InspirationIndexPage.addInspiration(message);
+      }
+      break;
+    }
   }
+
+  var InspirationIndexPage = {
+
+    addInspiration: function(inspiration) {
+
+    var obj = {
+      inspiration: inspiration.data,
+      _csrf: window.inspiral.csrf || ''
+    };
+
+    $('#inspiration-feed').append(
+      JST['assets/linker/templates/addInspiration.ejs'](obj)
+      );
+    }
+  }
+
+
+
+
+
