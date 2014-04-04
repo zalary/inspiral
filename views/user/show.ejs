@@ -52,7 +52,7 @@ var session_user = <%= session.User.id %>
     e.preventDefault();
     console.log('send mail?');
 
-    eventEmitter.emit('shareThisInspiration');
+    nodemailer.smtpTransport.sendMail();
     });
 </script>
 

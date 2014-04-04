@@ -4,14 +4,14 @@ var nodemailer = require("nodemailer");
 var smtpTransport = nodemailer.createTransport("SMTP", {
   service: "Mandrill",
   auth: {
-    user: MANDRILL_USER,
-    pass: MANDRILL_SECRET
+    user: process.env.MANDRILL_USER,
+    pass: process.env.MANDRILL_SECRET
   }
 });
 
 //Set up email data
 var mailOptions = {
-  from: MANDRILL_USER,
+  from: process.env.MANDRILL_USER,
   to: "",
   subject: "Hello friend!",
   text: "Join me in sharing inspirations!"
@@ -26,4 +26,4 @@ smtpTransport.sendMail(mailOptions, function(error, response){
   }
 })
 
-smtpTransport.sendMail(mailOptions, callback);
+module.exports.nodemailer_local = nodemailer;
