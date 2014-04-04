@@ -19,17 +19,24 @@
   socket.on('connect', function socketConnected() {
 
     // Listen for Comet messages from Sails
-    socket.on('message', function messageReceived(message) {
+   // socket.on('message', function messageReceived(message) {
+    console.log("This is from the connect: ", this.socket.sessionid);
 
       ///////////////////////////////////////////////////////////
       // Replace the following with your own custom logic
       // to run when a new message arrives from the Sails.js
       // server.
       ///////////////////////////////////////////////////////////
-      log('New comet message received :: ', message);
+      //log('New comet message received :: ', message);
       //////////////////////////////////////////////////////
 
-    });
+    
+
+     // Listen for the socket 'message'
+     socket.on('message', inspirationReceivedFromServer);
+  
+     // Subscribe to the user model classroom and instance room
+     socket.get('/inspiration/subscribe');
 
 
     ///////////////////////////////////////////////////////////
@@ -69,3 +76,12 @@
   window.io
 
 );
+
+  function inspirationReceivedFromServer(message) {
+  console.log("Here's the message: ", message);
+
+   // This message has to do with the User Model
+  var inspirationId = message.id
+ 
+
+  }
