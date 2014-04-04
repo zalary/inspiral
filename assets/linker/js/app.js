@@ -95,7 +95,7 @@
 
     switch (page) {
 
-      case '/inspiration/index':
+      case '/inspiration/feed':
 
       if (message.verb === 'create') {
         InspirationIndexPage.addInspiration(message);
