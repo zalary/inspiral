@@ -110,15 +110,14 @@
 
     var obj = {
       inspiration: inspiration.data,
-      _csrf: window.inspiral.csrf || ''
+      _csrf: window.csrf || ''
     };
 
     $('#inspiration-feed').append(
       JST['assets/linker/templates/addInspiration.ejs'](obj)
       );
     }
-  }
-
+  };
 
 
 

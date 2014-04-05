@@ -2,6 +2,7 @@
 <script>
 var show_user_id = <%= user.id %>
  var session_user = 0;
+ var done_status = ''
 </script>
 
 <%- partial ('js_templates.html.ejs') %>
@@ -42,16 +43,14 @@ $("#add-inspiration").appendTo(".container");
 <script>
 session_user = <%= session.User.id %>
 </script>
-
-
   <div id="add-inspiration">
     <form method="post" action="/inspiration/create">
       <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
-      <input type='hidden' name="_csrf" value='<%= _csrf %>'>
+      <input type='hidden' name='_csrf' value='<%= _csrf %>'>
       <input type='hidden' name="user_id" value='<%= user.id %>'>
       <input type='hidden' name="original_creator_id" value='<%= user.id %>'>
       <input type='hidden' value='0' name='done'>
-      <input type="text" name="text" id="new-inspiration" placeholder="Enter something inspiring!" /> <br />
+      <input type="text" name="text" id="new-inspiration" placeholder="Enter something inspiring!"> <br />
       <div>
         <span class="input_done">
           <input type="checkbox">I'm a done thing
@@ -59,18 +58,32 @@ session_user = <%= session.User.id %>
       </div>
       <input type="submit" value="Add Inspiration" id="submit" class="btn btn-info btn-lg">
       <script>
-      $('input[type="checkbox"]').on("click", function() {
-        var done_status = $('input[type="checkbox"]').prop('checked');
-        if (done_status === "true") {
-          $('input[type="checkbox"]').val(1);
-        };
-      });
+
+        var csrfToken = "<%= _csrf %>";
+
+        $('#add-inspiration form').on("submit", function(e) {
+          e.preventDefault();
+          var done_status = $('input[type="checkbox"]').prop('checked');
+          if (done_status) {
+            done_status = 1;
+          }
+          else {
+            done_status = 0;
+          };
+
+          $.post("/inspiration/create", {
+            user_id: session_user,
+            original_creator_id: session_user,
+            text: $('#new-inspiration').val(),
+            done: done_status,
+            _csrf: '<%= _csrf %>'
+          });
+        });
+
+
       </script>
     </form>
   </div>
-
-
-
 <% } } %>
 
 
