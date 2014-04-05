@@ -38,15 +38,26 @@
     <script src="/linker/js/paper.js"></script>
     <script type="text/paperscript" canvas="homepageCanvas">
       var colors = ['red', 'blue', 'green', 'yellow', 'black', 'orange', 'red', 'blue', 'purple', 'gray'];
-      var circle;
-      var numberCircles = 5;
-      for (var i = 0; i <= numberCircles; i++) {
-        var position = Point.random() * view.size;
-        var radius = Math.random() * 60 + 60;
-        circle = new Path.Circle(new Point(position), radius);
-        var randomNum = Math.round(Math.random() * 10);
-        circle.fillColor = colors[randomNum];
-      }
+      var radius, randomNum;
+      var numberCircles = 20;
+      var radius = 50;
+      var originalCircle = new Path.Circle(new Point(view.center), 50);
+
+      var addCircle = function() {
+          var position = view.center;
+          console.log(view.center);
+          radius -= Math.round(Math.random() * 10);
+          var circle = new Path.Circle(new Point(position), radius);
+          originalCircle.addChild(circle);
+          randomNum = Math.round(Math.random() * 10);
+          circle.fillColor = colors[randomNum];
+      };
+
+         for (var i = 0; i < numberCircles; i++) {
+          setTimeout(function() {
+            addCircle();
+          }, 1000);
+        };
 
     </script>
 
