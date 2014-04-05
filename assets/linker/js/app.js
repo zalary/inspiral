@@ -10,7 +10,7 @@
 
 (function (io) {
 
-  // as soon as this file is loaded, connect automatically, 
+  // as soon as this file is loaded, connect automatically,
   var socket = io.connect();
   if (typeof console !== 'undefined') {
     log('Connecting to Sails.js...');
@@ -19,27 +19,34 @@
   socket.on('connect', function socketConnected() {
 
     // Listen for Comet messages from Sails
-    socket.on('message', function messageReceived(message) {
+   // socket.on('message', function messageReceived(message) {
+    console.log("This is from the connect: ", this.socket.sessionid);
 
       ///////////////////////////////////////////////////////////
       // Replace the following with your own custom logic
       // to run when a new message arrives from the Sails.js
       // server.
       ///////////////////////////////////////////////////////////
-      log('New comet message received :: ', message);
+      //log('New comet message received :: ', message);
       //////////////////////////////////////////////////////
 
-    });
+
+
+     // Listen for the socket 'message'
+     socket.on('message', inspirationReceivedFromServer);
+
+     // Subscribe to the user model classroom and instance room
+     socket.get('/inspiration/subscribe');
 
 
     ///////////////////////////////////////////////////////////
     // Here's where you'll want to add any custom logic for
-    // when the browser establishes its socket connection to 
+    // when the browser establishes its socket connection to
     // the Sails.js server.
     ///////////////////////////////////////////////////////////
     log(
-        'Socket is now connected and globally accessible as `socket`.\n' + 
-        'e.g. to send a GET request to Sails, try \n' + 
+        'Socket is now connected and globally accessible as `socket`.\n' +
+        'e.g. to send a GET request to Sails, try \n' +
         '`socket.get("/", function (response) ' +
         '{ console.log(response); })`'
     );
@@ -56,11 +63,11 @@
 
   // Simple log function to keep the example simple
   function log () {
-    if (typeof console !== 'undefined') {
-      console.log.apply(console, arguments);
-    }
+  //   if (typeof console !== 'undefined') {
+  //     console.log.apply(console, arguments);
+  //   }
   }
-  
+
 
 })(
 
@@ -69,3 +76,49 @@
   window.io
 
 );
+
+  function inspirationReceivedFromServer(message) {
+  console.log("Here's the message: ", message);
+
+   // This message has to do with the User Model
+  var inspirationId = message.id
+  updateInspirationInDom(message);
+
+  };
+
+  function updateInspirationInDom(message) {
+
+    //Check what page we're on
+    var page = document.location.pathname;
+
+    page = page.replace(/(\/)$/, '');
+
+    switch (page) {
+
+      case '/inspiration/feed':
+
+      if (message.verb === 'create') {
+        InspirationIndexPage.addInspiration(message);
+      }
+      break;
+    }
+  }
+
+  var InspirationIndexPage = {
+
+    addInspiration: function(inspiration) {
+
+    var obj = {
+      inspiration: inspiration.data,
+      _csrf: window.csrf || ''
+    };
+
+    $('#inspiration-feed').append(
+      JST['assets/linker/templates/addInspiration.ejs'](obj)
+      );
+    }
+  };
+
+
+
+

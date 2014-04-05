@@ -83,10 +83,10 @@ module.exports = function (grunt) {
    * edit the relevant sections below.
    */
 
-  var templateFilesToInject = [
-    'linker/**/*.html'
-  ];
 
+    var templateFilesToInject = [
+      'linker/**/*.ejs'
+    ];
 
 
   /////////////////////////////////////////////////////////////////

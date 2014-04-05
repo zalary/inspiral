@@ -16,9 +16,53 @@
  */
 
 module.exports = {
-    
-  
-  
+
+ 'new': function(req, res) {
+
+  },
+
+  create: function(req, res, next) {
+    console.log('i#create');
+   Inspiration.create(req.params.all(), function inspirationCreated(err, inspiration) {
+      if (err) {
+       console.log(err);
+      }
+     //socket stuff
+      inspiration.save(function(err, inspiration){
+        console.log("saving inspiration");
+        if (err) { return next(err); }
+     Inspiration.publishCreate(inspiration);
+
+     //Inspiration.publishCreate(inspiration.id) {
+       //new_inspiration: true,
+       //id: inspiration.id
+     //});
+     });
+
+   });
+  },
+
+ subscribe: function(req, res) {
+
+     Inspiration.find(function foundInspirations(err, inspirations) {
+       if (err) return next(err);
+
+       Inspiration.subscribe(req.socket);
+
+       Inspiration.subscribe(req.socket, inspirations);
+
+       res.send(200);
+     });
+
+   },
+
+   feed: function (req, res, next) {
+    // returns an array of inspirations
+    Inspiration.find(function foundInspirations (err, inspirations) {
+      if (err) return next(err);
+      res.view();
+    });
+  },
 
   /**
    * Overrides for the settings in `config/controllers.js`
@@ -26,5 +70,5 @@ module.exports = {
    */
   _config: {}
 
-  
+
 };
