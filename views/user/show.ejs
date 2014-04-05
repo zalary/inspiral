@@ -7,9 +7,37 @@ var show_user_id = <%= user.id %>
 
 <%- partial ('js_templates.html.ejs') %>
 
-<div class='container'>
-  <h1><%= user.name %>'s Inspiral Dashboard</h1>
-    <a href="/inspiration/feed" class="btn btn-default btn-primary btn-lg"><span class="glyphicon glyphicon-th"></span> Inspiration Feed</a>
+<!-- NAVBAR
+================================================== -->
+
+    <div id="nav-wrapper" >
+        <div id="nav" class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand"><%= user.name %>'s Inspiral Dashboard</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/inspiration/feed">Inspiration Feed</a></li>
+                <% if (!(session.authenticated)) { %>
+                <li class="active"><a href="/session/new">Sign in/Sign up</a></li>
+                <% } else { %>
+                <li class="active"><a href="/user/destroy">Log out</a></li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<div class='container' id="dashboard-container">
+
 </div> <!-- end container -->
 
 <div id="inspiration-todo-list">
@@ -27,7 +55,7 @@ var show_user_id = <%= user.id %>
 <script>
 $(document).ready(function() {
   // Handler for .ready() called.
-$("#add-inspiration").appendTo(".container");
+$("#add-inspiration").appendTo("#dashboard-container");
 
 });
 </script>
@@ -81,8 +109,6 @@ session_user = <%= session.User.id %>
       </script>
     </form>
   </div>
-
-  <a href="/user/destroy" class="btn btn-default btn-danger btn-lg">Log out</a>
 <% } } %>
 
 
