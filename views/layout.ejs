@@ -43,21 +43,17 @@
       var radius = 50;
       var originalCircle = new Path.Circle(new Point(view.center), 50);
 
-      var addCircle = function() {
-          var position = view.center;
+      function onFrame(event) {
+        for (var i = 0; i <= numberCircles; i++) {
+         var position = view.center;
           console.log(view.center);
-          radius -= Math.round(Math.random() * 10);
+          radius += Math.round(Math.random() * 10);
           var circle = new Path.Circle(new Point(position), radius);
-          originalCircle.addChild(circle);
           randomNum = Math.round(Math.random() * 10);
           circle.fillColor = colors[randomNum];
+          circle.sendToBack();
+        }
       };
-
-         for (var i = 0; i < numberCircles; i++) {
-          setTimeout(function() {
-            addCircle();
-          }, 1000);
-        };
 
     </script>
 
