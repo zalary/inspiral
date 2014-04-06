@@ -1,3 +1,6 @@
 <h2>Inspiration Feed</h2>
-  <div id="inspiration-feed">
-  </div>
+<div id="inspiration-feed">
+  <% for (i in inspirations) { %>
+  <li><%= inspirations[i].text %></li>
+  <% } %>
+</div>

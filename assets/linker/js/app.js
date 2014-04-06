@@ -101,6 +101,7 @@
         InspirationIndexPage.addInspiration(message);
       }
       break;
+
     }
   }
 
@@ -118,7 +119,3 @@
       );
     }
   };
-
-
-
-

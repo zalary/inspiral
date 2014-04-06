@@ -31,7 +31,7 @@ module.exports = {
       inspiration.save(function(err, inspiration){
         console.log("saving inspiration");
         if (err) { return next(err); }
-     Inspiration.publishCreate(inspiration);
+        Inspiration.publishCreate(inspiration);
 
      //Inspiration.publishCreate(inspiration.id) {
        //new_inspiration: true,
@@ -60,7 +60,9 @@ module.exports = {
     // returns an array of inspirations
     Inspiration.find(function foundInspirations (err, inspirations) {
       if (err) return next(err);
-      res.view();
+      res.view({
+        inspirations: inspirations
+      });
     });
   },
 
