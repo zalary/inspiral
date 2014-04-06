@@ -79,3 +79,28 @@ iframe {
     float: left;
     width: 500px;
 }
+
+#homepage-landing {
+    height: 500px;
+}
+
+#homepageCanvas {
+    height: 450px;
+    width: 100%;
+}
+
+#homepage-inspiral {
+    text-align: center;
+    margin-top: 0px;
+    padding-bottom: 10px;
+    background-color: #122D7F;
+    color: white;
+}
+
+#inspiral-land-title {
+    font-size: 32px;
+}
+
+#homepage-top-row {
+    background-color: #122D7F;
+}
