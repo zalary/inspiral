@@ -51,13 +51,15 @@ module.exports = {
     User.findOne(req.param('id'), function foundUser (err, user) {
       if (err) return next(err);
       if (!user) return next();
-      // var inspirations;
-      // var users_id = req.param('id');
-      Inspiration.find().where({user_id: req.param('id')}).exec(function (err, inspirations) {
+      Inspiration.find().where({user_id: req.param('id'), done: 1}).exec(function (err, doneInspirations) {
         if (err) return next(err);
-        res.view({
-          user: user,
-          inspirations: inspirations
+          Inspiration.find().where({user_id: req.param('id'), done: 0}).exec(function (err, todoInspirations) {
+          if (err) return next(err);
+            res.view({
+              user: user,
+              doneInspirations: doneInspirations,
+              todoInspirations: todoInspirations
+          });
         });
       });
     });
