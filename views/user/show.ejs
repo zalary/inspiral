@@ -18,7 +18,9 @@ var show_user_id = <%= user.id %>
 <div id="inspiration-todo-list">
   <div class="notdone">
     <h3>Looking forward to doing ...</h3>
-    <ul id="notdone" class="list-group"></ul>
+    <ul id="notdone" class="list-group">
+      <li><%= console.log(inspirations) %></li>
+    </ul>
   </div>
 
   <div class="done">
