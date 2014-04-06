@@ -110,13 +110,14 @@ iframe {
 }
 
 .navbar-inverse .navbar-brand {
-    font-family: 'Lobster', Georgia, Times, serif;
+    font-family: Arial, Times, serif;
     font-size: 24px;
     color: #006666;
+    font-weight: bold;
 }
 
 .navbar-inverse .navbar-brand:hover{
-    color: black;
+    color: gray;
 }
 
 #custom-navbar-container {
@@ -127,11 +128,4 @@ iframe {
 .navbar-inverse {
     background-image: url('../../images/mooning/mooning.png');
     border: none;
-}
-
-.inspiration-navbar-link {
-    font-family: 'Raleway', Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    font-weight: bold;
-    color: black;
 }
