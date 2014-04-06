@@ -31,12 +31,8 @@ module.exports = {
       inspiration.save(function(err, inspiration){
         console.log("saving inspiration");
         if (err) { return next(err); }
-     Inspiration.publishCreate(inspiration);
-
-     //Inspiration.publishCreate(inspiration.id) {
-       //new_inspiration: true,
-       //id: inspiration.id
-     //});
+        Inspiration.publishCreate(inspiration);
+        res.json(inspiration);
      });
 
    });

@@ -93,59 +93,25 @@ session_user = <%= session.User.id %>
             done_status = 0;
           };
 
-          // $.post("/inspiration/create", {
-          //   user_id: session_user,
-          //   original_creator_id: session_user,
-          //   text: $('#new-inspiration').val(),
-          //   done: done_status,
-          //   _csrf: '<%= _csrf %>'
-          // })
+          $.ajax({
+            url: '/inspiration/create',
+            type: 'POST',
+            data: {
+              user_id: session_user,
+              original_creator_id: session_user,
+              text: $('#new-inspiration').val(),
+              done: done_status,
+              _csrf: '<%= _csrf %>'
+            }
+          })
+          .success(function(data) {
+              if (data.done) {
+                  $('#done').prepend('<li>' + data.text + '</li>');
+              } else {
+                  $('#notdone').prepend('<li>' + data.text + '</li>');
+              }
+          });
 
-          // $.ajax({
-          //   url: '/inspiration/create',
-          //   type: 'POST',
-          //   data: {
-          //     user_id: session_user,
-          //     original_creator_id: session_user,
-          //     text: $('#new-inspiration').val(),
-          //     done: done_status,
-          //     _csrf: '<%= _csrf %>'
-          //   },
-          //   success: function(data) {
-          //     console.log('it works');
-          //   },
-          //   error: function(data) {
-          //     console.log('it failed');
-          //   },
-          //   complete: function(data) {
-          //     console.log('complete');
-          //   }
-          // });
-
-          $.post("/inspiration/create", {
-            user_id: session_user,
-            original_creator_id: session_user,
-            text: $('#new-inspiration').val(),
-            done: done_status,
-            _csrf: '<%= _csrf %>'
-          },
-          function(data) {
-            console.log(data);
-          }, 'json'
-          );
-
-
-          // .done(function() {
-          //     console.log('after success');
-          //     $.get('/user/returnLatest/' + <%= user.id %>, function(data) {
-          //         console.log('data: ' + data[0].text);
-          //         if (data.done) {
-          //             $('#done').prepend('<li>' + data.text + '</li>');
-          //         } else {
-          //             $('#notdone').prepend('<li>' + data.text + '</li>');
-          //         }
-          //     });
-          //   });
         });
 
 
