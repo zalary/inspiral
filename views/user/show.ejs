@@ -10,7 +10,8 @@ var show_user_id = <%= user.id %>
 <div class='container'>
   <h1><%= user.name %>'s Inspiral Dashboard</h1>
 
-
+  <div id="dashboard-container">
+  </div>
 
 
 </div> <!-- end container -->
@@ -37,10 +38,23 @@ var show_user_id = <%= user.id %>
 
 <script>
 $(document).ready(function() {
-  // Handler for .ready() called.
-$("#add-inspiration").appendTo(".container");
-
+  $("#add-inspiration").appendTo("#dashboard-container");
 });
+
+// $('#add-inspiration form').on("submit", function() {
+//     console.log('set timeout');
+//     setTimeout(function() {
+//         console.log('after set timeout');
+//         $.get('/user/returnLatest', function(data) {
+//             console.log('data: ' + data);
+//             if (data.done) {
+//                 $('#done').prepend('<li>' + data.text + '</li>');
+//             } else {
+//                 $('#notdone').prepend('<li>' + data.text + '</li>');
+//             }
+//         });
+//     }, 0);
+// });
 </script>
 
 
@@ -79,13 +93,59 @@ session_user = <%= session.User.id %>
             done_status = 0;
           };
 
+          // $.post("/inspiration/create", {
+          //   user_id: session_user,
+          //   original_creator_id: session_user,
+          //   text: $('#new-inspiration').val(),
+          //   done: done_status,
+          //   _csrf: '<%= _csrf %>'
+          // })
+
+          // $.ajax({
+          //   url: '/inspiration/create',
+          //   type: 'POST',
+          //   data: {
+          //     user_id: session_user,
+          //     original_creator_id: session_user,
+          //     text: $('#new-inspiration').val(),
+          //     done: done_status,
+          //     _csrf: '<%= _csrf %>'
+          //   },
+          //   success: function(data) {
+          //     console.log('it works');
+          //   },
+          //   error: function(data) {
+          //     console.log('it failed');
+          //   },
+          //   complete: function(data) {
+          //     console.log('complete');
+          //   }
+          // });
+
           $.post("/inspiration/create", {
             user_id: session_user,
             original_creator_id: session_user,
             text: $('#new-inspiration').val(),
             done: done_status,
             _csrf: '<%= _csrf %>'
-          });
+          },
+          function(data) {
+            console.log(data);
+          }, 'json'
+          );
+
+
+          // .done(function() {
+          //     console.log('after success');
+          //     $.get('/user/returnLatest/' + <%= user.id %>, function(data) {
+          //         console.log('data: ' + data[0].text);
+          //         if (data.done) {
+          //             $('#done').prepend('<li>' + data.text + '</li>');
+          //         } else {
+          //             $('#notdone').prepend('<li>' + data.text + '</li>');
+          //         }
+          //     });
+          //   });
         });
 
 

@@ -96,6 +96,13 @@ module.exports = {
     });
   },
 
+  returnLatest: function (req, res, next) {
+    Inspiration.find().where({user_id: req.param('id')}).limit(1).sort('id DESC').exec(function (err, latestInspiration) {
+      if (err) return next(err);
+      res.json(latestInspiration);
+    });
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to UserController)
