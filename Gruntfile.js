@@ -59,14 +59,7 @@ module.exports = function (grunt) {
     // *->    put other dependencies here   <-*
     'linker/js/jquery-2.1.0.js',
     'linker/js/jquery.validate.min.js',
-    'linker/js/underscore.js',
-    'linker/js/backbone.js',
-    'linker/js/utils.js',
-    'linker/js/backbone/model/*',
-    'linker/js/backbone/collection/*',
-    'linker/js/backbone/views/inspiration-input-view.js',
-    'linker/js/backbone/views/inspiration-item-view.js',
-    'linker/js/backbone/views/*',
+    'linker/js/masonry.pkgd.min.js',
 
     // All of the rest of your app scripts imported here
     'linker/**/*.js',

@@ -104,3 +104,9 @@ iframe {
 #homepage-top-row {
     background-color: #122D7F;
 }
+
+div.inspiration-item {
+    background-color: pink;
+    width: 100px;
+    height: 200px;
+}
