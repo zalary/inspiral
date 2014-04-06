@@ -1,10 +1,10 @@
 # Inspiral
-### a Sails application
-Inspiral is the creation of Kathryn Beaty, Zalary Young, and Adam Shukur. It's goal is to spread Random Acts of Kindness.
 
-1) Create a landing page with user login and sign up.
+### Idea
+Inspiral is a social web app for posting and sharing acts of kindness. Users can add acts of kindness they're interested in doing, as well as acts of kindness they've already done. Users can also find inspiration from other users' acts. Users can share acts of kindness with their friends to invite them to the site.
 
+The app's contributors are Kathryn Beaty, Zalary Young, and Adam Shukur.
 
-### Notes
+### Tech
 
-1) App uses PSQL via sails-postgres adapter.  During development, the adapter information should be placed in config/local.js and will not be included in git
+Inspiral is built on Sails.js, a Node.js MVC framework. Sails.js uses Waterline as its ORM, and we chose to hook Inspiral up to Postgres via the sails-postgres adapter. On the front end, we used Twitter Bootstrap, Masonry.js, and Paper.js.

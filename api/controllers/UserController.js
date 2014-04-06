@@ -88,6 +88,19 @@ module.exports = {
     });
   },
 
+  destroy: function (req, res, next) {
+    User.findOne(req.session.User.id, function foundUser (err, user) {
+      var userid = req.session.User.id;
+      if (err) return next(err);
+
+      //Destroy user's session
+      req.session.destroy();
+
+      //Redirect to homepage
+      res.redirect('/user/show/' + userid);
+    });
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to UserController)

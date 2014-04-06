@@ -35,6 +35,33 @@
     <!--STYLES END-->
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/linker/js/paper.js"></script>
+    <script type="text/paperscript" canvas="homepageCanvas">
+
+      var colors = ['#122D7F', '#7094FF', '#235AFF', '#3859BC', '#1C48CC', '#49147F', '#B875FF', '#9128FF', '#7A3CBC', '#7420CC'];
+      var radius, randomNum, circle, position;
+      var numberCircles = 50;
+      var radius = 50;
+      var originalCircle = new Path.Circle({
+          center: view.center,
+          radius: 50,
+          fillColor: 'red'
+        });
+      for (var i = 0; i <= numberCircles; i++) {
+          position = view.center;
+          radius += Math.round(Math.random() * 20);
+          circle = new Path.Circle(new Point(position), radius);
+          randomNum = Math.round(Math.random() * 10);
+          circle.fillColor = colors[randomNum];
+          circle.sendToBack();
+        };
+
+      function onFrame(event) {
+          randomNum = Math.round(Math.random() * 10);
+          originalCircle.fillColor.hue += 1;
+      };
+
+    </script>
 
   </head>
 
@@ -111,6 +138,7 @@
     <script src="/linker/js/done_buttons.js"></script>
     <script src="/linker/js/inspire-custom.js"></script>
     <script src="/linker/js/nodemailer.js"></script>
+    <script src="/linker/js/paper.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
