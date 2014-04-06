@@ -104,3 +104,19 @@ iframe {
 #homepage-top-row {
     background-color: #122D7F;
 }
+
+.navbar-brand {
+    font-family: 'Lobster', Georgia, Times, serif;
+    font-size: 22px;
+}
+
+#custom-navbar-container {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.inspiration-navbar-link {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
