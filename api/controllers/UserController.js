@@ -51,14 +51,14 @@ module.exports = {
     User.findOne(req.param('id'), function foundUser (err, user) {
       if (err) return next(err);
       if (!user) return next();
-      var inspirations;
-      var users_id = req.param('id');
-      Inspiration.query('SELECT original_creator_id, text, done FROM inspiration WHERE user_id =' + users_id, function (err, foundInspirations) {
-        inspirations = foundInspirations;
-      });
-      res.view({
-        user: user,
-        inspirations: inspirations
+      // var inspirations;
+      // var users_id = req.param('id');
+      Inspiration.find().where({user_id: req.param('id')}).exec(function (err, inspirations) {
+        if (err) return next(err);
+        res.view({
+          user: user,
+          inspirations: inspirations
+        });
       });
     });
   },

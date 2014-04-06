@@ -19,7 +19,9 @@ var show_user_id = <%= user.id %>
   <div class="notdone">
     <h3>Looking forward to doing ...</h3>
     <ul id="notdone" class="list-group">
-      <li><%= console.log(inspirations) %></li>
+      <% for (i in inspirations) { %>
+      <li><%= inspirations[i].text %> submitted by <%= inspirations[i].user_id %></li>
+      <% } %>
     </ul>
   </div>
 
