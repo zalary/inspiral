@@ -38,7 +38,7 @@
     <script src="/linker/js/paper.js"></script>
     <script type="text/paperscript" canvas="homepageCanvas">
 
-      var colors = ['red', 'blue', 'green', 'yellow', 'blue', 'orange', 'red', 'blue', 'purple', 'green'];
+      var colors = ['#122D7F', '#7094FF', '#235AFF', '#3859BC', '#1C48CC', '#49147F', '#B875FF', '#9128FF', '#7A3CBC', '#7420CC'];
       var radius, randomNum, circle, position;
       var numberCircles = 50;
       var radius = 50;
@@ -46,7 +46,7 @@
           center: view.center,
           radius: 50,
           fillColor: 'red'
-      });
+        });
       for (var i = 0; i <= numberCircles; i++) {
           position = view.center;
           radius += Math.round(Math.random() * 20);
