@@ -37,22 +37,28 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/linker/js/paper.js"></script>
     <script type="text/paperscript" canvas="homepageCanvas">
-      var colors = ['red', 'blue', 'green', 'yellow', 'black', 'orange', 'red', 'blue', 'purple', 'gray'];
-      var radius, randomNum;
-      var numberCircles = 20;
-      var radius = 50;
-      var originalCircle = new Path.Circle(new Point(view.center), 50);
 
-      function onFrame(event) {
-        for (var i = 0; i <= numberCircles; i++) {
-         var position = view.center;
-          console.log(view.center);
-          radius += Math.round(Math.random() * 10);
-          var circle = new Path.Circle(new Point(position), radius);
+      var colors = ['red', 'blue', 'green', 'yellow', 'blue', 'orange', 'red', 'blue', 'purple', 'green'];
+      var radius, randomNum, circle, position;
+      var numberCircles = 50;
+      var radius = 50;
+      var originalCircle = new Path.Circle({
+          center: view.center,
+          radius: 50,
+          fillColor: 'red'
+      });
+      for (var i = 0; i <= numberCircles; i++) {
+          position = view.center;
+          radius += Math.round(Math.random() * 20);
+          circle = new Path.Circle(new Point(position), radius);
           randomNum = Math.round(Math.random() * 10);
           circle.fillColor = colors[randomNum];
           circle.sendToBack();
-        }
+        };
+
+      function onFrame(event) {
+          randomNum = Math.round(Math.random() * 10);
+          originalCircle.fillColor.hue += 1;
       };
 
     </script>
