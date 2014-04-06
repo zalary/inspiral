@@ -32,11 +32,7 @@ module.exports = {
         console.log("saving inspiration");
         if (err) { return next(err); }
         Inspiration.publishCreate(inspiration);
-
-     //Inspiration.publishCreate(inspiration.id) {
-       //new_inspiration: true,
-       //id: inspiration.id
-     //});
+        res.json(inspiration);
      });
 
    });
