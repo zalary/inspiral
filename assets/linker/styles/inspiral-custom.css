@@ -1,3 +1,7 @@
+body {
+    background-image: url('../../images/mooning/mooning.png');
+}
+
 div.container.marketing {
     padding-top: 50px;
 }
@@ -105,9 +109,14 @@ iframe {
     background-color: #122D7F;
 }
 
-.navbar-brand {
+.navbar-inverse .navbar-brand {
     font-family: 'Lobster', Georgia, Times, serif;
-    font-size: 22px;
+    font-size: 24px;
+    color: #006666;
+}
+
+.navbar-inverse .navbar-brand:hover{
+    color: black;
 }
 
 #custom-navbar-container {
@@ -115,8 +124,14 @@ iframe {
     margin-right: 0px;
 }
 
+.navbar-inverse {
+    background-image: url('../../images/mooning/mooning.png');
+    border: none;
+}
+
 .inspiration-navbar-link {
     font-family: 'Raleway', Helvetica, Arial, sans-serif;
     font-size: 15px;
     font-weight: bold;
+    color: black;
 }
