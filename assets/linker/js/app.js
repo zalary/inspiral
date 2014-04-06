@@ -114,7 +114,7 @@
       _csrf: window.csrf || ''
     };
 
-    $('#inspiration-feed').append(
+    $('#newest-inspirations').prepend(
       JST['assets/linker/templates/addInspiration.ejs'](obj)
       );
     }
