@@ -91,22 +91,30 @@ iframe {
 #homepageCanvas {
     height: 450px;
     width: 100%;
+    position:relative;
+    z-index: -1;
 }
 
 #homepage-inspiral {
+    height: 450px;
+    width: 100%;
     text-align: center;
-    margin-top: 0px;
-    padding-bottom: 10px;
-    background-color: #122D7F;
     color: white;
 }
 
 #inspiral-land-title {
+    color: white;
+    opacity: 0.8;
     font-size: 32px;
+    position: relative;
+    z-index: 1;
+    margin-top: -150px;
 }
 
-#homepage-top-row {
-    background-color: #122D7F;
+#signup-homepage {
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
 }
 
 .navbar-inverse {
