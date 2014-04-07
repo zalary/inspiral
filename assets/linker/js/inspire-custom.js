@@ -23,44 +23,44 @@
 $(document).ready(function() {
   // create an array of background papers
   var backgroundPapers = [];
-  backgroundPapers[0] = "/public/images/farmer.png";
-  backgroundPapers[1] = "/public/images/foil.png";
-  backgroundPapers[2] = "/public/images/lined_paper.png";
-  backgroundPapers[3] = "/public/images/paper.png";
-  backgroundPapers[4] = "/public/images/ricepaper2.png";
-  backgroundPapers[5] = "/public/images/stardust.png";
-  backgroundPapers[6] = "/public/images/textured_paper.png";
-  backgroundPapers[7] = "/public/images/white_paperboard.png";
+  backgroundPapers[0] = "/images/papers/farmer.png";
+  backgroundPapers[1] = "/images/papers/foil.png";
+  backgroundPapers[2] = "/images/papers/lined.png";
+  backgroundPapers[3] = "/images/papers/paper.png";
+  backgroundPapers[4] = "/images/papers/ricepaper2.png";
+  backgroundPapers[5] = "/images/papers/paper3.png";
+  backgroundPapers[6] = "/images/papers/textured.png";
+  backgroundPapers[7] = "/images/papers/paperboard.png";
 
-  // iterate through divs and randomly assign width and height
-  for (var i = 0; i < $('div#notdone div.inspiration-item').length; i++){
+  // iterate through Dashboard and randomly assign width and height
+  for (var i = 1; i <= $('div#notdone div.inspiration-item').length+1; i++){
     var width = Math.floor((Math.random()*100))+100;
     var height = Math.floor((Math.random()*100))+100;
-    var backgroundPaperUrl = Math.floor((Math.random()*100)) + 100;
-    $('div#notdone div:nth-child(' + i + ')').css("width", width).css("height", height);
+    var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random()*8)];
+    console.log(backgroundPaperUrl);
+    $('div#notdone div:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
   };
-  for (var i = 0; i < $('div#done div.inspiration-item').length; i++){
+  for (var i = 1; i <= $('div#done div.inspiration-item').length+1; i++){
     var width = Math.floor((Math.random()*100))+100;
     var height = Math.floor((Math.random()*100))+100;
-    $('div#done div:nth-child(' + i + ')').css("width", width).css("height", height);
+    var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random()*8)];
+    console.log(backgroundPaperUrl);
+    $('div#done div:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
   }
 
-
-
-
-  // Initialize a Masonry Instance using jQuery
+  // Attach Masonry using jQuery
   // for the to-do list
   $('#inspiration-todo-list div#notdone').masonry({
     // options
     columnWidth: 200,
-    gutter: 10,
+    gutter: 3,
     itemSelector: '.inspiration-item'
   });
-  // and a seperate instance for the done list
+  // and for the done list
   $('#inspiration-todo-list div#done').masonry({
     // options
     columnWidth: 200,
-    gutter: 10,
+    gutter: 3,
     itemSelector: '.inspiration-item'
   });
 });
