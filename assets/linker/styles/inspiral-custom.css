@@ -14,16 +14,22 @@ div.container.marketing {
   margin-bottom: 5px;
 }
 
-.left, .right {
-    width: 50%;
-    float: left;
+.form-signin-heading {
+    text-align: center;
+}
+
+.form-signin {
+    width: 600px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 iframe {
-  width: 400px;
-  height: 500px;
-  float: left;
+  width: 650px;
+  height: 400px;
   padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #nav.affix {
