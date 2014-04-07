@@ -137,18 +137,21 @@ $(document).ready(function() {
             }
           })
           .success(function(data) {
+            obj = {
+              inspiration: data,
+            };
             if (data.done) {
-              $('#inspiration-todo-list div#done').masonry( 'prepended', '<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>' );
+              $('#inspiration-todo-list div#done').prepend(
+                JST['assets/linker/templates/addInspiration.ejs'](obj)
+              ).masonry('reloadItems');
+              // $('#inspiration-todo-list div#done').masonry( 'prepended', '<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>' );
             }
             else {
-              $('#inspiration-todo-list div#done').masonry( 'prepended', '<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
+              $('#inspiration-todo-list div#notdone').prepend(
+                JST['assets/linker/templates/addInspiration.ejs'](obj)
+              ).masonry('reloadItems');
+              // $('#inspiration-todo-list div#done').masonry( 'prepended', '<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
             }
-
-            // if (data.done) {
-            //     $('div#done').prepend('<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
-            // } else {
-            //     $('div#notdone').prepend('<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
-            // };
           });
         });
       </script>

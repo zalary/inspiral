@@ -78,31 +78,27 @@
 );
 
   function inspirationReceivedFromServer(message) {
-  console.log("Here's the message: ", message);
-
    // This message has to do with the User Model
-  var inspirationId = message.id
-  updateInspirationInDom(message);
-
+    var inspirationId = message.id
+    updateInspirationInDom(message);
   };
 
   function updateInspirationInDom(message) {
-
     //Check what page we're on
     var page = document.location.pathname;
-
     page = page.replace(/(\/)$/, '');
 
-    switch (page) {
+    // switch (page) {
 
-      case '/inspiration/feed':
+    //   case '/inspiration/feed':
 
-      if (message.verb === 'create') {
+      if (page == '/inspiration/feed' && message.verb == 'create') {
+
+      // if (message.verb === 'create') {
         InspirationIndexPage.addInspiration(message);
       }
-      break;
-
-    }
+      // break;
+    // }
   }
 
   var InspirationIndexPage = {
@@ -114,8 +110,18 @@
       _csrf: window.csrf || ''
     };
 
-    $('#newest-inspirations').prepend(
-      JST['assets/linker/templates/addInspiration.ejs'](obj)
-      );
+    // $('#newest-inspirations').prepend(
+    //   JST['assets/linker/templates/addInspiration.ejs'](obj)
+    //   );
+
+    $('#inspiration-feed').prepend(
+        JST['assets/linker/templates/addInspiration.ejs'](obj)
+      ).masonry('reloadItems');
+
+    // $('#inspiration-feed').masonry('reloadItems');
+
+    // $('div#inspiration-feed').masonry('prepended',
+    //   $('<div class="inspiration-item"><div class="inspiration-text">'+ inspiration.text + '</div><div class="inspiration-user">' + inspiration.user + '</div></div>')
+    //   )
     }
   };
