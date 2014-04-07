@@ -108,7 +108,7 @@ $(document).ready(function() {
       <input type="text" name="text" id="new-inspiration" placeholder="Enter something inspiring!"> <br />
       <div>
         <span class="input_done">
-          <input type="checkbox">I'm a done thing
+          <input type="checkbox">I've done this!
         </span>
       </div>
       <input type="submit" value="Add Inspiration" id="submit" class="btn btn-info btn-lg">
@@ -138,10 +138,17 @@ $(document).ready(function() {
           })
           .success(function(data) {
             if (data.done) {
-                $('div#done').prepend('<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
-            } else {
-                $('div#notdone').prepend('<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
-            };
+              $('#inspiration-todo-list div#done').masonry( 'prepended', '<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>' );
+            }
+            else {
+              $('#inspiration-todo-list div#done').masonry( 'prepended', '<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
+            }
+
+            // if (data.done) {
+            //     $('div#done').prepend('<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
+            // } else {
+            //     $('div#notdone').prepend('<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
+            // };
           });
         });
       </script>

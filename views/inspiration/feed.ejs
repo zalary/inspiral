@@ -3,6 +3,13 @@
   <div id="newest-inspirations">
   </div>
   <% for (i in inspirations) { %>
-  <div class="inspiration-item"><%= inspirations[i].text %></div>
+  <div class="inspiration-item">
+      <div class="inspiration-text">
+        <%= inspirations[i].text %>
+      </div>
+      <div class="inspiration-user">
+        <%= inspirations[i].user_id %>
+      </div>
+  </div>
   <% } %>
 </div>
