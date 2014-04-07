@@ -17,7 +17,7 @@
 
 module.exports = {
 
- 'new': function(req, res) {
+  'new': function(req, res) {
 
   },
 
@@ -25,36 +25,38 @@ module.exports = {
     //console.log('i#create');
     Inspiration.create(req.params.all(), function inspirationCreated(err, inspiration) {
       if (err) {
-       console.log(err);
+        console.log(err);
       }
-     //socket stuff
-      inspiration.save(function(err, inspiration){
+      //socket stuff
+      inspiration.save(function(err, inspiration) {
         //console.log("saving inspiration");
-        if (err) { return next(err); }
-          Inspiration.publishCreate(inspiration);
-          res.json(inspiration);
-       });
+        if (err) {
+          return next(err);
+        }
+        Inspiration.publishCreate(inspiration);
+        res.json(inspiration);
+      });
 
-   });
+    });
   },
 
- subscribe: function(req, res) {
+  subscribe: function(req, res) {
 
-     Inspiration.find(function foundInspirations(err, inspirations) {
-       if (err) return next(err);
+    Inspiration.find(function foundInspirations(err, inspirations) {
+      if (err) return next(err);
 
-       Inspiration.subscribe(req.socket);
+      Inspiration.subscribe(req.socket);
 
-       Inspiration.subscribe(req.socket, inspirations);
+      Inspiration.subscribe(req.socket, inspirations);
 
-       res.send(200);
-     });
+      res.send(200);
+    });
 
-   },
+  },
 
-   feed: function (req, res, next) {
+  feed: function(req, res, next) {
     // returns an array of inspirations
-    Inspiration.find(function foundInspirations (err, inspirations) {
+    Inspiration.find(function foundInspirations(err, inspirations) {
       if (err) return next(err);
       res.view({
         inspirations: inspirations

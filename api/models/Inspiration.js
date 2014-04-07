@@ -9,14 +9,14 @@
 module.exports = {
 
   attributes: {
-    
+
     //user_id: 'integer',
     //original_creator_id: 'integer', //this should be static once it's created
     //text: 'string', //static for now
     //city: 'string',
     //done: 'boolean'
 
-     user_id: {
+    user_id: {
       type: 'integer',
       required: true
     },
