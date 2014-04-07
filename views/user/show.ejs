@@ -1,52 +1,6 @@
 
-<script>
-var show_user_id = <%= user.id %>
- var session_user = 0;
- var done_status = ''
-</script>
 
 <%- partial ('js_templates.html.ejs') %>
-
-<!-- NAVBAR
-================================================== -->
-    <div id="nav-wrapper" >
-        <div id="nav" class="navbar navbar-inverse navbar-static-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand"><%= user.name %>'s Inspiral Dashboard</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/inspiration/feed">Inspiration Feed</a></li>
-                <% if (!(session.authenticated)) { %>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in/Sign up<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/session/new">Sign in</a></li>
-                      <li><a href="/user/new">Sign up</a></li>
-                    </ul>
-                  </li>
-                <% } else { %>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/user/update/">Edit Profile</a></li>
-                      <li><a href="/user/destroy">Log out</a></li>
-                    </ul>
-                  </li>
-                <% } %>
-              </ul>
-            </div>
-          </div>
-        </div>
-    </div>
-
 <div class='container'>
   <div id="dashboard-container">
   </div>
@@ -71,76 +25,5 @@ var show_user_id = <%= user.id %>
     </ul>
   </div>
 </div>
-
-<script>
-$(document).ready(function() {
-  $("#add-inspiration").appendTo("#dashboard-container");
-});
-
-});
-</script>
-
-
-
-<% if (!(session.authenticated)) { %>
-<%return false; } else { %>
-<% if (session.User.id == user.id) { %>
-<script>
-session_user = <%= session.User.id %>
-</script>
-  <div id="add-inspiration">
-    <form method="post" action="/inspiration/create">
-      <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
-      <input type='hidden' name='_csrf' value='<%= _csrf %>'>
-      <input type='hidden' name="user_id" value='<%= user.id %>'>
-      <input type='hidden' name="original_creator_id" value='<%= user.id %>'>
-      <input type='hidden' value='0' name='done'>
-      <input type="text" name="text" id="new-inspiration" placeholder="Enter something inspiring!"> <br />
-      <div>
-        <span class="input_done">
-          <input type="checkbox">I'm a done thing
-        </span>
-      </div>
-      <input type="submit" value="Add Inspiration" id="submit" class="btn btn-info btn-lg">
-      <script>
-
-        var csrfToken = "<%= _csrf %>";
-
-        $('#add-inspiration form').on("submit", function(e) {
-          e.preventDefault();
-          var done_status = $('input[type="checkbox"]').prop('checked');
-          if (done_status) {
-            done_status = 1;
-          }
-          else {
-            done_status = 0;
-          };
-
-          $.ajax({
-            url: '/inspiration/create',
-            type: 'POST',
-            data: {
-              user_id: session_user,
-              original_creator_id: session_user,
-              text: $('#new-inspiration').val(),
-              done: done_status,
-              _csrf: '<%= _csrf %>'
-            }
-          })
-          .success(function(data) {
-              if (data.done) {
-                  $('#done').prepend('<li>' + data.text + '</li>');
-              } else {
-                  $('#notdone').prepend('<li>' + data.text + '</li>');
-              }
-          });
-
-        });
-
-
-      </script>
-    </form>
-  </div>
-<% } } %>
 
 

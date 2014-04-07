@@ -70,6 +70,7 @@ module.exports = {
 
         req.session.authenticated = true;
         req.session.User = user;
+        session_user = req.session.User.id
 
         res.redirect('/user/show/' + user.id);
       });

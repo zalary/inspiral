@@ -1,0 +1,58 @@
+<div class="container">
+  <div id="dashboard-container">
+
+    <div id="add-inspiration">
+      <form method="post" action="/inspiration/create">
+        <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
+        <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+        <input type='hidden' name="user_id" value='<%= user.id %>'>
+        <input type='hidden' name="original_creator_id" value='<%= user.id %>'>
+        <input type='hidden' value='0' name='done'>
+        <input type="text" name="text" id="new-inspiration" placeholder="Enter something inspiring!"> <br />
+        <div>
+          <span class="input_done">
+            <input type="checkbox">I'm a done thing
+          </span>
+        </div>
+        <input type="submit" value="Add Inspiration" id="submit" class="btn btn-info btn-lg">
+        <script>
+
+        var csrfToken = "<%= _csrf %>";
+
+        $('#add-inspiration form').on("submit", function(e) {
+          e.preventDefault();
+          var done_status = $('input[type="checkbox"]').prop('checked');
+          if (done_status) {
+            done_status = 1;
+          }
+          else {
+            done_status = 0;
+          };
+
+          $.ajax({
+            url: '/inspiration/create',
+            type: 'POST',
+            data: {
+            user_id: <%= session.User.id %>,
+            original_creator_id: <%= session.User.id %>,
+            text: $('#new-inspiration').val(),
+            done: done_status,
+            _csrf: '<%= _csrf %>'
+            }
+          })
+          .success(function(data) {
+          if (data.done) {
+            $('#done').prepend('<li>' + data.text + '</li>');
+          } else {
+            $('#notdone').prepend('<li>' + data.text + '</li>');
+          }
+          });
+
+        });
+
+
+        </script>
+      </form>
+    </div>
+  </div>
+</div>

@@ -22,18 +22,18 @@ module.exports = {
   },
 
   create: function(req, res, next) {
-    console.log('i#create');
-   Inspiration.create(req.params.all(), function inspirationCreated(err, inspiration) {
+    //console.log('i#create');
+    Inspiration.create(req.params.all(), function inspirationCreated(err, inspiration) {
       if (err) {
        console.log(err);
       }
      //socket stuff
       inspiration.save(function(err, inspiration){
-        console.log("saving inspiration");
+        //console.log("saving inspiration");
         if (err) { return next(err); }
-        Inspiration.publishCreate(inspiration);
-        res.json(inspiration);
-     });
+          Inspiration.publishCreate(inspiration);
+          res.json(inspiration);
+       });
 
    });
   },
