@@ -57,28 +57,29 @@ var done_status = ''
     <h3>Looking forward to doing ...</h3>
     <div id="notdone">
       <% for (var i in todoInspirations) { %>
-        <div class="inspiration-item">
-          <div class="inspiration-text">
-            <%= todoInspirations[i].text %>
-          </div>
-          <div class="inspiration-user">
-            <%= todoInspirations[i].user_id %>
-          </div>
+      <div class="inspiration-item">
+        <div class="inspiration-text">
+          <%= todoInspirations[i].text %>
         </div>
+        <div class="inspiration-user">
+          <%= todoInspirations[i].user_id %>
+        </div>
+      </div>
       <% } %>
     </div>
   </div>
   <div class="col-lg-6">
     <h3>I've inspired others by...</h3>
     <div id="done">
-        <% for (var i in doneInspirations) { %>
+      <% for (var i in doneInspirations) { %>
       <div class="inspiration-item">
         <div class="inspiration-text">
-          <%= doneInspirations[i].text %>
+          <%= todoInspirations[i].text %>
         </div>
         <div class="inspiration-user">
-          <%= doneInspirations[i].user_id %>
+          <%= todoInspirations[i].user_id %>
         </div>
+      </div>
       <% } %>
     </div>
   </div>
@@ -91,7 +92,7 @@ $(document).ready(function() {
 </script>
 
 <% if (!(session.authenticated)) { %>
-  <%return false; } else { %>
+  <% return false; } else { %>
 <% if (session.User.id == user.id) { %>
   <script>
   session_user = <%= session.User.id %>
@@ -137,9 +138,9 @@ $(document).ready(function() {
           })
           .success(function(data) {
             if (data.done) {
-                $('div#done').prepend('<div class="inspiration-item"><span style="opacity: 1">' + data.text + '</span></div>');
+                $('div#done').prepend('<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
             } else {
-                $('div#notdone').prepend('<div class="inspiration-item"><span style="opacity: 1">' + data.text + '</span></div>');
+                $('div#notdone').prepend('<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
             };
           });
         });

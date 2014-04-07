@@ -33,19 +33,17 @@ $(document).ready(function() {
   backgroundPapers[7] = "/images/papers/paperboard.png";
 
   // iterate through Dashboard and randomly assign width and height
-  for (var i = 1; i <= $('div#notdone div.inspiration-item').length+1; i++){
+  for (var i = 1; i <= $('div#notdone div.inspiration-item').length; i++){
     var width = Math.floor((Math.random()*100))+100;
     var height = Math.floor((Math.random()*100))+100;
     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random()*8)];
-    console.log(backgroundPaperUrl);
-    $('div#notdone div:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
+    $('div#notdone div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
   };
-  for (var i = 1; i <= $('div#done div.inspiration-item').length+1; i++){
+  for (var i = 1; i <= $('div#done div.inspiration-item').length; i++){
     var width = Math.floor((Math.random()*100))+100;
     var height = Math.floor((Math.random()*100))+100;
     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random()*8)];
-    console.log(backgroundPaperUrl);
-    $('div#done div:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
+    $('div#done div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
   }
 
   // Attach Masonry using jQuery
@@ -53,14 +51,14 @@ $(document).ready(function() {
   $('#inspiration-todo-list div#notdone').masonry({
     // options
     columnWidth: 200,
-    gutter: 3,
+    gutter: 2,
     itemSelector: '.inspiration-item'
   });
   // and for the done list
   $('#inspiration-todo-list div#done').masonry({
     // options
     columnWidth: 200,
-    gutter: 3,
+    gutter: 2,
     itemSelector: '.inspiration-item'
   });
 });

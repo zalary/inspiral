@@ -106,7 +106,22 @@ iframe {
 }
 
 div.inspiration-item {
-    background-color: pink;
     width: 100px;
     height: 200px;
+}
+
+div.inspiration-text{
+    background-color : transparent;
+    font-size: 1em;
+    text-align: left;
+    width: 100%;
+    height: 80%;
+}
+
+div.inspiration-user{
+    background-color : transparent;
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+    height: 20%;
 }
