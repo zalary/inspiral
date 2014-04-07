@@ -1,3 +1,11 @@
+body {
+    background-image: url('../../images/mooning/mooning.png');
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 div.container.marketing {
     padding-top: 50px;
 }
@@ -6,17 +14,22 @@ div.container.marketing {
   margin-bottom: 5px;
 }
 
-.left, .right {
-    width: 50%;
-    float: left;
+.form-signin-heading {
+    text-align: center;
+}
+
+.form-signin {
+    width: 600px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 iframe {
-  width: 400px;
-  height: 500px;
-  float: left;
+  width: 650px;
+  height: 400px;
   padding: 10px;
-
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #nav.affix {
@@ -35,7 +48,6 @@ iframe {
 }
 
 .carousel { margin-bottom: 0px; }
-
 
 #add-inspiration input[type="text"] {
     margin: 20px;
@@ -65,21 +77,6 @@ iframe {
      margin-left: 350px;
     }
 
-
-#inspiration-todo-list {
-    width: 900px;
-    margin: 20px 90px 20px;
-}
-#inspiration-todo-list .done {
-    float: right;
-    width: 300px;
-}
-
-#inspiration-todo-list .notdone {
-    float: left;
-    width: 500px;
-}
-
 #homepage-landing {
     height: 500px;
 }
@@ -87,20 +84,101 @@ iframe {
 #homepageCanvas {
     height: 450px;
     width: 100%;
+    opacity: 0.9;
+    position:relative;
+    z-index: -1;
 }
 
 #homepage-inspiral {
+    height: 500px;
+    width: 100%;
     text-align: center;
-    margin-top: 0px;
-    padding-bottom: 10px;
-    background-color: #122D7F;
     color: white;
 }
 
 #inspiral-land-title {
+    color: white;
+    opacity: 0.8;
     font-size: 32px;
+    position: relative;
+    z-index: 1;
+    margin-top: -150px;
 }
 
-#homepage-top-row {
-    background-color: #122D7F;
+.homepage-row-2-text {
+    font-family: Helvetica, Times, serif;
 }
+
+#signup-homepage {
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+#start-inspiring {
+    color: #428bca;
+    text-align: center;
+}
+
+#start-inspiring h2:hover {
+    text-decoration: none;
+}
+
+.navbar-inverse {
+    background: black;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+    border: none;
+}
+
+.navbar-inverse .navbar-brand {
+    font-family: Arial, Times, serif;
+    font-size: 15px;
+}
+
+.navbar-inverse .navbar-brand:hover{
+    color: #C0C0C0;
+    background: #404040;
+}
+
+#custom-navbar-container {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.navbar-links:hover {
+    color: #C0C0C0;
+    background: #404040;
+}
+
+div#inspiration-todo-list {
+    width: 95%;
+    margin: 20px 90px 20px;
+}
+div#inspiration-todo-list .done {
+    float: right;
+    width: 50%;
+}
+div#inspiration-todo-list .notdone {
+    float: left;
+    width: 50%;
+}
+div.inspiration-item {
+    width: 100px;
+    height: 200px;
+}
+div.inspiration-text{
+    background-color : transparent;
+    font-size: 1.4em;
+    text-align: left;
+    width: 100%;
+    height: 80%;
+}
+div.inspiration-user{
+    background-color : transparent;
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+    height: 20%;
+}
+
