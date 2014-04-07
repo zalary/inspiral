@@ -2,6 +2,10 @@ body {
     background-image: url('../../images/mooning/mooning.png');
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 div.container.marketing {
     padding-top: 50px;
 }
@@ -20,7 +24,6 @@ iframe {
   height: 500px;
   float: left;
   padding: 10px;
-
 }
 
 #nav.affix {
@@ -97,7 +100,7 @@ iframe {
 }
 
 #homepage-inspiral {
-    height: 450px;
+    height: 500px;
     width: 100%;
     text-align: center;
     color: white;
@@ -112,10 +115,23 @@ iframe {
     margin-top: -150px;
 }
 
+.homepage-row-2-text {
+    font-family: Helvetica, Times, serif;
+}
+
 #signup-homepage {
     opacity: 0.9;
     position: relative;
     z-index: 1;
+}
+
+#start-inspiring {
+    color: #428bca;
+    text-align: center;
+}
+
+#start-inspiring h2:hover {
+    text-decoration: none;
 }
 
 .navbar-inverse {
@@ -144,3 +160,4 @@ iframe {
     color: #C0C0C0;
     background: #404040;
 }
+
