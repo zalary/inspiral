@@ -49,7 +49,6 @@ iframe {
 
 .carousel { margin-bottom: 0px; }
 
-
 #add-inspiration input[type="text"] {
     margin: 20px;
     width:500px;
@@ -77,21 +76,6 @@ iframe {
 #add-inspiration input[type="button"] {
      margin-left: 350px;
     }
-
-
-#inspiration-todo-list {
-    width: 900px;
-    margin: 20px 90px 20px;
-}
-#inspiration-todo-list .done {
-    float: right;
-    width: 300px;
-}
-
-#inspiration-todo-list .notdone {
-    float: left;
-    width: 500px;
-}
 
 #homepage-landing {
     height: 500px;
@@ -165,5 +149,36 @@ iframe {
 .navbar-links:hover {
     color: #C0C0C0;
     background: #404040;
+}
+
+div#inspiration-todo-list {
+    width: 95%;
+    margin: 20px 90px 20px;
+}
+div#inspiration-todo-list .done {
+    float: right;
+    width: 50%;
+}
+div#inspiration-todo-list .notdone {
+    float: left;
+    width: 50%;
+}
+div.inspiration-item {
+    width: 100px;
+    height: 200px;
+}
+div.inspiration-text{
+    background-color : transparent;
+    font-size: 1.4em;
+    text-align: left;
+    width: 100%;
+    height: 80%;
+}
+div.inspiration-user{
+    background-color : transparent;
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+    height: 20%;
 }
 
