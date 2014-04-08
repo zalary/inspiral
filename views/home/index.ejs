@@ -62,6 +62,35 @@ $('#nav-wrapper').affix({
 
       <hr class="featurette-divider">
 
+      <script type="text/paperscript" canvas="homepageCanvas-2">
+        var leftPath = new Path();
+        var rightPath = new Path();
+        leftPath.strokeColor = 'black';
+        rightPath.strokeColor = 'red';
+        var x = 0;
+        var y = 250;
+        var i = 720;
+        var j = 250;
+        leftPath.add(new Point(x, y));
+        rightPath.add(new Point(i, j));
+
+        function onFrame(event) {
+          leftPath.add(new Point(x, y));
+          while (x <= 360) {
+            x += 5;
+          }
+          rightPath.add(new Point(i, j));
+          while (i >= 360) {
+            i -= 5;
+          }
+        }
+      </script>
+
+      <canvas id="homepageCanvas-2">
+      </canvas>
+
+      <hr class="featurette-divider">
+
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">Be healthy.</h2>
