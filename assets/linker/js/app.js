@@ -7,8 +7,7 @@
  * Feel free to change none, some, or ALL of this file to fit your needs!
  */
 
-
-(function (io) {
+(function(io) {
 
   // as soon as this file is loaded, connect automatically,
   var socket = io.connect();
@@ -19,25 +18,22 @@
   socket.on('connect', function socketConnected() {
 
     // Listen for Comet messages from Sails
-   // socket.on('message', function messageReceived(message) {
+    // socket.on('message', function messageReceived(message) {
     console.log("This is from the connect: ", this.socket.sessionid);
 
-      ///////////////////////////////////////////////////////////
-      // Replace the following with your own custom logic
-      // to run when a new message arrives from the Sails.js
-      // server.
-      ///////////////////////////////////////////////////////////
-      //log('New comet message received :: ', message);
-      //////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
+    // Replace the following with your own custom logic
+    // to run when a new message arrives from the Sails.js
+    // server.
+    ///////////////////////////////////////////////////////////
+    //log('New comet message received :: ', message);
+    //////////////////////////////////////////////////////
 
+    // Listen for the socket 'message'
+    socket.on('message', inspirationReceivedFromServer);
 
-
-     // Listen for the socket 'message'
-     socket.on('message', inspirationReceivedFromServer);
-
-     // Subscribe to the user model classroom and instance room
-     socket.get('/inspiration/subscribe');
-
+    // Subscribe to the user model classroom and instance room
+    socket.get('/inspiration/subscribe');
 
     ///////////////////////////////////////////////////////////
     // Here's where you'll want to add any custom logic for
@@ -45,29 +41,25 @@
     // the Sails.js server.
     ///////////////////////////////////////////////////////////
     log(
-        'Socket is now connected and globally accessible as `socket`.\n' +
-        'e.g. to send a GET request to Sails, try \n' +
-        '`socket.get("/", function (response) ' +
-        '{ console.log(response); })`'
+      'Socket is now connected and globally accessible as `socket`.\n' +
+      'e.g. to send a GET request to Sails, try \n' +
+      '`socket.get("/", function (response) ' +
+      '{ console.log(response); })`'
     );
     ///////////////////////////////////////////////////////////
 
-
   });
-
 
   // Expose connected `socket` instance globally so that it's easy
   // to experiment with from the browser console while prototyping.
   window.socket = socket;
 
-
   // Simple log function to keep the example simple
-  function log () {
-  //   if (typeof console !== 'undefined') {
-  //     console.log.apply(console, arguments);
-  //   }
+  function log() {
+    //   if (typeof console !== 'undefined') {
+    //     console.log.apply(console, arguments);
+    //   }
   }
-
 
 })(
 
@@ -77,36 +69,34 @@
 
 );
 
-  function inspirationReceivedFromServer(message) {
-   // This message has to do with the User Model
-    var inspirationId = message.id
-    updateInspirationInDom(message);
-  };
+function inspirationReceivedFromServer(message) {
+  // This message has to do with the User Model
+  var inspirationId = message.id;
+  updateInspirationInDom(message);
+}
 
-  function updateInspirationInDom(message) {
-    //Check what page we're on
-    var page = document.location.pathname;
-    page = page.replace(/(\/)$/, '');
-    if (page == '/inspiration/feed' && message.verb == 'create') {
-      InspirationIndexPage.addInspiration(message);
-    }
+function updateInspirationInDom(message) {
+  var page = document.location.pathname;
+  page = page.replace(/(\/)$/, '');
+  if (page == '/inspiration/feed' && message.verb == 'create') {
+    InspirationIndexPage.addInspiration(message);
   }
+}
 
 var InspirationIndexPage = {
 
   addInspiration: function(inspiration) {
 
-  var obj = {
-    inspiration: inspiration.data,
-    _csrf: window.csrf || ''
-  };
+    var obj = {
+      inspiration: inspiration.data,
+      _csrf: window.csrf || ''
+    };
 
-  $container = $('#inspiration-feed');
+    $container = $('#inspiration-feed');
 
-  $container
-    .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
-      .masonry('prepended', $container);
-  // (function() {$container.masonry({itemSelector: ".inspiration-item"});})();
-  setTimeout(function() {$container.masonry({itemSelector: '.inspiration-item'})}, 2000);
+    $container
+      .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
+        .masonry('reloadItems')
+          .masonry('layout');
   }
 };
