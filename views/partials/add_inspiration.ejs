@@ -9,6 +9,8 @@
             <input type='hidden' name="original_creator_id" value='<%= user.id %>'>
             <input type='hidden' value='0' name='done'>
             <textarea type="text" name="text" id="new-inspiration" placeholder=" What inspires you?" rows="3"> </textarea><br />
+      </div>
+    </div>
 
       <div class="col-xs-6 kindness-board-right">
         <div id="done-checkbox">
@@ -27,8 +29,7 @@ $('#new-inspiration').on('click', function(e) {
     $(this).width(500);
 });
 
-
-$('#add-inspiration form').on("submit", function(e) {
+$('#new-kindnesses form').on("submit", function(e) {
   e.preventDefault();
 
   var done_status = $('input[type="checkbox"]').prop('checked');
@@ -72,6 +73,4 @@ $('#add-inspiration form').on("submit", function(e) {
 });
 </script>
         </form>
-    </div>
-  </div>
 </div>
