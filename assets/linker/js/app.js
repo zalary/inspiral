@@ -87,41 +87,26 @@
     //Check what page we're on
     var page = document.location.pathname;
     page = page.replace(/(\/)$/, '');
-
-    // switch (page) {
-
-    //   case '/inspiration/feed':
-
-      if (page == '/inspiration/feed' && message.verb == 'create') {
-
-      // if (message.verb === 'create') {
-        InspirationIndexPage.addInspiration(message);
-      }
-      // break;
-    // }
+    if (page == '/inspiration/feed' && message.verb == 'create') {
+      InspirationIndexPage.addInspiration(message);
+    }
   }
 
-  var InspirationIndexPage = {
+var InspirationIndexPage = {
 
-    addInspiration: function(inspiration) {
+  addInspiration: function(inspiration) {
 
-    var obj = {
-      inspiration: inspiration.data,
-      _csrf: window.csrf || ''
-    };
-
-    // $('#newest-inspirations').prepend(
-    //   JST['assets/linker/templates/addInspiration.ejs'](obj)
-    //   );
-
-    $('#inspiration-feed').prepend(
-        JST['assets/linker/templates/addInspiration.ejs'](obj)
-      ).masonry('reloadItems');
-
-    // $('#inspiration-feed').masonry('reloadItems');
-
-    // $('div#inspiration-feed').masonry('prepended',
-    //   $('<div class="inspiration-item"><div class="inspiration-text">'+ inspiration.text + '</div><div class="inspiration-user">' + inspiration.user + '</div></div>')
-    //   )
-    }
+  var obj = {
+    inspiration: inspiration.data,
+    _csrf: window.csrf || ''
   };
+
+  $container = $('#inspiration-feed');
+
+  $container
+    .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
+      .masonry('prepended', $container);
+  // (function() {$container.masonry({itemSelector: ".inspiration-item"});})();
+  setTimeout(function() {$container.masonry({itemSelector: '.inspiration-item'})}, 2000);
+  }
+};

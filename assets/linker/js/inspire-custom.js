@@ -34,46 +34,46 @@ $(document).ready(function() {
 
   // iterate through Dashboard and randomly assign width, height, background
   for (var i = 1; i <= $('div#notdone div.inspiration-item').length; i++){
-    var width = Math.floor((Math.random()*100))+100;
-    var height = Math.floor((Math.random()*100))+100;
+    var width = Math.floor((Math.random()*100))+75;
+    var height = Math.floor((Math.random()*100))+75;
     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random()*8)];
     $('div#notdone div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
   };
   for (var i = 1; i <= $('div#done div.inspiration-item').length; i++){
-    var width = Math.floor((Math.random()*250))+25;
-    var height = Math.floor((Math.random()*250))+25;
+    var width = Math.floor((Math.random()*100))+75;
+    var height = Math.floor((Math.random()*100))+75;
     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random()*8)];
     $('div#done div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
   }
 
   // iterate through Feed and randomly assign width, height, background
   for (var i = 1; i <= $('div#inspiration-feed div.inspiration-item').length; i++){
-    var width = Math.floor((Math.random()*250))+25;
-    var height = Math.floor((Math.random()*250))+25;
+    var width = Math.floor((Math.random()*100))+75;
+    var height = Math.floor((Math.random()*100))+75;
     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random()*8)];
     $('div#inspiration-feed div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
   }
 
   // Attach Masonry using jQuery
   // for the to-do list
-  $('div#inspiration-todo-list div#notdone').masonry({
-    // options
-    columnWidth: 200,
-    gutter: 2,
-    itemSelector: '.inspiration-item'
-  });
-  // and for the done list
-  $('div#inspiration-todo-list div#done').masonry({
-    // options
-    columnWidth: 200,
-    gutter: 2,
-    itemSelector: '.inspiration-item'
-  });
+  (function() {
+    $('div#inspiration-todo-list div#notdone').masonry({
+      // options
+      itemSelector: '.inspiration-item'
+    });
+  })();
+    // and for the done list
+  (function() {
+    $('div#inspiration-todo-list div#done').masonry({
+      // options
+      itemSelector: '.inspiration-item'
+    });
+  })();
   // and for the feed
-  $('div#inspiration-feed').masonry({
-    // options
-    columnWidth: 200,
-    gutter: 2,
-    itemSelector: '.inspiration-item'
-  });
+  (function() {
+    $('div#inspiration-feed').masonry({
+      // options
+      itemSelector: '.inspiration-item'
+    });
+  })();
 });
