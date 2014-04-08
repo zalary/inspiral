@@ -16,8 +16,6 @@
 
 module.exports = function (grunt) {
 
-
-
   /**
    * CSS files to inject in order
    * (uses Grunt-style wildcard/glob/splat expressions)
@@ -31,7 +29,6 @@ module.exports = function (grunt) {
   var cssFilesToInject = [
     'linker/**/*.css',
   ];
-
 
   /**
    * Javascript files to inject in order
@@ -66,7 +63,6 @@ module.exports = function (grunt) {
     'linker/**/*.js',
   ];
 
-
   /**
    * Client-side HTML templates are injected using the sources below
    * The ordering of these templates shouldn't matter.
@@ -77,11 +73,9 @@ module.exports = function (grunt) {
    * edit the relevant sections below.
    */
 
-
-    var templateFilesToInject = [
-      'linker/**/*.ejs'
-    ];
-
+  var templateFilesToInject = [
+    'linker/**/*.ejs'
+  ];
 
   /////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////
@@ -119,11 +113,9 @@ module.exports = function (grunt) {
     return '.tmp/public/' + path;
   });
 
-
   templateFilesToInject = templateFilesToInject.map(function (path) {
     return 'assets/' + path;
   });
-
 
   // Get path to core grunt dependencies from Sails
   var depsPath = grunt.option('gdsrc') || 'node_modules/sails/node_modules';
@@ -137,31 +129,27 @@ module.exports = function (grunt) {
   grunt.loadTasks(depsPath + '/grunt-contrib-cssmin/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-less/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-coffee/tasks');
-
+  grunt.loadNpmTasks('/grunt-jsbeautifier');
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     copy: {
       dev: {
-        files: [
-          {
+        files: [{
           expand: true,
           cwd: './assets',
           src: ['**/*.!(coffee)'],
           dest: '.tmp/public'
-        }
-        ]
+        }]
       },
       build: {
-        files: [
-          {
+        files: [{
           expand: true,
           cwd: '.tmp/public',
           src: ['**/*'],
           dest: 'www'
-        }
-        ]
+        }]
       }
     },
 
@@ -188,8 +176,7 @@ module.exports = function (grunt) {
 
     less: {
       dev: {
-        files: [
-          {
+        files: [{
           expand: true,
           cwd: 'assets/styles/',
           src: ['*.less'],
@@ -201,31 +188,28 @@ module.exports = function (grunt) {
           src: ['*.less'],
           dest: '.tmp/public/linker/styles/',
           ext: '.css'
-        }
-        ]
+        }]
       }
     },
 
     coffee: {
       dev: {
-        options:{
-          bare:true
+        options: {
+          bare: true
         },
-        files: [
-          {
-            expand: true,
-            cwd: 'assets/js/',
-            src: ['**/*.coffee'],
-            dest: '.tmp/public/js/',
-            ext: '.js'
-          }, {
-            expand: true,
-            cwd: 'assets/linker/js/',
-            src: ['**/*.coffee'],
-            dest: '.tmp/public/linker/js/',
-            ext: '.js'
-          }
-        ]
+        files: [{
+          expand: true,
+          cwd: 'assets/js/',
+          src: ['**/*.coffee'],
+          dest: '.tmp/public/js/',
+          ext: '.js'
+        }, {
+          expand: true,
+          cwd: 'assets/linker/js/',
+          src: ['**/*.coffee'],
+          dest: '.tmp/public/linker/js/',
+          ext: '.js'
+        }]
       }
     },
 
@@ -291,7 +275,6 @@ module.exports = function (grunt) {
           fileTmpl: '<link rel="stylesheet" href="%s">',
           appRoot: '.tmp/public'
         },
-
         // cssFilesToInject defined up top
         files: {
           '.tmp/public/**/*.html': cssFilesToInject,
@@ -328,7 +311,6 @@ module.exports = function (grunt) {
           'views/**/*.ejs': ['.tmp/public/jst.js']
         }
       },
-
 
       /*******************************************
        * Jade linkers (TODO: clean this up)
@@ -399,6 +381,23 @@ module.exports = function (grunt) {
        ************************************/
     },
 
+    jsbeautifier: {
+      modify: {
+        src: ['Gruntfile.js', '**/**/*.js'],
+        options: {
+          config: '.jsbeautifyrc',
+          dest: '/jsb-mod'
+        }
+      },
+      verify: {
+        src: ['Gruntfile.js', '_fe/js/**/*.js'],
+        options: {
+          mode: 'VERIFY_ONLY',
+          config: '.jsbeautifyrc'
+        }
+      }
+    },
+
     watch: {
       api: {
 
@@ -442,7 +441,6 @@ module.exports = function (grunt) {
     'sails-linker:devTplJADE'
   ]);
 
-
   // Build the assets into a web accessible folder.
   // (handy for phone gap apps, chrome extensions, etc.)
   grunt.registerTask('build', [
@@ -450,6 +448,10 @@ module.exports = function (grunt) {
     'linkAssets',
     'clean:build',
     'copy:build'
+  ]);
+
+  grunt.registerTask('clean', [
+    'jsbeautifier:modify'
   ]);
 
   // When sails is lifted in production

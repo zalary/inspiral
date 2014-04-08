@@ -8,9 +8,9 @@
  * http://sailsjs.org/#documentation
  */
 
- module.exports = {
+module.exports = {
   appName: 'Inspiral'
- }
+}
 
 module.exports.bootstrap = function (cb) {
 
