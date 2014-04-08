@@ -1,5 +1,6 @@
 body {
     background-image: url('../../images/mooning/mooning.png');
+    padding-top: 50px;
 }
 
 a:hover {
@@ -70,7 +71,6 @@ iframe {
     box-shadow: 0px 2px 14px #444;
     border-top:1px solid #EFEFEF;
     border-bottom:1px solid #EFEFEF;
-
 }
 
 #add-inspiration input[type="button"] {
@@ -82,7 +82,7 @@ iframe {
 }
 
 #homepageCanvas {
-    height: 450px;
+    height: 500px;
     width: 100%;
     opacity: 0.9;
     position:relative;
@@ -93,10 +93,10 @@ iframe {
     height: 500px;
     width: 100%;
     text-align: center;
-    color: white;
 }
 
 #inspiral-land-title {
+    font-family: "Lucida Console", Monaco, monospace;
     color: white;
     opacity: 0.8;
     font-size: 32px;
@@ -105,11 +105,27 @@ iframe {
     margin-top: -150px;
 }
 
+#homepage-row-2 {
+    padding-top: 35px;
+}
+
 .homepage-row-2-text {
-    font-family: Helvetica, Times, serif;
+    font-family: "Lucida Console", Monaco, monospace;
+    color: #428bca;
+}
+
+.homepage-para {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 15px;
+}
+
+.lead {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 18px;
 }
 
 #signup-homepage {
+    font-family: Verdana, Geneva, sans-serif;
     opacity: 0.9;
     position: relative;
     z-index: 1;
@@ -133,7 +149,7 @@ iframe {
 
 .navbar-inverse .navbar-brand {
     font-family: Arial, Times, serif;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .navbar-inverse .navbar-brand:hover{
@@ -144,6 +160,10 @@ iframe {
 #custom-navbar-container {
     margin-left: 0px;
     margin-right: 0px;
+}
+
+.navbar-links {
+    font-size: 16px;
 }
 
 .navbar-links:hover {
@@ -163,6 +183,11 @@ div#inspiration-todo-list .notdone {
     float: left;
     width: 50%;
 }
+
+div#inspiration-todo-list h3 {
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
 div.inspiration-item {
     width: 100px;
     height: 200px;
@@ -182,3 +207,16 @@ div.inspiration-user{
     height: 20%;
 }
 
+.kindness-board-right {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.kindness-board-right input {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+#done-checkbox {
+    margin-bottom: 15px;
+    font-family: Verdana, Geneva, sans-serif;
+}
