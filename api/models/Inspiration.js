@@ -9,7 +9,7 @@
 module.exports = {
 
   attributes: {
-    
+
     //user_id: 'integer',
     //user_name: 'string', // To reduce the number of references to the user model
     //original_creator_id: 'integer', //this should be static once it's created
@@ -17,7 +17,7 @@ module.exports = {
     //city: 'string',
     //done: 'boolean'
 
-     user_id: {
+    user_id: {
       type: 'integer',
       required: true
     },

@@ -7,7 +7,7 @@
  *
  * @param {String|Object|Array} message
  *      optional message to inject into view locals or JSON response
- * 
+ *
  */
 
 module.exports[403] = function badRequest(message, req, res) {
@@ -43,8 +43,10 @@ module.exports[403] = function badRequest(message, req, res) {
   // And render view
   res.render(viewFilePath, result, function (err) {
     // If the view doesn't exist, or an error occured, send json
-    if (err) { return res.json(result, result.status); }
-    
+    if (err) {
+      return res.json(result, result.status);
+    }
+
     // Otherwise, serve the `views/403.*` page
     res.render(viewFilePath);
   });

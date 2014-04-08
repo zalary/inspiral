@@ -15,7 +15,7 @@
  *
  * @param {String} redirectTo
  *      optional URL
- *      (absolute or relative, e.g. google.com/foo or /bar/baz) 
+ *      (absolute or relative, e.g. google.com/foo or /bar/baz)
  *      of the page to redirect to.  Usually only relevant for traditional HTTP requests,
  *      since if this was triggered from an AJAX or socket request, JSON should be sent instead.
  */
@@ -60,7 +60,6 @@ module.exports[400] = function badRequest(validationErrors, redirectTo, req, res
     // then redirect back to the `redirectTo` URL
     return res.redirect(redirectTo);
   }
-
 
   // Depending on your app's needs, you may choose to look at the Referer header here 
   // and redirect back. Please do so at your own risk!

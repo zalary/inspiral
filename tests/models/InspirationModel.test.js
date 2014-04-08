@@ -7,81 +7,76 @@ var assert = require('assert');
 var supertest = require('supertest');
 var uuid = require('node-uuid');
 
-function InspirationStub () {
+function InspirationStub() {
   return {
     user_id: 1,
     original_creator_id: 2,
     city: "Austin",
-    text: "inspirational text" 
+    text: "inspirational text"
   };
 }
 
-function InspirationMissingStub () {
+function InspirationMissingStub() {
   return {
     original_creator_id: 2,
     city: "Austin",
-    text: "inspirational text" 
+    text: "inspirational text"
   };
 }
 
+describe('InspirationModel', function () {
 
-describe('InspirationModel', function() {
-
-  afterEach(function(done){
+  afterEach(function (done) {
     // remove all users after each test block
     Inspiration.destroy(function (err) {
-      if(err) return done(err);
+      if (err) return done(err);
       done();
 
     });
   });
 
-  describe('Create', function() {
+  describe('Create', function () {
 
-
-    it("Should be able to create an inspiration", function(done) {
-      Inspiration.create(InspirationStub(), function(err, insp) {
-        if(err) return done(err);
+    it("Should be able to create an inspiration", function (done) {
+      Inspiration.create(InspirationStub(), function (err, insp) {
+        if (err) return done(err);
         assert.notEqual(insp, undefined);
         done();
       });
     });
 
-    it("Should return error on create if there is missing data", function(done) {
+    it("Should return error on create if there is missing data", function (done) {
       var newInsp = InspirationMissingStub();
 
+      Inspiration.create(newInsp, function (err, insp) {
+        err.should.not.be.empty;
+        assert.equal(insp, undefined);
+        done();
+      });
 
-        Inspiration.create(newInsp, function(err, insp) {
-          err.should.not.be.empty;
-          assert.equal(insp, undefined);
-          done();
-        });
-
-     
     });
 
   });
 
-
-  describe('Find', function() {
+  describe('Find', function () {
     var inspSaved;
 
     before(function (done) {
       var newInsp = InspirationStub();
       // create one user
-      Inspiration.create(newInsp, function(err, insp) {
-        if(err) return done(err);
+      Inspiration.create(newInsp, function (err, insp) {
+        if (err) return done(err);
 
         inspSaved = insp;
         done();
       });
     });
 
-    it("Should find by id and return one user object ", function(done) {
+    it("Should find by id and return one user object ", function (done) {
       var inspiration;
 
-      Inspiration.findOneById(inspSaved.id).done(function(err, insp){
-        if(err) return done(err);
+      Inspiration.findOneById(inspSaved.id).done(function (err, insp) {
+        if (err) return done(err);
 
         should.exist(insp);
         insp.should.be.an.instanceOf(Object);
@@ -95,30 +90,29 @@ describe('InspirationModel', function() {
 
   });
 
-
-  describe('Delete', function() {
+  describe('Delete', function () {
     var inspSaved;
 
     before(function (done) {
       var newInsp = InspirationStub();
       // create one user
-      Inspiration.create(newInsp, function(err, insp) {
-        if(err) return done(err);
+      Inspiration.create(newInsp, function (err, insp) {
+        if (err) return done(err);
 
         inspSaved = insp;
         done();
       });
     });
 
-    it("Should delete user by id", function(done) {
+    it("Should delete user by id", function (done) {
       Inspiration.destroy({
         id: inspSaved.id
       }).done(function (err) {
-        if(err) return done(err);
+        if (err) return done(err);
 
-        Inspiration.findOneById(inspSaved.id).done(function(err, insp){
-          if(err) return done(err);
-          
+        Inspiration.findOneById(inspSaved.id).done(function (err, insp) {
+          if (err) return done(err);
+
           should.not.exist(insp);
 
           done();
@@ -129,4 +123,3 @@ describe('InspirationModel', function() {
 
   });
 });
-
