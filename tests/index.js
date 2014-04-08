@@ -1,6 +1,6 @@
 /**
- * Test starter - with this version of sails.js we can only start one sails server, 
- * to solve this problem we use only one before All and after All to start and 
+ * Test starter - with this version of sails.js we can only start one sails server,
+ * to solve this problem we use only one before All and after All to start and
  * stop the server
  */
 
@@ -10,7 +10,7 @@ var fs = require("fs");
 /**
  * Before ALL the test bootstrap the server
  */
-before(function(done) {
+before(function (done) {
 
   this.timeout(20000);
 
@@ -19,7 +19,7 @@ before(function(done) {
   var config = gettestConfig();
 
   // start sails server and for tests and user the global sails variable
-  Sails.lift( config, function(err, sails) {
+  Sails.lift(config, function (err, sails) {
     done();
     /* 
     // CSRF getter 
@@ -31,35 +31,33 @@ before(function(done) {
 
 });
 
-
 // load models test
-fs.readdirSync(__dirname + "/models").forEach(function(file) {
-  if(file.indexOf('.test.js') > -1) {
+fs.readdirSync(__dirname + "/models").forEach(function (file) {
+  if (file.indexOf('.test.js') > -1) {
     require("./models/" + file);
   }
 });
 
 // load controllers test
-fs.readdirSync( __dirname + "/controllers").forEach(function(file) {
-  if(file.indexOf('.test.js') > -1) {
-    require("./controllers/" + file);  
+fs.readdirSync(__dirname + "/controllers").forEach(function (file) {
+  if (file.indexOf('.test.js') > -1) {
+    require("./controllers/" + file);
   }
-  
+
 });
 
 // Load views tests
 // ----------------------------
-fs.readdirSync(__dirname + "/views").forEach(function(file) {
-  if(file.indexOf('.test.js') > -1) {
+fs.readdirSync(__dirname + "/views").forEach(function (file) {
+  if (file.indexOf('.test.js') > -1) {
     require("./views/" + file);
   }
 });
 
-
 /**
  * After ALL the tests, lower sails
  */
-after(function(done) {
+after(function (done) {
   // TODO: Clean up db
   // Database.clean...
   sails.lower(done);

@@ -11,7 +11,6 @@
  * http://sailsjs.org/#documentation
  */
 
-
 module.exports.policies = {
 
   // Default policy for all controllers and actions
@@ -36,7 +35,6 @@ module.exports.policies = {
 	}
 	*/
 };
-
 
 /**
  * Here's what the `isNiceToAnimals` policy from above might look like:
