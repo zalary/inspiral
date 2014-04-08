@@ -16,7 +16,7 @@
   });
 })();
 
-$(document).ready(function() {
+(function() {
   // create an array of background papers
   var backgroundPapers = [];
   backgroundPapers[0] = "/images/bgs/dust.png";
@@ -71,4 +71,4 @@ $(document).ready(function() {
       itemSelector: '.inspiration-item'
     });
   })();
-});
+})();
