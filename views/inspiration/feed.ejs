@@ -1,3 +1,9 @@
+<% if (session.authenticated) { %>
+  <%- partial ('../navbar_loggedin.ejs') %>
+  <% } else { %>
+  <%- partial ('../navbar_loggedout.ejs') %>
+  <% } %>
+
 <h2>Inspiration Feed</h2>
 <div id="inspiration-feed">
   <% for (i in inspirations) { %>
@@ -11,3 +17,4 @@
   </div>
   <% } %>
 </div>
+

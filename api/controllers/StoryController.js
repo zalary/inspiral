@@ -17,8 +17,7 @@
 
 module.exports = {
 
-
-  'new': function(req, res) {
+  'new': function (req, res) {
     res.view();
   },
 
@@ -27,6 +26,5 @@ module.exports = {
    * (specific to StoryController)
    */
   _config: {}
-
 
 };

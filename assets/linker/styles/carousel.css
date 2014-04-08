@@ -68,7 +68,7 @@ body {
   padding-left: 15px;
 }
 
-/* Center align the text within the three columns below the carousel */
+ Center align the text within the three columns below the carousel
 .marketing .col-lg-4 {
   margin-bottom: 20px;
   text-align: center;
@@ -94,6 +94,8 @@ body {
   font-weight: 300;
   line-height: 1;
   letter-spacing: -1px;
+  font-size: 35px;
+  font-family: "Lucida Console", Monaco, monospace;
 }
 
 
@@ -135,7 +137,7 @@ body {
   }
 
   .featurette-heading {
-    font-size: 50px;
+    font-size: 35px;
   }
 }
 

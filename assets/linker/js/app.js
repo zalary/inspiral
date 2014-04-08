@@ -75,13 +75,14 @@ function inspirationReceivedFromServer(message) {
   updateInspirationInDom(message);
 }
 
+
 function updateInspirationInDom(message) {
+  //Check what page we're on
   var page = document.location.pathname;
   page = page.replace(/(\/)$/, '');
   if (page == '/inspiration/feed' && message.verb == 'create') {
     InspirationIndexPage.addInspiration(message);
   }
-}
 
 var InspirationIndexPage = {
 

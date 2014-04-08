@@ -17,14 +17,14 @@
 
 module.exports = {
 
-  'new': function(req, res) {
+  'new': function (req, res) {
     res.view();
   },
 
   create: function (req, res, next) {
 
     //Creating a user with params from signup form
-    User.create( req.params.all(), function userCreated (err, user) {
+    User.create(req.params.all(), function userCreated(err, user) {
 
       //Checking if errors, and logging those errors
       if (err) {
@@ -42,24 +42,43 @@ module.exports = {
       // req.session.flash = {};
       req.session.authenticated = true;
       req.session.User = user;
-      res.redirect('/user/show/'+user.id);
+      res.redirect('/user/show/' + user.id);
     });
   },
 
   // render the profile view
   show: function (req, res, next) {
-    User.findOne(req.param('id'), function foundUser (err, user) {
+    User.findOne(req.param('id'), function foundUser(err, user) {
       if (err) return next(err);
       if (!user) return next();
-      Inspiration.find().where({user_id: req.param('id'), done: 1}).exec(function (err, doneInspirations) {
+      Inspiration.find().where({
+        user_id: req.param('id'),
+        done: 1
+      }).exec(function (err, doneInspirations) {
         if (err) return next(err);
-          Inspiration.find().where({user_id: req.param('id'), done: 0}).exec(function (err, todoInspirations) {
+        Inspiration.find().where({
+          user_id: req.param('id'),
+          done: 0
+        }).exec(function (err, todoInspirations) {
           if (err) return next(err);
+          // does the user own this page?
+          if ((req.session.authenticated) && (req.session.User.id) == (req.param('id'))) {
+            res.view({
+              layout: 'admin-show.ejs',
+              user: user,
+              doneInspirations: doneInspirations,
+              todoInspirations: todoInspirations
+            });
+          } else {
+
             res.view({
               user: user,
               doneInspirations: doneInspirations,
               todoInspirations: todoInspirations
-          });
+            });
+
+          }
+
         });
       });
     });
@@ -67,7 +86,7 @@ module.exports = {
 
   index: function (req, res, next) {
     // returns an array of users
-    User.find(function foundUsers (err, users) {
+    User.find(function foundUsers(err, users) {
       if (err) return next(err);
       // if (!user) return next();
       res.view({
@@ -77,7 +96,7 @@ module.exports = {
   },
 
   edit: function (req, res, next) {
-    User.findOne(req.param('id'), function foundUser (err, user) {
+    User.findOne(req.param('id'), function foundUser(err, user) {
       if (err) return next(err);
       if (!user) return next();
 
@@ -88,7 +107,7 @@ module.exports = {
   },
 
   update: function (req, res, next) {
-    User.update(req.param('id'), req.params.all(), function userUpdated (err) {
+    User.update(req.param('id'), req.params.all(), function userUpdated(err) {
       if (err) {
         return res.redirect('/user/edit/' + req.param('id'));
       }
@@ -97,7 +116,7 @@ module.exports = {
   },
 
   destroy: function (req, res, next) {
-    User.findOne(req.session.User.id, function foundUser (err, user) {
+    User.findOne(req.session.User.id, function foundUser(err, user) {
       var userid = req.session.User.id;
       if (err) return next(err);
 
@@ -114,6 +133,5 @@ module.exports = {
    * (specific to UserController)
    */
   _config: {}
-
 
 };

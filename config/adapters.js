@@ -39,7 +39,7 @@ module.exports.adapters = {
 
   //DEVELOPMENT ONLY
 
-   disk: {
+  disk: {
     module: 'sails-disk'
   }
 
