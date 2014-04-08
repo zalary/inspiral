@@ -23,7 +23,7 @@ module.exports = {
     },
 
     user_name: {
-      type: 'string'
+      type: 'string',
       required: true
     },
 
