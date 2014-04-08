@@ -16,12 +16,6 @@
   </div>
 </div>
 
-<script>
-$('#nav-wrapper').affix({
-    offset: { top: $('#nav-wrapper').offset().top }
-});​
-</script>
-
 <% if (session.authenticated) { %>
 <%- partial ('../navbar_loggedin.ejs') %>
 <% } else { %>
