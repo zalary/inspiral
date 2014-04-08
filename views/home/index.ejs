@@ -65,8 +65,10 @@ $('#nav-wrapper').affix({
       <script type="text/paperscript" canvas="homepageCanvas-2">
         var leftPath = new Path();
         var rightPath = new Path();
-        leftPath.strokeColor = 'black';
-        rightPath.strokeColor = 'red';
+        leftPath.strokeColor = '#FF6600';
+        rightPath.strokeColor = '#FF6600';
+        leftPath.strokeWidth = 10;
+        rightPath.strokeWidth = 10;
         var x = 0;
         var y = 250;
         var i = 720;
@@ -76,12 +78,17 @@ $('#nav-wrapper').affix({
 
         function onFrame(event) {
           leftPath.add(new Point(x, y));
-          while (x <= 360) {
+          if (x <= 355) {
             x += 5;
           }
           rightPath.add(new Point(i, j));
-          while (i >= 360) {
+          if (i >= 355) {
             i -= 5;
+          }
+          if (x === 360) {
+            var explodingCircle = new Path.Circle(new Point(360, 250), 10);
+            explodingCircle.fillColor = '#428bca';
+            explodingCircle.sendToBack();
           }
         }
       </script>
