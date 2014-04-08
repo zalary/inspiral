@@ -75,7 +75,6 @@ function inspirationReceivedFromServer(message) {
   updateInspirationInDom(message);
 }
 
-
 function updateInspirationInDom(message) {
   //Check what page we're on
   var page = document.location.pathname;
@@ -84,20 +83,21 @@ function updateInspirationInDom(message) {
     InspirationIndexPage.addInspiration(message);
   }
 
-var InspirationIndexPage = {
+  var InspirationIndexPage = {
 
-  addInspiration: function(inspiration) {
+    addInspiration: function(inspiration) {
 
-    var obj = {
-      inspiration: inspiration.data,
-      _csrf: window.csrf || ''
-    };
+      var obj = {
+        inspiration: inspiration.data,
+        _csrf: window.csrf || ''
+      };
 
-    $container = $('#inspiration-feed');
+      $container = $('#inspiration-feed');
 
-    $container
-      .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
+      $container
+        .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
         .masonry('reloadItems')
-          .masonry('layout');
+        .masonry('layout');
+    }
   }
 };
