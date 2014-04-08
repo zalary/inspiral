@@ -75,21 +75,46 @@ $('#nav-wrapper').affix({
         var j = 250;
         leftPath.add(new Point(x, y));
         rightPath.add(new Point(i, j));
+        var radius = 10;
+        var newCircles;
 
         function onFrame(event) {
+
+          console.log(event.delta);
+
           leftPath.add(new Point(x, y));
-          if (x <= 355) {
+          while (x < 360) {
             x += 5;
           }
           rightPath.add(new Point(i, j));
-          if (i >= 355) {
+          while (i > 360) {
             i -= 5;
           }
-          if (x === 360) {
+
+          if (x == 360) {
             var explodingCircle = new Path.Circle(new Point(360, 250), 10);
             explodingCircle.fillColor = '#428bca';
             explodingCircle.sendToBack();
           }
+
+          if (radius <= 190) {
+              newCircles = new Path.Circle(new Point(360, 250), radius);
+              newCircles.fillColor = '#428bca';
+              newCircles.sendToBack();
+              radius += 10;
+            } else {
+            x = 0;
+            i = 720;
+            radius = 10;
+            project.clear();
+            leftPath = new Path();
+            rightPath = new Path();
+            leftPath.strokeColor = '#FF6600';
+            rightPath.strokeColor = '#FF6600';
+            leftPath.strokeWidth = 10;
+            rightPath.strokeWidth = 10;
+          }
+
         }
       </script>
 
