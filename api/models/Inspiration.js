@@ -14,7 +14,6 @@ module.exports = {
     //user_name: 'string', // To reduce the number of references to the user model
     //original_creator_id: 'integer', //this should be static once it's created
     //text: 'string', //static for now
-    //city: 'string',
     //done: 'boolean'
 
     user_id: {
@@ -37,20 +36,15 @@ module.exports = {
       required: true
     },
 
-
     text: {
       type: 'string',
       required: true
     },
 
-    city: {
-      type: 'string'
-    },
-
     done: {
       type: 'boolean'
-    }
+    },
 
-  }
+  },
 
 };
