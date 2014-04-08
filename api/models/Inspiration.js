@@ -22,10 +22,21 @@ module.exports = {
       required: true
     },
 
+    user_name: {
+      type: 'string',
+      required: true
+    },
+
     original_creator_id: {
       type: 'integer',
       required: true
     },
+
+    original_creator_name: {
+      type: 'string',
+      required: true
+    },
+
 
     text: {
       type: 'string',

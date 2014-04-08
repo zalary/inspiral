@@ -7,7 +7,7 @@
  * Feel free to change none, some, or ALL of this file to fit your needs!
  */
 
-(function (io) {
+(function(io) {
 
   // as soon as this file is loaded, connect automatically,
   var socket = io.connect();
@@ -71,49 +71,33 @@
 
 function inspirationReceivedFromServer(message) {
   // This message has to do with the User Model
-  var inspirationId = message.id
+  var inspirationId = message.id;
   updateInspirationInDom(message);
-};
+}
+
 
 function updateInspirationInDom(message) {
   //Check what page we're on
   var page = document.location.pathname;
   page = page.replace(/(\/)$/, '');
-
-  // switch (page) {
-
-  //   case '/inspiration/feed':
-
   if (page == '/inspiration/feed' && message.verb == 'create') {
-
-    // if (message.verb === 'create') {
     InspirationIndexPage.addInspiration(message);
   }
-  // break;
-  // }
-}
 
 var InspirationIndexPage = {
 
-  addInspiration: function (inspiration) {
+  addInspiration: function(inspiration) {
 
     var obj = {
       inspiration: inspiration.data,
       _csrf: window.csrf || ''
     };
 
-    // $('#newest-inspirations').prepend(
-    //   JST['assets/linker/templates/addInspiration.ejs'](obj)
-    //   );
+    $container = $('#inspiration-feed');
 
-    $('#inspiration-feed').prepend(
-      JST['assets/linker/templates/addInspiration.ejs'](obj)
-    ).masonry('reloadItems');
-
-    // $('#inspiration-feed').masonry('reloadItems');
-
-    // $('div#inspiration-feed').masonry('prepended',
-    //   $('<div class="inspiration-item"><div class="inspiration-text">'+ inspiration.text + '</div><div class="inspiration-user">' + inspiration.user + '</div></div>')
-    //   )
+    $container
+      .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
+        .masonry('reloadItems')
+          .masonry('layout');
   }
 };
