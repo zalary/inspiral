@@ -7,6 +7,24 @@
 <h2>Inspiration Feed</h2>
 <div id="inspiration-feed">
   <% for (i in inspirations) { %>
+           <% if (session.authenticated) { %>
+           <form method="post" action="/inspiration/create">
+            <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
+             <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+             <input type='hidden' name="user_id" value='<%= session.User.id %>'>
+             <input type='hidden' name='user_username' value='<%= session.User.username %>'>
+             <input type='hidden' name="original_creator_id" value='<%= inspirations[i].user_id %>'>
+             <input type='hidden' name="original_creator_name" value='<%= inspirations[i].user_username %>'>
+
+            <input type='hidden' value='0' name='done'>
+            <input type="hidden" value='<%= inspirations[i].text %>' name="text"> <br />
+        </div>
+      </div>
+
+        <input type="submit" value=" This inspires me!" id="submit" class="btn btn-sm btn-primary inspire_link">
+      </form>
+                    <% } %>
+
   <div class="inspiration-item">
       <div class="inspiration-text">
         <%= inspirations[i].text %>

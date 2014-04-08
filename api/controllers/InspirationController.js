@@ -37,6 +37,7 @@ module.exports = {
 
         Inspiration.publishCreate(inspiration);
         res.json(inspiration);
+        res.redirect('/inspiration/feed');
       });
 
     });

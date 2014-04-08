@@ -6,6 +6,7 @@
             <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
             <input type='hidden' name='_csrf' value='<%= _csrf %>'>
             <input type='hidden' name="user_id" value='<%= user.id %>'>
+            <input type='hidden' name="user_username" value='<%= user.username %>'>
             <input type='hidden' name="original_creator_id" value='<%= user.id %>'>
             <input type='hidden' value='0' name='done'>
             <input type="text" name="text" id="new-inspiration" placeholder="What inspires you?" rows="3"> <br />
@@ -37,9 +38,9 @@
       type: 'POST',
       data: {
         user_id: <%= session.User.id %>,
-        user_name: <%= session.User.name %>,
+        user_username: '<%= session.User.username %>',
         original_creator_id: <%= session.User.id %>,
-        original_creator_name: <%= session.User.name %>,
+        original_creator_name: '<%= session.User.username %>',
         text: $('#new-inspiration').val(),
         done: done_status,
         _csrf: '<%= _csrf %>'

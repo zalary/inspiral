@@ -22,8 +22,8 @@ module.exports = {
       required: true
     },
 
-    user_name: {
-      type: 'string'
+    user_username: {
+      type: 'string',
       required: true
     },
 
