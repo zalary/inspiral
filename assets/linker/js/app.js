@@ -75,7 +75,6 @@ function inspirationReceivedFromServer(message) {
   updateInspirationInDom(message);
 }
 
-
 function updateInspirationInDom(message) {
   //Check what page we're on
   var page = document.location.pathname;
@@ -84,39 +83,21 @@ function updateInspirationInDom(message) {
     InspirationIndexPage.addInspiration(message);
   }
 
-}
-// break;
-// }
+  var InspirationIndexPage = {
 
+    addInspiration: function(inspiration) {
 
-var InspirationIndexPage = {
+      var obj = {
+        inspiration: inspiration.data,
+        _csrf: window.csrf || ''
+      };
 
+      $container = $('#inspiration-feed');
 
-  addInspiration: function(inspiration) {
-
-    var obj = {
-      inspiration: inspiration.data,
-      _csrf: window.csrf || ''
-    };
-    // $('#newest-inspirations').prepend(
-    //   JST['assets/linker/templates/addInspiration.ejs'](obj)
-    //   );
-
-
-    $container = $('#inspiration-feed');
-
-    $container
-      .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
-      .masonry('prepended', $container);
-    // (function() {$container.masonry({itemSelector: ".inspiration-item"});})();
-    setTimeout(function() {
-      $container.masonry({
-        itemSelector: '.inspiration-item'
-      })
-    }, 2000);
-
-    // $('div#inspiration-feed').masonry('prepended',
-    //   $('<div class="inspiration-item"><div class="inspiration-text">'+ inspiration.text + '</div><div class="inspiration-user">' + inspiration.user + '</div></div>')
-    //   )
+      $container
+        .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
+        .masonry('reloadItems')
+        .masonry('layout');
+    }
   }
 };

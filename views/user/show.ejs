@@ -16,7 +16,7 @@
 
 <div id="inspiration-todo-list">
   <div class="col-xs-6">
-    <h3>Future Kindnesses</h3>
+    <span class="kindness-column-title"><%= user.name %>'s Future Kindnesses</span>
     <div id="notdone">
       <% for (var i in todoInspirations) { %>
       <div class="inspiration-item"> 
@@ -52,7 +52,7 @@
     </div>
   </div>
   <div class="col-xs-6">
-    <h3>Past Kindnesses</h3>
+    <span class="kindness-column-title"><%= user.name %>'s Past Kindnesses</span>
     <div id="done">
       <% for (var i in doneInspirations) { %>
       <div class="inspiration-item">

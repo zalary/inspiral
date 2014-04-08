@@ -450,9 +450,9 @@ module.exports = function (grunt) {
     'copy:build'
   ]);
 
-  grunt.registerTask('clean', [
-    'jsbeautifier:modify'
-  ]);
+  // grunt.registerTask('clean', [
+  //   'jsbeautifier:modify'
+  // ]);
 
   // When sails is lifted in production
   grunt.registerTask('prod', [
