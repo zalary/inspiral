@@ -37,7 +37,9 @@
       type: 'POST',
       data: {
         user_id: <%= session.User.id %>,
+        user_name: <%= session.User.name %>,
         original_creator_id: <%= session.User.id %>,
+        original_creator_name: <%= session.User.name %>,
         text: $('#new-inspiration').val(),
         done: done_status,
         _csrf: '<%= _csrf %>'
