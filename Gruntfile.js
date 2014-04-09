@@ -14,7 +14,7 @@
  * http://gruntjs.com/configuring-tasks
  */
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   /**
    * CSS files to inject in order
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
     'linker/js/jquery-2.1.0.js',
     'linker/js/jquery.validate.min.js',
     'linker/js/underscore-min.js',
-    'linker/js/masonry.pkgd.min.js',
+    'linker/js/isotope.pkgd.min.js',
 
     // All of the rest of your app scripts imported here
     'linker/**/*.js',
@@ -104,16 +104,16 @@ module.exports = function (grunt) {
   /////////////////////////////////////////////////////////////////
 
   // Modify css file injection paths to use
-  cssFilesToInject = cssFilesToInject.map(function (path) {
+  cssFilesToInject = cssFilesToInject.map(function(path) {
     return '.tmp/public/' + path;
   });
 
   // Modify js file injection paths to use
-  jsFilesToInject = jsFilesToInject.map(function (path) {
+  jsFilesToInject = jsFilesToInject.map(function(path) {
     return '.tmp/public/' + path;
   });
 
-  templateFilesToInject = templateFilesToInject.map(function (path) {
+  templateFilesToInject = templateFilesToInject.map(function(path) {
     return 'assets/' + path;
   });
 

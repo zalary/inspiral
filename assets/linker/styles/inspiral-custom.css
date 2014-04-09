@@ -219,9 +219,9 @@ div.inspiration-user{
      margin-left: 350px;
 }
 
-#inspiration-feed {
+/*#inspiration-feed {
   max-width: 640px;
-}
+}*/
 
 /* clearfix */
 #inspiration-feed:after {
@@ -231,13 +231,26 @@ div.inspiration-user{
 }
 
 #inspiration-feed .inspiration-item {
-  width:  60px;
-  height: 60px;
+/*  width:  60px;
+  height: 60px;*/
+  width: 200px;
+  height: auto;
   float: left;
   border: 2px solid #333;
   border-color: hsla(0, 0%, 0%, 0.5);
   border-radius: 5px;
 }
 
+.isotope {
+    -webkit-transition-property: height, width;
+       -moz-transition-property: height, width;
+         -o-transition-property: height, width;
+            transition-property: height, width;
+}
 
-
+.isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity, width, height, background-color;
+       -moz-transition-property:    -moz-transform, opacity, width, height, background-color;
+         -o-transition-property:         top, left, opacity, width, height, background-color;
+            transition-property:         transform, opacity, width, height, background-color;
+}
