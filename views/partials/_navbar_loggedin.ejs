@@ -11,14 +11,14 @@
     </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-      <li class="navbar-links"><a href="/user/show/<%= session.User.id %>"><span class="glyphicon glyphicon-certificate"></span> <%= session.User.name %>'s kindness board</a></li>
+      <li class="navbar-links"><a href="/user/show/<%= session.User.id %>"><span class="glyphicon glyphicon-certificate"></span> <%= user.username %>'s kindness board</a></li>
       <li class="navbar-links"><a href="/inspiration/feed"><span class="glyphicon glyphicon-globe"></span> discover</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown navbar-links">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> my account<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/user/update/">Edit Profile</a></li>
+          <li><a href="/user/edit/<%= session.User.id %>">Edit Profile</a></li>
           <li><a href="/user/destroy">Log out</a></li>
         </ul>
       </li>

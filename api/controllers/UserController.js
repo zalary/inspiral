@@ -107,12 +107,29 @@ module.exports = {
   },
 
   update: function (req, res, next) {
-    User.update(req.param('id'), req.params.all(), function userUpdated(err) {
+    User.findOne(req.param('id'), function foundUser(err, user) {
       if (err) {
         return res.redirect('/user/edit/' + req.param('id'));
       }
-      res.redirect('/user/show/' + req.param('id'));
-    });
+
+      if (req.body.name) {
+        user.name = req.body.name;
+      }
+
+      if (req.body.username) {
+        user.username = req.body.username;
+      }
+
+      if (req.body.email) {
+        user.email = req.body.email;
+      }
+
+      user.save(function(error) {
+        if (err) return next(err);
+        res.redirect('/user/show/' + req.param('id'));
+      })
+    })
+
   },
 
   destroy: function (req, res, next) {
