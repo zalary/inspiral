@@ -17,11 +17,11 @@
 
 module.exports = {
 
-  'new': function (req, res) {
+  'new': function(req, res) {
 
   },
 
-  create: function (req, res, next) {
+  create: function(req, res, next) {
     //console.log('i#create');
     Inspiration.create(req.params.all(), function inspirationCreated(err, inspiration) {
 
@@ -30,7 +30,7 @@ module.exports = {
       }
 
       //socket stuff
-      inspiration.save(function (err, inspiration) {
+      inspiration.save(function(err, inspiration) {
         if (err) {
           return next(err);
         }
@@ -42,7 +42,7 @@ module.exports = {
     });
   },
 
-  subscribe: function (req, res) {
+  subscribe: function(req, res) {
 
     Inspiration.find(function foundInspirations(err, inspirations) {
       if (err) return next(err);
@@ -56,7 +56,7 @@ module.exports = {
 
   },
 
-  feed: function (req, res, next) {
+  feed: function(req, res, next) {
     // returns an array of inspirations
     Inspiration.find(function foundInspirations(err, inspirations) {
       if (err) return next(err);

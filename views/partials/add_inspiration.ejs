@@ -1,32 +1,31 @@
 <div id="new-kindnesses">
   <div class="row">
-      <div class="col-xs-12">
-        <!-- <div class="container"> -->
-          <form method="post" action="/inspiration/create">
-            <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
-            <input type='hidden' name='_csrf' value='<%= _csrf %>'>
-            <input type='hidden' name="user_id" value='<%= user.id %>'>
-            <input type='hidden' name="original_creator_id" value='<%= user.id %>'>
-            <input type='hidden' value='0' name='done'>
-            <textarea type="text" name="text" id="new-inspiration" placeholder=" What inspires you?" rows="3"> </textarea><br />
-
+    <div class="col-xs-12">
+      <form method="post" action="/inspiration/create">
+        <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
+        <textarea type="text" name="text" id="new-inspiration" placeholder=" What inspires you?" rows="3"> </textarea><br />
         <div id="done-checkbox">
           <span class="input_done">
             <input type="checkbox"> I've already done this
           </span>
         </div>
         <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-lg">
+      </form>
+    </div>
+  </div>
+</div>
 
 <script>
 
+// Make the textarea bigger when it is clicked
 $('#new-inspiration').on('click', function(e) {
   e.preventDefault();
     $(this).height(80);
     $(this).width(500);
 });
 
-
-$('#add-inspiration form').on("submit", function(e) {
+// post the new inspiration through ajax
+$('#new-kindnesses form').on("submit", function(e) {
   e.preventDefault();
 
   var done_status = $('input[type="checkbox"]').prop('checked');
@@ -42,7 +41,9 @@ $('#add-inspiration form').on("submit", function(e) {
     type: 'POST',
     data: {
       user_id: <%= session.User.id %>,
+      user_username: '<%= session.User.username %>',
       original_creator_id: <%= session.User.id %>,
+      original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
       _csrf: '<%= _csrf %>'
@@ -52,24 +53,17 @@ $('#add-inspiration form').on("submit", function(e) {
     obj = {
       inspiration: data,
     };
+    console.log(data);
     if (data.done) {
-      $('#inspiration-todo-list div#done').prepend(
-        JST['assets/linker/templates/addInspiration.ejs'](obj)
-      ).masonry('reloadItems');
-      // $('#inspiration-todo-list div#done').masonry( 'prepended', '<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>' );
+      $container = $('#done');
     }
     else {
-      $('#inspiration-todo-list div#notdone').prepend(
-        JST['assets/linker/templates/addInspiration.ejs'](obj)
-      ).masonry('reloadItems');
-      // $('#inspiration-todo-list div#done').masonry( 'prepended', '<div class="inspiration-item"><div class="inspiration-text">' + data.text + '</div><div class="inspiration-user">' + data.user_id + '</div>');
-    }
+      $container = $('#notdone');
+    };
+    $container
+        .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
+        .masonry('reloadItems')
+        .masonry('layout');
   });
 });
 </script>
-
-
-          </form>
-      </div>
-  </div>
-</div>

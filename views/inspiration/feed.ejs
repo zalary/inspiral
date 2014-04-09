@@ -7,6 +7,50 @@
 <h2>Inspiration Feed</h2>
 <div id="inspiration-feed">
   <% for (i in inspirations) { %>
+           <% if (session.authenticated) { %>
+           <form method="post" action="/inspiration/create">
+            <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
+             <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+         </div>
+      </div>
+
+        <input type="submit" value=" This inspires me!" id="submit" class="btn btn-sm btn-primary inspire_link">
+      </form>
+
+       <script>
+      $('#inspiration-feed form').on("submit", function(e) {
+        e.preventDefault();
+       
+        $.ajax({
+          url: '/inspiration/create',
+          type: 'POST',
+            data: {
+              user_id: <%= session.User.id %>,
+              user_username: '<%= session.User.username %>',
+              original_creator_id: '<%= inspirations[i].user_id %>',
+              original_creator_name: '<%= inspirations[i].user_username %>',
+              // uses double quotes in case there is a single quote or apostrophe.  
+              // TODO escape the text in a better way.
+              text: "<%= inspirations[i].text %>",
+              done: 0,
+              _csrf: '<%= _csrf %>'
+            }
+         })
+        .success(function(data) {
+          obj = {
+            inspiration: data,
+         };
+    
+          $('#inspiration-todo-list div#notdone').prepend(
+          JST['assets/linker/templates/addInspiration.ejs'](obj)
+          ).masonry('reloadItems');
+         });
+       });
+
+      </script>
+
+                    <% } %>
+
   <div class="inspiration-item">
       <div class="inspiration-text">
         <%= inspirations[i].text %>

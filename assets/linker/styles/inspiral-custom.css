@@ -176,14 +176,14 @@ div.inspiration-item {
 }
 div.inspiration-text{
     background-color : transparent;
-    font-size: 1.4em;
+    font-size: .8vw;
     text-align: left;
     width: 100%;
     height: 80%;
 }
 div.inspiration-user{
     background-color : transparent;
-    font-size: 2em;
+    font-size: 1vw;
     text-align: center;
     width: 100%;
     height: 20%;
