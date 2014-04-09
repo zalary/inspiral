@@ -17,6 +17,17 @@
 
 <script>
 
+var latitude, longitude;
+
+$(document).ready(function() {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    console.log(latitude);
+    console.log(longitude);
+  })
+});
+
 // Make the textarea bigger when it is clicked
 $('#new-inspiration').on('click', function(e) {
   e.preventDefault();
