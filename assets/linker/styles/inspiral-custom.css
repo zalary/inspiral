@@ -170,10 +170,6 @@ iframe {
     text-shadow: 0 1px 0 white;
 }
 
-.inspiration-item {
-    width: 100px;
-    height: 200px;
-}
 div.inspiration-text{
     background-color : transparent;
     font-size: .8vw;
@@ -230,14 +226,18 @@ div.inspiration-user{
   clear: both;
 }
 
-#inspiration-feed .inspiration-item {
-  width:  60px;
-  height: 60px;
+div.inspiration-item {
+  width:  120px;
+  height: 120px;
   float: left;
   border: 2px solid #333;
   border-color: hsla(0, 0%, 0%, 0.5);
   border-radius: 5px;
 }
 
+div.inspiration-item.gigante {
+  width: 200px;
+  height: 200px;
+}
 
 

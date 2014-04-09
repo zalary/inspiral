@@ -34,6 +34,7 @@
       $('#notdone div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
     };
   })();
+
   // and the done dashboard column
   (function() {
     for (var i = 1; i <= $('#done div.inspiration-item').length; i++) {
@@ -43,6 +44,7 @@
       $('#done div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
     };
   })();
+
   // iterate through Feed and randomly assign width, height, background
   (function() {
     for (var i = 1; i <= $('#inspiration-feed div.inspiration-item').length; i++) {
@@ -52,4 +54,12 @@
       $('#inspiration-feed div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
     };
   })();
+
+  (function() {
+    var container = document.querySelector('#inspiration-feed');
+    var msnry = new Masonry(container, {
+      columnWidth: 60
+    });
+  })();
+
 })();
