@@ -1,6 +1,19 @@
-<div id="new-kindnesses">
-  <div class="row">
-    <div class="col-xs-12">
+<div class="row">
+  <div class="col-xs-4 container dashboard-centering">
+    <div id="user-gravatar">
+    </div>
+    <h4><%= session.User.username %></h4>
+    <span id="kindness-title">Kindness Title</span>
+    <div class="profile-count">
+      Future Kindnesses
+      <span class="badge">14</span>
+    </div>
+    <div class="profile-count">
+      Past Kindnesses
+      <span class="badge">14</span>
+    </div>
+  </div>
+  <div class="col-xs-8 container dashboard-centering">
       <form method="post" action="/inspiration/create">
         <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
         <textarea type="text" name="text" id="new-inspiration" placeholder=" What inspires you?" rows="3"> </textarea><br />
@@ -11,8 +24,8 @@
         </div>
         <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-lg">
       </form>
-    </div>
   </div>
+</div>
 </div>
 
 <script>
@@ -20,8 +33,8 @@
 // Make the textarea bigger when it is clicked
 $('#new-inspiration').on('click', function(e) {
   e.preventDefault();
-    $(this).height(80);
-    $(this).width(500);
+    $(this).height(60);
+    $(this).width(400);
 });
 
 // post the new inspiration through ajax
