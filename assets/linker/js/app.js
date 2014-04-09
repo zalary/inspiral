@@ -82,6 +82,7 @@ function updateInspirationInDom(message) {
   if (page == '/inspiration/feed' && message.verb == 'create') {
     InspirationIndexPage.addInspiration(message);
   }
+}
 
   var InspirationIndexPage = {
 
@@ -99,5 +100,5 @@ function updateInspirationInDom(message) {
         .masonry('reloadItems')
         .masonry('layout');
     }
-  }
+  
 };
