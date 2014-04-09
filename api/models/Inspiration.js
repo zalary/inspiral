@@ -54,6 +54,14 @@ module.exports = {
       type: 'boolean'
     },
 
+    latitude: {
+      type: 'integer'
+    },
+
+    longitude: {
+      type: 'integer'
+    }
+
   },
 
 };
