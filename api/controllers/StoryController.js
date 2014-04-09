@@ -23,33 +23,44 @@ module.exports = {
 
   create: function (req, res, err) {
 
-    story = req.params.all();
+    story_id = req.param('inspiration_id');
+    story_text = req.param('text');
+    story_creator = req.param('created_by');
 
-    Story.create([req.param('inspiration_id')], story,  function(err, values) {
-      console.log(req.param('inspiration_id'));
-      console.log(values);
-      res.json(values);
+   Story.native(function(err, collection) {
+     
+     collection.insert({ _id: parseInt(story_id), insp_text: story_text, created_by: story_creator },function(err, docs) {
+
+     console.log(collection);
+
+       console.log(docs);
+
+          
+       });
     });
 
 
   },
 
-  update: function(req, res, err) {
+  update: function(req, res, next) {
 
     Story.native(function(err, collection) {
-      collection.find().toArray(function(err, docs) {
-
-      collection.insert({ _id: 11, insp_text: "hey i am some inspiring text.", created_by: "zalary" }), function(err, addedstory) {
-         callback(err);
-       console.log(addedstory);
-    } 
-     callback(err);
-
-
-      });
-    //console.log(collection);
      
+     collection.insert({ _id: 13, insp_text: "hey i am a new  inspiring text.", created_by: "zalary" },function(err, docs) {
+
+     console.log(collection);
+
+       console.log(docs);
+
+          
+       });
+
+
+        
     });
+
+    //if (err) return next(err);
+
 
   },
 
