@@ -17,6 +17,24 @@
 
 <script>
 
+var latitude, longitude;
+
+$(document).ready(function() {
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    console.log(latitude);
+    console.log(longitude);
+  });
+
+  var watchUser = navigator.geolocation.watchPosition(function(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+  });
+
+});
+
 // Make the textarea bigger when it is clicked
 $('#new-inspiration').on('click', function(e) {
   e.preventDefault();
@@ -46,6 +64,8 @@ $('#new-kindnesses form').on("submit", function(e) {
       original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
+      latitude: latitude,
+      longitude: longitude,
       _csrf: '<%= _csrf %>'
     }
   })
