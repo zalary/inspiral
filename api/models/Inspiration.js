@@ -36,6 +36,15 @@ module.exports = {
       required: true
     },
 
+    original_post_id: {
+      type: 'integer'
+    },
+
+    repin_count: {
+      type: 'integer',
+      defaultsTo: '0'
+    },
+
     text: {
       type: 'string',
       required: true
