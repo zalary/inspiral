@@ -151,15 +151,15 @@ iframe {
     background: #404040;
 }
 
-div#inspiration-todo-list {
+#inspiration-todo-list {
     width: 95%;
     margin: 20px 90px 20px;
 }
-div#inspiration-todo-list .done {
+#inspiration-todo-list .done {
     float: right;
     width: 50%;
 }
-div#inspiration-todo-list .notdone {
+#inspiration-todo-list .notdone {
     float: left;
     width: 50%;
 }
@@ -170,7 +170,7 @@ div#inspiration-todo-list .notdone {
     text-shadow: 0 1px 0 white;
 }
 
-div.inspiration-item {
+.inspiration-item {
     width: 100px;
     height: 200px;
 }
@@ -217,4 +217,27 @@ div.inspiration-user{
 
 #add-inspiration input[type="button"] {
      margin-left: 350px;
-    }
+}
+
+#inspiration-feed {
+  max-width: 640px;
+}
+
+/* clearfix */
+#inspiration-feed:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#inspiration-feed .inspiration-item {
+  width:  60px;
+  height: 60px;
+  float: left;
+  border: 2px solid #333;
+  border-color: hsla(0, 0%, 0%, 0.5);
+  border-radius: 5px;
+}
+
+
+
