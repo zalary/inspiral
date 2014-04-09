@@ -61,7 +61,7 @@ $('#new-inspiration').on('click', function(e) {
 });
 
 // post the new inspiration through ajax
-$('#new-kindnesses form').on("submit", function(e) {
+$('.dashboard-inspiration-add form').on("submit", function(e) {
   e.preventDefault();
 
   var done_status = $('input[type="checkbox"]').prop('checked');
