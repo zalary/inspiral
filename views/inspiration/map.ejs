@@ -1,0 +1,38 @@
+<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+
+<% if (session.authenticated) { %>
+  <%- partial ('../navbar_loggedin.ejs') %>
+  <% } else { %>
+  <%- partial ('../navbar_loggedout.ejs') %>
+  <% } %>
+
+<div id="map">
+</div>
+
+<script>
+var latitude, longitude, mark;
+
+$(document).ready(function() {
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    console.log(latitude);
+    console.log(longitude);
+    console.log("<%= inspirations[3].text %>");
+
+    var map = L.map('map').setView([latitude, longitude], 13);
+
+    var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'});
+
+    OpenStreetMap_Mapnik.addTo(map);
+
+      mark = L.marker([latitude, longitude]);
+      mark.bindPopup("<%= inspirations[3].text %>").addTo(map);
+
+    });
+
+});
+
+</script>
