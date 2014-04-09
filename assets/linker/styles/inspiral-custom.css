@@ -196,7 +196,7 @@ div.inspiration-user{
 }
 
 #new-inspiration {
-    margin-top: 20px;
+    margin-top: 50px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     height: 40px;
@@ -207,8 +207,26 @@ div.inspiration-user{
     color:#222;
 }
 
-.dashboard-centering {
+.dashboard-profile {
     text-align: center;
+}
+
+.dashboard-inspiration-add {
+    text-align: center;
+}
+
+#user-gravatar {
+    margin-top: 20px;
+}
+
+.well-sm {
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 0px;
+    background: #D8D8D8;
+    opacity: 0.9;
 }
 
 #submit {

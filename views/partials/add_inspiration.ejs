@@ -1,19 +1,23 @@
 <div class="row">
-  <div class="col-xs-4 container dashboard-centering">
-    <div id="user-gravatar">
-    </div>
-    <h4><%= session.User.username %></h4>
-    <span id="kindness-title">Kindness Title</span>
-    <div class="profile-count">
-      Future Kindnesses
-      <span class="badge">14</span>
-    </div>
-    <div class="profile-count">
-      Past Kindnesses
-      <span class="badge">14</span>
+  <div class="col-xs-4 container dashboard-profile">
+    <div class="well well-sm">
+      <div id="user-gravatar">
+        <img src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"></img>
+      </div>
+      <h4><%= session.User.username %></h4>
+      <span id="kindness-title">Kindness Title</span>
+      <div class="profile-count">
+        Future Kindnesses
+        <span class="badge">14</span>
+      </div>
+      <div class="profile-count">
+        Past Kindnesses
+        <span class="badge">14</span>
+      </div>
     </div>
   </div>
-  <div class="col-xs-8 container dashboard-centering">
+  <div class="col-xs-8 container dashboard-inspiration-add">
+    <div class="well well-sm">
       <form method="post" action="/inspiration/create">
         <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
         <textarea type="text" name="text" id="new-inspiration" placeholder=" What inspires you?" rows="3"> </textarea><br />
@@ -24,6 +28,7 @@
         </div>
         <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-lg">
       </form>
+    </div>
   </div>
 </div>
 </div>
