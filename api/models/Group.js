@@ -8,12 +8,32 @@
 
 module.exports = {
 
-  attributes: {
-  	
-  	/* e.g.
-  	nickname: 'string'
-  	*/
-    
-  }
+  adapter: 'psdb',
+  schema: true,
 
-};
+  attributes: {
+
+    org: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
+
+    city: {
+      type: 'string',
+      required: true,
+    },
+
+    description: {
+      type: 'text',
+    },
+
+    member_id: {
+      type: 'integer',
+      required: true,
+      unique: true
+    },
+
+  },
+
+}
