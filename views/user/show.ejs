@@ -1,5 +1,6 @@
 <script src="../linker/js/stickyMojo.js"></script>
 
+<!-- Check to see which navbar partial to load -->
 <div class='container'>
   <% if (session.authenticated) { %>
   <%- partial ('../partials/navbar_loggedin.ejs') %>
@@ -11,28 +12,37 @@
 
 <div id="wrapper">
 
+<!-- Sticky sidebar for user profile -->
   <div id="sidebar">
     <div class="well well-sm">
       <div id="user-gravatar">
         <img src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"></img>
       </div>
-      <h4><%= user.username %></h4>
+      <h3><%= user.username %></h3>
       <span id="kindness-title">Kindness Title</span>
-      <div class="profile-count">
-        Future Kindnesses
-        <span class="badge">14</span>
+    </div>
+      <div>
+        <div class="profile-count">
+          Future Kindnesses</br>
+          <span class="badge">24</span>
+        </div>
+        <div class="profile-count">
+          Past Kindnesses</br>
+          <span class="badge">12</span>
+        </div>
       </div>
-      <div class="profile-count">
-        Past Kindnesses
-        <span class="badge">14</span>
-      </div>
-      </div>
+
+      <!-- Checks to see if add inspiration partial for user -->
       <% if (session.authenticated) { %>
       <%- partial ('../partials/add_inspiration.ejs') %>
       <% } %>
+
+      <div id="user-profile-groups">
+        <h4>Groups</h4>
       </div>
   </div>
 
+  <!-- Main section containing user's pinned kindnesses -->
   <div id="main">
     <div id="inspiration-todo-list">
         <span class="kindness-column-title">
@@ -89,6 +99,7 @@
 </div>
 
 <script>
+  //Uses stickyMojo to make sidebar sticky
   $(document).ready(function(){
     $('#sidebar').stickyMojo({footerID: '#footer', contentID: '#main'});
   });

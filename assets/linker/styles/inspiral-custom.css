@@ -197,7 +197,7 @@ div.inspiration-user{
 }
 
 #new-inspiration {
-    margin-top: 50px;
+    margin-top: 15px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     height: 40px;
@@ -218,16 +218,40 @@ div.inspiration-user{
 
 #user-gravatar {
     margin-top: 10px;
+    text-align: center;
 }
 
 .well-sm {
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    margin-top: 50px;
-    margin-left: 50px;
     margin-bottom: 0px;
-    background: #D8D8D8;
+    /*background: #686868;*/
+    color: white;
     opacity: 0.9;
+    text-align: center;
+    background: rgb(89,89,89); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(89,89,89,1) 12%, rgba(71,71,71,1) 16%, rgba(44,44,44,1) 50%, rgba(43,43,43,1) 76%, rgba(76,76,76,1) 90%, rgba(76,76,76,1) 90%, rgba(76,76,76,1) 90%, rgba(102,102,102,1) 98%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(12%,rgba(89,89,89,1)), color-stop(16%,rgba(71,71,71,1)), color-stop(50%,rgba(44,44,44,1)), color-stop(76%,rgba(43,43,43,1)), color-stop(90%,rgba(76,76,76,1)), color-stop(90%,rgba(76,76,76,1)), color-stop(90%,rgba(76,76,76,1)), color-stop(98%,rgba(102,102,102,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(89,89,89,1) 12%,rgba(71,71,71,1) 16%,rgba(44,44,44,1) 50%,rgba(43,43,43,1) 76%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(102,102,102,1) 98%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(89,89,89,1) 12%,rgba(71,71,71,1) 16%,rgba(44,44,44,1) 50%,rgba(43,43,43,1) 76%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(102,102,102,1) 98%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(89,89,89,1) 12%,rgba(71,71,71,1) 16%,rgba(44,44,44,1) 50%,rgba(43,43,43,1) 76%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(102,102,102,1) 98%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(89,89,89,1) 12%,rgba(71,71,71,1) 16%,rgba(44,44,44,1) 50%,rgba(43,43,43,1) 76%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(102,102,102,1) 98%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#595959', endColorstr='#666666',GradientType=0 ); /* IE6-9 */
+}
+
+.profile-count {
+    float: left;
+    margin-left: 15px;
+}
+
+#user-profile-groups {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 2px;
+    background: #E0E0E0;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    height: 140px;
 }
 
 #submit {
@@ -260,17 +284,17 @@ div.inspiration-user{
 
 /* sticky navbar */
 #main {
-  width:590px;
+  width:650px;
   height: 2000px; /*can be anything, just should make sure it is taller than the sidebar*/
   padding: 25px;
   margin-top: 50px;
   float: left;
-  background-color: #fafafa;
+  background-color: #F0F0F0;
 }
 #sidebar {
   width: 300px;
   background-color: #ccc;
-  min-height: 500px;
+  min-height: 650px;
   margin: 50px 0 15px 0; /*controls the cutoff of the top and bottom limitations*/
   padding: 15px 10px;
   float: left; /* float right for a right aligned sidebar */
