@@ -6,10 +6,12 @@
   <%- partial ('../partials/navbar_loggedout.ejs') %>
   <% } %>
 
+<h3>Click on inspirations for more information</h3>
+
 <div id="map-canvas"/>
 
 <script>
-var latitude, longitude, map, marker, markerLatitude, markerLongitude;
+var latitude, longitude, map, marker, markerLatitude, markerLongitude, contentString, infoWindow, inspirationText;
 
 //Locate user and grab their latitude and longitude
 $(document).ready(function() {
@@ -33,18 +35,32 @@ var addMap = function() {
     addMarkers();
   };
 
-//Loop through inspirations and add a marker to the map for each inspiration
-//at the location where it was added.
+//Loop through inspirations and add a marker with infowindow to the map for each inspiration at the location where it was added.
 var addMarkers = function() {
+  <% var i = 0 %>
   for (i = 0; i < <%= inspirations.length %>; i++) {
+
+    //Define content for infowindow
+    contentString = '<h4>Kindness</h4>' + '</br>' + '<p>' + "<%= inspirations[i].text %>" + '</p>' + '</br>' + '<p>Added: ' + "<%= inspirations[i].createdAt %>" + '</p>' + '</br>' + '<p>Added by: ' + "<%= inspirations[i].user_username%>" + '</p>';
+
+    //Add content to infowindow
+    infoWindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    //Define marker
     markerLatitude = <%= (inspirations[i].latitude / 1000) %>
     markerLongitude = <%= (inspirations[i].longitude / 1000) %>
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(markerLatitude, markerLongitude),
+      map: map,
       title: "<%= inspirations[i].text %>"
     });
 
-    marker.setMap(map);
+    //Add marker to map as event listener, with infowindow opening on click
+    google.maps.event.addListener(marker, 'click', function() {
+      infoWindow.open(map,marker);
+    });
 
   }
 };
