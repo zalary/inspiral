@@ -66,6 +66,17 @@ module.exports = {
     });
   },
 
+  mostPopular: function(req, res, next) {
+    console.log("querying");
+    Inspiration.find().limit(5).sort('repin_count DESC').done(function(err, inspirations) {
+      console.log("preparing response");
+      res.json({
+        suggestions: inspirations
+      });
+
+    });
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to InspirationController)

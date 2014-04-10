@@ -1,10 +1,15 @@
 <% if (session.authenticated) { %>
   <%- partial ('../partials/navbar_loggedin.ejs') %>
-  <% } else { %>
+<% } else { %>
   <%- partial ('../partials/navbar_loggedout.ejs') %>
-  <% } %>
+<% } %>
 
 <h2>Inspiration Feed</h2>
+<div>
+<button id="getsuggestions">Get a suggestion</button>
+  <div id="suggestions">
+  </div>
+</div>
 <div id="inspiration-feed">
   <% for (i in inspirations) { %>
            <% if (session.authenticated) { %>
@@ -62,3 +67,18 @@
   <% } %>
 </div>
 
+<script>
+(function(){
+  $('#suggestions').hide();
+  $.get("/inspiration/mostPopular", function(data) {
+    $('#suggestions').html('<div>You could: <br/>');
+    for (var i in data.suggestions) {
+      $('#suggestions').append(data.suggestions[i].text + '<br/>');
+    }
+    $('#suggestions').append('</div>');
+  });
+  $('#getsuggestions').on('click', function() {
+    $('#suggestions').toggle();
+  });
+})();
+</script>
