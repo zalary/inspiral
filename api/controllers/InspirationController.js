@@ -66,6 +66,16 @@ module.exports = {
     });
   },
 
+  map: function(req, res, next) {
+    // returns an array of inspirations
+    Inspiration.find(function foundInspirations(err, inspirations) {
+      if (err) return next(err);
+      res.view({
+        inspirations: inspirations
+      });
+    });
+  },
+
   mostPopular: function(req, res, next) {
     console.log("querying");
     Inspiration.find().limit(5).sort('repin_count DESC').done(function(err, inspirations) {

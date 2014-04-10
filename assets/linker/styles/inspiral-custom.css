@@ -256,5 +256,15 @@ div.inspiration-user{
   border-radius: 5px;
 }
 
+#map-canvas {
+    height: 500px;
+    width:800px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
 
+.map-header {
+    text-align: center;
+}
 
