@@ -29,11 +29,10 @@ module.exports = {
 
    Story.native(function(err, collection) {
      
-     collection.insert({ _id: parseInt(story_id), insp_text: story_text, created_by: story_creator },function(err, docs) {
+     collection.insert({ _id: parseInt(story_id), insp_text: story_text, created_by: story_creator },function(err, doc) {
 
-     console.log(collection);
-
-       console.log(docs);
+       console.log(doc);
+       res.json(doc);
 
           
        });
@@ -44,20 +43,24 @@ module.exports = {
 
   update: function(req, res, next) {
 
+    sid = req.param('inspiration_id');
+    story_id = parseInt(sid);
+    story_pinned = req.param('pinned_from');
+    story_pinner = req.param('pinned_by');
+
+    event = { pinned_by: story_pinner, pinned_from: story_pinned } 
+    eventjson = JSON.stringify(event);
+    //console.log(event);
+
     Story.native(function(err, collection) {
-     
-     collection.insert({ _id: 13, insp_text: "hey i am a new  inspiring text.", created_by: "zalary" },function(err, docs) {
 
-     console.log(collection);
-
-       console.log(docs);
-
-          
-       });
-
-
-        
-    });
+      collection.findAndModify( { _id: story_id }, [['_id','asc']],  { $addToSet: { events: { event: { pinned_from: story_pinned, pinned_by: story_pinner } } } }, function (err, doc) {
+      console.log(err);
+      console.log(doc);
+    }
+  );
+});        
+ 
 
     //if (err) return next(err);
 
