@@ -239,7 +239,7 @@ div.inspiration-user{
   border-radius: 5px;
 }
 
-#map {
+#map-canvas {
     height: 500px;
     width:800px;
     margin-right: auto;

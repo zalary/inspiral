@@ -1,4 +1,4 @@
-<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=API_KEY&sensor=true"></script>
 
 <% if (session.authenticated) { %>
   <%- partial ('../navbar_loggedin.ejs') %>
@@ -6,33 +6,29 @@
   <%- partial ('../navbar_loggedout.ejs') %>
   <% } %>
 
-<div id="map">
-</div>
+<div id="map-canvas"/>
 
 <script>
 var latitude, longitude, mark;
 
 $(document).ready(function() {
-
   navigator.geolocation.getCurrentPosition(function(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    console.log(latitude);
-    console.log(longitude);
-    console.log("<%= inspirations[3].text %>");
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+  console.log(latitude);
+  console.log(longitude);
 
-    var map = L.map('map').setView([latitude, longitude], 13);
-
-    var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'});
-
-    OpenStreetMap_Mapnik.addTo(map);
-
-      mark = L.marker([latitude, longitude]);
-      mark.bindPopup("<%= inspirations[3].text %>").addTo(map);
-
-    });
-
+  addMap();
+  });
 });
+
+var addMap = function() {
+  var mapOptions = {
+    center: new google.maps.LatLng(latitude, longitude),
+    zoom: 12
+  };
+  var map = new google.maps.Map(document.getElementById("map-canvas"),
+      mapOptions);
+  };
 
 </script>
