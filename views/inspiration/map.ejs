@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=API_KEY&sensor=true"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=API_KEY&sensor=true"></script>
 
 <% if (session.authenticated) { %>
   <%- partial ('../navbar_loggedin.ejs') %>
@@ -9,14 +9,15 @@
 <div id="map-canvas"/>
 
 <script>
-var latitude, longitude, mark;
+var latitude, longitude, map;
+var heatmapData = [];
 
 $(document).ready(function() {
   navigator.geolocation.getCurrentPosition(function(position) {
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
-  console.log(latitude);
-  console.log(longitude);
+
+  console.log(<%= inspirations[0].latitude %>);
 
   addMap();
   });
@@ -27,8 +28,22 @@ var addMap = function() {
     center: new google.maps.LatLng(latitude, longitude),
     zoom: 12
   };
-  var map = new google.maps.Map(document.getElementById("map-canvas"),
+    map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
+
+    heatTheMap();
   };
+
+  var heatTheMap = function() {
+    for (i = 0; i < <%= inspirations.length %>; i++) {
+    heatmapData.push({location: new google.maps.LatLng(<%= inspirations[i].latitude %>, <%= inspirations[i].longitude %>), weight: 1000}, new google.maps.LatLng(<%= inspirations[i].latitude %>, <%= inspirations[i].longitude %>))
+    };
+
+  var heatmap = new google.maps.visualization.HeatmapLayer({
+    data: heatmapData
+  });
+
+  heatmap.setMap(map);
+    };
 
 </script>
