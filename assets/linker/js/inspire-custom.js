@@ -33,15 +33,16 @@
   };
 
   var layout = function() {
-    $(".item").each(function() {
+    $(".inspiration-item").each(function() {
       $(this).removeClass("col-1 col-2 col-3 col-4");
       $(this).addClass("col-" + random(1, 4));
       $(this).css("background-color", random_background());
     });
-    $("#items").isotope({
+    $("#inspiration-feed").isotope({
       layoutMode: "masonry",
       masonry: {
-        columnWidth: 50
+        columnWidth: 50,
+        isFitWidth: true
       },
       cellsByRow: {
         columnWidth: 50,
@@ -51,7 +52,7 @@
   };
 
   $(document).on("click", ".inspiration-item", function() {
-    $(".item").not(this).each(function(index) {
+    $(".inspiration-item").not(this).each(function(index) {
       $(this).removeClass("col-1 col-2 col-3 col-4");
       $(this).css({
         webkitTransform: "translate(850px, " + (index * 50) + "px)",
@@ -67,41 +68,32 @@
       zIndex: 2
     });
   });
-
-
-
-
-
-
-
-
-
-  // iterate through Dashboard and randomly assign width, height, background
-  // for the todo dashboard column
-  (function() {
-    for (var i = 1; i <= $('#notdone div.inspiration-item').length; i++) {
-      var width = Math.floor((Math.random() * 75)) + 75;
-      var height = Math.floor((Math.random() * 75)) + 75;
-      var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
-      $('#notdone div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
-    };
-  })();
-  // // and the done dashboard column
-  // (function() {
-  //   for (var i = 1; i <= $('#done div.inspiration-item').length; i++) {
-  //     var width = Math.floor((Math.random() * 75)) + 75;
-  //     var height = Math.floor((Math.random() * 75)) + 75;
-  //     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
-  //     $('#done div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
-  //   };
-  // })();
-  // // iterate through Feed and randomly assign width, height, background
-  // (function() {
-  //   for (var i = 1; i <= $('#inspiration-feed div.inspiration-item').length; i++) {
-  //     var width = Math.floor((Math.random() * 75)) + 75;
-  //     var height = Math.floor((Math.random() * 75)) + 75;
-  //     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
-  //     $('#inspiration-feed div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
-  //   };
-  // })();
 })();
+// // iterate through Dashboard and randomly assign width, height, background
+// // for the todo dashboard column
+// (function() {
+//   for (var i = 1; i <= $('#notdone div.inspiration-item').length; i++) {
+//     var width = Math.floor((Math.random() * 75)) + 75;
+//     var height = Math.floor((Math.random() * 75)) + 75;
+//     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
+//     $('#notdone div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
+//   };
+// })();
+// // and the done dashboard column
+// (function() {
+//   for (var i = 1; i <= $('#done div.inspiration-item').length; i++) {
+//     var width = Math.floor((Math.random() * 75)) + 75;
+//     var height = Math.floor((Math.random() * 75)) + 75;
+//     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
+//     $('#done div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
+//   };
+// })();
+// // iterate through Feed and randomly assign width, height, background
+// (function() {
+//   for (var i = 1; i <= $('#inspiration-feed div.inspiration-item').length; i++) {
+//     var width = Math.floor((Math.random() * 75)) + 75;
+//     var height = Math.floor((Math.random() * 75)) + 75;
+//     var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
+//     $('#inspiration-feed div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
+//   };
+// })();

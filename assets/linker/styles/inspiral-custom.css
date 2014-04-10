@@ -1,7 +1,29 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
     background-image: url('../../images/mooning/mooning.png');
     padding-top: 50px;
+    overflow: hidden;
 }
+
+/*.it:nth-child(1) {
+  border: 4px dotted rgba(0, 255, 255, 0.1);
+  border-color: rgba(25, 0, 255, 0.1);
+  border-radius: 40%;
+  animation: spot-1 7s forwards infinite;
+  animation-delay: -0.1s;
+  width: 10px;
+  height: 10px;
+  margin-top: -9px;
+  margin-left: -9px;
+  position: absolute;
+  top: 300px;
+  left: 50%;
+}*/
 
 a:hover {
     text-decoration: none;
@@ -170,10 +192,6 @@ iframe {
     text-shadow: 0 1px 0 white;
 }
 
-.inspiration-item {
-    width: 100px;
-    height: 200px;
-}
 div.inspiration-text{
     background-color : transparent;
     font-size: .8vw;
@@ -219,9 +237,10 @@ div.inspiration-user{
      margin-left: 350px;
 }
 
-/*#inspiration-feed {
-  max-width: 640px;
-}*/
+#inspiration-feed {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
 /* clearfix */
 #inspiration-feed:after {
@@ -230,18 +249,23 @@ div.inspiration-user{
   clear: both;
 }
 
-#inspiration-feed .inspiration-item {
-/*  width:  60px;
-  height: 60px;*/
-  width: 200px;
-  height: auto;
+.inspiration-item {
   float: left;
+  width: 20%px;
+  height: 200px;
+  background: #0D8;
+  /*width: 25%;*/
+  /*height: auto;*/
   border: 2px solid #333;
   border-color: hsla(0, 0%, 0%, 0.5);
   border-radius: 5px;
 }
 
-.isotope {
+.inspiration-item.w2 {
+    width: 40%;
+}
+
+/*.isotope {
     -webkit-transition-property: height, width;
        -moz-transition-property: height, width;
          -o-transition-property: height, width;
@@ -253,4 +277,4 @@ div.inspiration-user{
        -moz-transition-property:    -moz-transform, opacity, width, height, background-color;
          -o-transition-property:         top, left, opacity, width, height, background-color;
             transition-property:         transform, opacity, width, height, background-color;
-}
+}*/
