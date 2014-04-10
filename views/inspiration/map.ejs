@@ -41,7 +41,7 @@ var addMarkers = function() {
     markerLongitude = <%= (inspirations[i].longitude / 1000) %>
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(markerLatitude, markerLongitude),
-      title:"Hello World!"
+      title: "<%= inspirations[i].text %>"
     });
 
     marker.setMap(map);
