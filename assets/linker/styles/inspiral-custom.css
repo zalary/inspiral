@@ -1,6 +1,8 @@
 body {
-    background-image: url('../../images/mooning/mooning.png');
+    background-image: url('../../images/congruent_pentagon/congruent_pentagon.png');
     padding-top: 50px;
+    margin: 0;
+    padding: 0;
 }
 
 a:hover {
@@ -215,7 +217,7 @@ div.inspiration-user{
 }
 
 #user-gravatar {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .well-sm {
@@ -256,5 +258,33 @@ div.inspiration-user{
   border-radius: 5px;
 }
 
-
+/* sticky navbar */
+#main {
+  width:590px;
+  height: 2000px; /*can be anything, just should make sure it is taller than the sidebar*/
+  padding: 25px;
+  margin-top: 50px;
+  float: left;
+  background-color: #fafafa;
+}
+#sidebar {
+  width: 300px;
+  background-color: #ccc;
+  min-height: 500px;
+  margin: 50px 0 15px 0; /*controls the cutoff of the top and bottom limitations*/
+  padding: 15px 10px;
+  float: left; /* float right for a right aligned sidebar */
+}
+#footer {
+  width: 940px;
+  clear:both;
+  background-color: #ccc;
+  height: 100px;
+  margin-top: 100px;
+}
+#wrapper {
+  width: 1050px; /* MUST HAVE WIDTH SET, should be the sidebar width + main width */
+  margin-left: auto;
+  margin-right: auto;
+}
 
