@@ -17,26 +17,31 @@
 
 module.exports = {
 
-  'new': function (req, res) {
+  'new': function(req, res) {
     res.view();
   },
 
-  create: function (req, res, err) {
+  create: function(req, res, err) {
 
     story_id = req.param('inspiration_id');
     story_text = req.param('text');
     story_creator = req.param('created_by');
+    story_creator_id = req.param('created_by_id');
 
-   Story.native(function(err, collection) {
-     
-     collection.insert({ _id: parseInt(story_id), insp_text: story_text, created_by: story_creator },function(err, docs) {
+    Story.native(function(err, collection) {
 
-     console.log(collection);
+      collection.insert({
+        _id: parseInt(story_id),
+        insp_text: story_text,
+        created_by: story_creator,
+        created_by_id: story_creator_id
+      }, function(err, doc) {
 
-       console.log(docs);
+        console.log(doc);
+        res.json(doc);
 
-          
-       });
+
+      });
     });
 
 
@@ -44,37 +49,65 @@ module.exports = {
 
   update: function(req, res, next) {
 
+    sid = req.param('inspiration_id');
+    story_id = parseInt(sid);
+    story_pinned = req.param('pinned_from');
+    story_pinner = req.param('pinned_by');
+
+    event = {
+      pinned_by: story_pinner,
+      pinned_from: story_pinned
+    }
+    eventjson = JSON.stringify(event);
+    //console.log(event);
+
     Story.native(function(err, collection) {
-     
-     collection.insert({ _id: 13, insp_text: "hey i am a new  inspiring text.", created_by: "zalary" },function(err, docs) {
 
-     console.log(collection);
-
-       console.log(docs);
-
-          
-       });
-
-
-        
+      collection.findAndModify({
+        _id: story_id
+      }, [
+        ['_id', 'asc']
+      ], {
+        $addToSet: {
+          events: {
+            event: {
+              pinned_from: story_pinned,
+              pinned_by: story_pinner
+            }
+          }
+        }
+      }, function(err, doc) {
+        console.log(err);
+        console.log(doc);
+      });
     });
 
-    //if (err) return next(err);
+  },
+
+  // render the story view
+  show: function(req, res, next) {
+    Story.find(req.param('id'), function foundStory(err, story) {
+      console.log(story);
+      res.view({
+        story: story
+      });
+
+    });
 
 
   },
 
-       //story_pin = req.params.all();
-       //console.log(Story);
+  //story_pin = req.params.all();
+  //console.log(Story);
 
-         //Story.findOne(req.param('id')).exec(function (err, story) {
-           ////console.log(('{"inspiration_id": ' + req.param('id') + '}'));
-           //console.log(err);
-           ////console.log(story);
-           ////story.save(function (err)  { return console.log(err) });
-                                       
-       //res.json();
-         //}); 
+  //Story.findOne(req.param('id')).exec(function (err, story) {
+  ////console.log(('{"inspiration_id": ' + req.param('id') + '}'));
+  //console.log(err);
+  ////console.log(story);
+  ////story.save(function (err)  { return console.log(err) });
+
+  //res.json();
+  //});
 
 
   //},
