@@ -26,13 +26,15 @@ module.exports = {
     story_id = req.param('inspiration_id');
     story_text = req.param('text');
     story_creator = req.param('created_by');
+    story_creator_id = req.param('created_by_id');
 
     Story.native(function(err, collection) {
 
       collection.insert({
         _id: parseInt(story_id),
         insp_text: story_text,
-        created_by: story_creator
+        created_by: story_creator,
+        created_by_id: story_creator_id
       }, function(err, doc) {
 
         console.log(doc);
@@ -84,7 +86,7 @@ module.exports = {
 
   // render the story view
   show: function(req, res, next) {
-    Story.findOne(id: req.param('id'), function foundStory(err, story) {
+    Story.find(req.param('id'), function foundStory(err, story) {
       console.log(story);
       res.view({
         story: story
