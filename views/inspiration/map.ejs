@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=API_KEY&sensor=true"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=API_KEY&sensor=true"></script>
 
 <% if (session.authenticated) { %>
   <%- partial ('../navbar_loggedin.ejs') %>
@@ -9,20 +9,19 @@
 <div id="map-canvas"/>
 
 <script>
-var latitude, longitude, map;
-var heatmapData = [];
+var latitude, longitude, map, marker, markerLatitude, markerLongitude;
 
+//Locate user and grab their latitude and longitude
 $(document).ready(function() {
   navigator.geolocation.getCurrentPosition(function(position) {
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
 
-  console.log(<%= inspirations[0].latitude %>);
-
   addMap();
   });
 });
 
+//Initialize the map and set its view to the user's location
 var addMap = function() {
   var mapOptions = {
     center: new google.maps.LatLng(latitude, longitude),
@@ -31,19 +30,25 @@ var addMap = function() {
     map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
 
-    heatTheMap();
+    addMarkers();
   };
 
-  var heatTheMap = function() {
-    for (i = 0; i < <%= inspirations.length %>; i++) {
-    heatmapData.push({location: new google.maps.LatLng(<%= inspirations[i].latitude %>, <%= inspirations[i].longitude %>), weight: 1000}, new google.maps.LatLng(<%= inspirations[i].latitude %>, <%= inspirations[i].longitude %>))
-    };
+//Loop through inspirations and add a marker to the map for each inspiration
+//at the location where it was added.
+var addMarkers = function() {
+  for (i = 0; i < <%= inspirations.length %>; i++) {
+    markerLatitude = <%= (inspirations[i].latitude / 1000) %>
+    markerLongitude = <%= (inspirations[i].longitude / 1000) %>
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(markerLatitude, markerLongitude),
+      title:"Hello World!"
+    });
 
-  var heatmap = new google.maps.visualization.HeatmapLayer({
-    data: heatmapData
-  });
+    marker.setMap(map);
 
-  heatmap.setMap(map);
-    };
+  }
+};
+
+
 
 </script>
