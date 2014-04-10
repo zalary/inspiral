@@ -1,9 +1,9 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=API_KEY&sensor=true"></script>
 
 <% if (session.authenticated) { %>
-  <%- partial ('../navbar_loggedin.ejs') %>
+  <%- partial ('../partials/navbar_loggedin.ejs') %>
   <% } else { %>
-  <%- partial ('../navbar_loggedout.ejs') %>
+  <%- partial ('../partials/navbar_loggedout.ejs') %>
   <% } %>
 
 <div id="map-canvas"/>
