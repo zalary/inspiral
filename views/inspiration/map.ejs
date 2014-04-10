@@ -6,7 +6,8 @@
   <%- partial ('../partials/navbar_loggedout.ejs') %>
   <% } %>
 
-<h3>Click on inspirations for more information</h3>
+<h2 class="map-header">Be inspired by the kindness of people near you</h2>
+<h4 class="map-header">Click on markers for more information about the kindness added at that spot</h4>
 
 <div id="map-canvas"/>
 
@@ -32,7 +33,8 @@ var addMap = function() {
     map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
 
-    var populationOptions = {
+    //Set circle options for user's location
+    var circleOptions = {
       strokeColor: '#FF0000',
       strokeOpacity: 0.8,
       strokeWeight: 2,
@@ -43,7 +45,8 @@ var addMap = function() {
       radius: 70
     }
 
-    var cityCircle = new google.maps.Circle(populationOptions);
+    //Add circle for user's location to map
+    var cityCircle = new google.maps.Circle(circleOptions);
 
     addMarkers();
   };
