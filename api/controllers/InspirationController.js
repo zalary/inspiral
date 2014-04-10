@@ -66,6 +66,16 @@ module.exports = {
     });
   },
 
+  map: function(req, res, next) {
+    // returns an array of inspirations
+    Inspiration.find(function foundInspirations(err, inspirations) {
+      if (err) return next(err);
+      res.view({
+        inspirations: inspirations
+      });
+    });
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to InspirationController)
