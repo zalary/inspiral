@@ -36,33 +36,6 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="/linker/js/paper.js"></script>
-    <script type="text/paperscript" canvas="homepageCanvas">
-
-      var colors = ['#FF6600', '#FF944D', '#FF7519', '#FF4719', '#FF6600', '#E68A00', '#FF4719', '#FF4719', '#E65C00', '#FF3300'];
-      var radius, randomNum, circle, position;
-      var numberCircles = 50;
-      var radius = 50;
-      var originalCircle = new Path.Circle({
-          center: view.center,
-          radius: 50,
-          fillColor: 'red'
-        });
-      for (var i = 0; i <= numberCircles; i++) {
-          position = view.center;
-          radius += Math.round(Math.random() * 20);
-          circle = new Path.Circle(new Point(position), radius);
-          randomNum = Math.round(Math.random() * 10);
-          circle.fillColor = colors[randomNum];
-          circle.sendToBack();
-        };
-
-      function onFrame(event) {
-          randomNum = Math.round(Math.random() * 10);
-          originalCircle.fillColor.hue += 1;
-      };
-
-    </script>
-
   </head>
 
   <body>
@@ -129,8 +102,10 @@
     <script src="/linker/js/masonry.pkgd.min.js"></script>
     <script src="/linker/js/bootstrap.min.js"></script>
     <script src="/linker/js/customValidate.js"></script>
+    <script src="/linker/js/homepage_canvas_1.js"></script>
     <script src="/linker/js/homepage_canvas_2.js"></script>
     <script src="/linker/js/inspire-custom.js"></script>
+    <script src="/linker/js/md5.min.js"></script>
     <script src="/linker/js/nodemailer.js"></script>
     <script src="/linker/js/paper.js"></script>
     <!--SCRIPTS END-->

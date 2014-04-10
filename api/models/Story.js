@@ -10,12 +10,5 @@ module.exports = {
 
   adapter: 'mongo',
 
-  attributes: {
-
-    inspiration_id: 'integer',
-    pinned_from: 'integer',
-    pinned_by: 'integer'
-
-  }
 
 };
