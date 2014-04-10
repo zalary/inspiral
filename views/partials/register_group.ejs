@@ -1,0 +1,40 @@
+ 
+<div>
+  <div id="registergroup-container">
+    <h2>Register a new group</h2>
+    <form id="registergroup" name="registergroup">
+      <input type="text" name="org" placeholder="Group Name">
+      <input type="text" name="image_url" placeholder="Specify a url for your group's image">
+      <input type="text" name="city" placeholder="City, State">
+      <input type="textarea" name="description" placeholder="Give a brief description of your group">
+      <input type="submit">
+    </form>
+  </div>
+</div>
+
+<script>
+$('form#registergroup').on("submit", function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: '/group/create',
+    type: 'POST',
+    data: {
+      org: $('input[name="org"]').val(),
+      image_url: $('input[name="image_url"]').val(),
+      city: $('input[name="city"]').val(),
+      description: $('input[name="description"]').val(),
+      _csrf: '<%= _csrf %>'
+    }
+  }).success(function(data) {
+    obj = {
+      group: data,
+    };
+    $('#registergroup-container').empty();
+    $('#registergroup-container').append(
+      '<div>
+      Successfully created ' + group.org +
+      '</div>'
+      )
+  })
+});
+</script>

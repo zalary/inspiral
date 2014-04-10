@@ -1,0 +1,27 @@
+
+<div class="join">
+<form name="joingroup">
+  <input type="submit" value="Join this group" class="btn btn-small btn-primary">
+</form>
+</div>
+
+<script>
+$('.join form').on("submit", function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: '/group/joinGroup',
+    type: 'POST',
+    data: {
+      member_id: <%= session.User.id %>,
+      group_id: <%= group.id %>,
+      _csrf: '<%= _csrf %>'
+    }
+  }).success(function(data) {
+    obj = {
+      group: data,
+    };
+    $('div.join').empty();
+    $('div.join').append("<div>Successfully joined!</div>");
+  })
+});
+</script>

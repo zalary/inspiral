@@ -1,0 +1,11 @@
+
+<div class="group">
+  <div class="element"><%= group.org %></div>
+  <div>located in <%= group.city %></div>
+  <div>inspiraling by <%= group.description %></div>
+  <div>Members:
+  <% for (var i in members) { %>
+    <div class="member"><% if (members[i]) { link_to(members[i].name, 'user/' + members[i].id) } %></div>
+  <% } %>
+  </div>
+</div>

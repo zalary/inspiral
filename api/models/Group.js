@@ -19,6 +19,11 @@ module.exports = {
       unique: true
     },
 
+    image_url: {
+      type: 'string',
+      default: '/images/kitten_small.png'
+    },
+
     city: {
       type: 'string',
       required: true,
@@ -28,12 +33,9 @@ module.exports = {
       type: 'text',
     },
 
-    member_id: {
-      type: 'integer',
-      required: true,
-      unique: true
-    },
-
   },
 
+  getMembers: function(group_id) {
+    GroupUser.query('SELECT groupuser (member_id) WHERE (group_id' + group_id + ')', function(err, data) {})
+  },
 }

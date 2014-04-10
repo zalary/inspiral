@@ -16,8 +16,28 @@
  */
 
 module.exports = {
-    
-  
+
+  'new': function(req, res) {
+    res.view();
+  },
+
+  joinGroup: function(req, res, err) {
+    //only deals with join table
+    GroupUser.query('INSERT INTO groupuser (group_id, member_id) VALUES (' + req.param("groupid") + ',' + req.param("memberid") + ')', function(err, data) {})
+    return res.send(200);
+  },
+
+  show: function(req, res) {
+    Group.findOne(req.param('id'), function foundUser(err, group) {
+
+      var members = Group.getMembers(req.param('id'));
+
+      res.view({
+        group: group,
+        members: members
+      })
+    });
+  },
 
 
   /**
@@ -26,5 +46,5 @@ module.exports = {
    */
   _config: {}
 
-  
+
 };
