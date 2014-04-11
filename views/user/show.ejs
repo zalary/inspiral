@@ -76,40 +76,58 @@
           <%= user.name %>'s Kindnesses
         </span>
         <div id="allDashboardInspirations">
-          <% for (var i in inspirations) { %>
-            <% if (session.authenticated) { %>
-              <form method="post" action="/inspiration/create">
-                <input type='hidden' name='_csrf' value='<%= _csrf %>'>
-                <input type='hidden' name="user_id" value='<%= session.User.id %>'>
-                <input type='hidden' name="original_creator_id" value='<%= inspirations[i].original_creator_id %>'>
-                <input type='hidden' value='0' name='done'>
-                <input type="hidden" value='<%= inspirations[i].text %>' name="text"> <br />
-              </form>
-            <% } %>
-            <div class="inspiration-item">
-      <div class="toppish">
+          <% for (i in inspirations) { %>
+      <% if (session.authenticated) { %>
+      <form method="post" action="/inspiration/create">
+         <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
+         <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+      </form>
+      <script>
+         $('button#submit.inspire_link').on("submit", function(e) {
+           e.preventDefault();
+           $.ajax({
+             url: '/inspiration/create',
+             type: 'POST',
+               data: {
+                 user_id: <%= session.User.id %>,
+                 user_username: '<%= session.User.username %>',
+                 original_creator_id: '<%= inspirations[i].user_id %>',
+                 original_creator_name: '<%= inspirations[i].user_username %>',
+                 // uses double quotes in case there is a single quote or apostrophe.
+                 // TODO escape the text in a better way.
+                 text: "<%= inspirations[i].text %>",
+                 done: 0,
+                 _csrf: '<%= _csrf %>'
+               }
+            })
+           .success(function(data) {});
+      </script>
+      <% } %>
+      <!-- Adds each kindness item to user's dashboard -->
+      <div class="inspiration-item">
+        <div class="toppish">
+        </div>
+        <div class="inspiration-text">
+          <%= inspirations[i].text %>
+        </div>
+        <div class="buttons">
+           <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link" title="Like this idea and add it to your own queue">
+           <i class="fa fa-heart"></i>
+           </button>
+           <button type="button" class="btn btn-sm btn-warning inspiration_map" title="View this inspiration on a map">
+           <i class="fa fa-map-marker"></i>
+           </button>
+           <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
+           <i class="fa fa-clipboard"></i>
+           </button>
+        </div>
+        <div class="meta">
+          <span><i class="fa fa-user"></i> <a href="#"><%= inspirations[i].user_username %></a></span>
+          <span><i class="fa fa-heart"></i> <%= inspirations[i].repin_count %></span>
+        </div>
       </div>
-      <div class="inspiration-text">
-        <%= inspirations[i].text %>
-      </div>
-      <div class="buttons">
-         <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link" title="Like this idea and add it to your own queue">
-         <i class="fa fa-heart"></i>
-         </button>
-         <button type="button" class="btn btn-sm btn-warning inspiration_map" title="View this inspiration on a map">
-         <i class="fa fa-map-marker"></i>
-         </button>
-         <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
-         <i class="fa fa-clipboard"></i>
-         </button>
-      </div>
-      <div class="meta">
-        <span><i class="fa fa-user"></i> <a href="#"><%= inspirations[i].user_username %></a></span>
-        <span><i class="fa fa-heart"></i> <%= inspirations[i].repin_count %></span>
-      </div>
-    </div>
    <% } %>
-      </div>
+</div>
 
         <!-- <span class="kindness-column-title">
           <%= user.name %>'s Past Kindnesses
@@ -168,7 +186,6 @@
     });
   });
 
-  $container = $('#allDashboardInspirations');
 </script>
 
 

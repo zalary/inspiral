@@ -265,6 +265,10 @@ div.meta a {
     text-align: center;
 }
 
+#allDashboardInspirations .inspiration-item {
+  float: left;
+}
+
 #user-gravatar {
     margin-top: 10px;
     text-align: center;
@@ -341,7 +345,7 @@ div.meta a {
 }
 /* sticky navbar */
 #main {
-  width:650px;
+  width:750px;
   height: 2000px; /*can be anything, just should make sure it is taller than the sidebar*/
   padding: 25px;
   margin-top: 50px;

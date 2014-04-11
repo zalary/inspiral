@@ -49,11 +49,7 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
     done_status = 0;
   };
 
-  if (latitude) {
-    latitude *= 1000;
-    longitude *= 1000;
-  }
-  else {
+  if (!latitude) {
     latitude = 0;
     longitude = 0;
   };
@@ -68,8 +64,8 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
-      latitude: latitude,
-      longitude: longitude,
+      latitude: latitude *= 1000,
+      longitude: longitude *= 1000,
       _csrf: '<%= _csrf %>'
     }
   })
@@ -77,15 +73,16 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
     obj = {
       inspiration: data,
     };
-    // if (data.done) {
+
       $container = $('#allDashboardInspirations');
-    // }
-    // else {
-    //   $container = $('#notdone');
-    // };
-    $container
-        .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
-        .masonry('prepended', $item);
+
+      $container.masonry({});
+
+      $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
+
+      $container
+          .prepend($item)
+          .masonry('prepended', $item);
   });
 });
 </script>
