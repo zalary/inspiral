@@ -16,9 +16,9 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-8 container dashboard-inspiration-add">
+  <div class="col-xs-8 container">
     <div class="well well-sm">
-      <form method="post" action="/inspiration/create">
+      <form method="post" action="/inspiration/create" class="dashboard-inspiration-add">
         <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
         <textarea type="text" name="text" id="new-inspiration" placeholder=" What inspires you?" rows="3"> </textarea><br />
         <div id="done-checkbox">
@@ -42,8 +42,6 @@ $(document).ready(function() {
   navigator.geolocation.getCurrentPosition(function(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    console.log(latitude);
-    console.log(longitude);
   });
 
   var watchUser = navigator.geolocation.watchPosition(function(position) {
@@ -61,7 +59,7 @@ $('#new-inspiration').on('click', function(e) {
 });
 
 // post the new inspiration through ajax
-$('.dashboard-inspiration-add form').on("submit", function(e) {
+$('.dashboard-inspiration-add').on("submit", function(e) {
   e.preventDefault();
 
   var done_status = $('input[type="checkbox"]').prop('checked');
@@ -70,6 +68,15 @@ $('.dashboard-inspiration-add form').on("submit", function(e) {
   }
   else {
     done_status = 0;
+  };
+
+  if (latitude) {
+    latitude = latitude * 1000;
+    longitude = longitude * 1000;
+  }
+  else {
+    latitude = 0;
+    longitude = 0;
   };
 
   $.ajax({
@@ -82,8 +89,8 @@ $('.dashboard-inspiration-add form').on("submit", function(e) {
       original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
-      latitude: latitude * 1000,
-      longitude: longitude * 1000,
+      latitude: latitude,
+      longitude: longitude,
       _csrf: '<%= _csrf %>'
     }
   })
@@ -91,7 +98,6 @@ $('.dashboard-inspiration-add form').on("submit", function(e) {
     obj = {
       inspiration: data,
     };
-    console.log(data);
     if (data.done) {
       $container = $('#done');
     }
@@ -100,8 +106,7 @@ $('.dashboard-inspiration-add form').on("submit", function(e) {
     };
     $container
         .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
-        .masonry('reloadItems')
-        .masonry('layout');
+        .masonry('prepended', $item);
   });
 });
 </script>

@@ -55,11 +55,13 @@ module.exports = {
     },
 
     latitude: {
-      type: 'integer'
+      type: 'integer',
+      defaultsTo: 0
     },
 
     longitude: {
-      type: 'integer'
+      type: 'integer',
+      defaultsTo: 0
     }
 
   },
