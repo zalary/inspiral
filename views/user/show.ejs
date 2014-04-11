@@ -9,36 +9,6 @@
   <% } %>
 </div>
 
- <!-- button trigger modal -->
-    <button class="btn btn-primary btn-sm" id="inspiration-email-test" data-toggle="modal" data-target="#myModal">
-      <span class="glyphicon glyphicon-share-alt"></span>share
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Invite your friends to join in spreading kindness</h4>
-          </div>
-          <div class="modal-body">
-            <label>Inspiration to share: </label>
-            <p id="inspiration-share-text">inspiration text</p>
-            </br>
-            <label>your friend's email: </label>
-            <input type="text" id="friend-share-email-input" placeholder="type here"></input>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="share-inspiration">Share inspiration!</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-<div id="inspiration-todo-list">
-
 <div id="wrapper">
 
 <!-- Sticky sidebar for user profile -->
@@ -69,6 +39,34 @@
       <div id="user-profile-groups">
         <h4>Groups</h4>
       </div>
+
+       <!-- button trigger modal -->
+    <button class="btn btn-primary btn-sm" id="inspiration-email-test" data-toggle="modal" data-target="#myModal">
+      <span class="glyphicon glyphicon-share-alt"></span>share
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Invite your friends to join in spreading kindness</h4>
+          </div>
+          <div class="modal-body">
+            <label>Inspiration to share: </label>
+            <p id="inspiration-share-text">inspiration text</p>
+            </br>
+            <label>your friend's email: </label>
+            <input type="text" id="friend-share-email-input" placeholder="type here"></input>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="share-inspiration">Share inspiration!</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Main section containing user's pinned kindnesses -->
@@ -100,7 +98,6 @@
           <% } %>
       </div>
 
-      <div class="col-xs-6">
         <span class="kindness-column-title">
           <%= user.name %>'s Past Kindnesses
         </span>
@@ -118,7 +115,6 @@
           <% } %>
         </div>
       </div>
-    </div>
   </div>
 
   <div id="footer">
