@@ -21,7 +21,7 @@
 <br />
 <br />
 <div id="inspiration-feed">
-      <% for (i in inspirations) { %>
+    <% for (i in inspirations) { %>
       <% if (session.authenticated) { %>
       <form method="post" action="/inspiration/create">
          <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
@@ -45,15 +45,7 @@
                  _csrf: '<%= _csrf %>'
                }
             })
-           .success(function(data) {
-             obj = {
-               inspiration: data,
-             };
-             $('#inspiration-todo-list div#notdone').prepend(
-             JST['assets/linker/templates/addInspiration.ejs'](obj)
-             ).masonry('reloadItems').masonry('layout');
-            });
-          });
+           .success(function(data) {});
       </script>
       <% } %>
     <div class="inspiration-item">

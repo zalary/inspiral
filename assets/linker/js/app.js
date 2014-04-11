@@ -89,17 +89,19 @@ var InspirationIndexPage = {
   addInspiration: function(inspiration) {
 
     var obj = {
-      inspiration: inspiration.data,
+      inspirations: inspiration.data,
       _csrf: window.csrf || ''
     };
 
     $container = $('#inspiration-feed');
 
+    $container.masonry({});
+
+    $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
+
     $container
-      .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
-      .masonry('prepended', $container)
-      .masonry('reloadItems')
-      .masonry('layout');
+      .prepend($item)
+      .masonry('prepended', $item);
   }
 
 };
