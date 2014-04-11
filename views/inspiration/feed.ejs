@@ -1,84 +1,89 @@
 <% if (session.authenticated) { %>
-  <%- partial ('../partials/navbar_loggedin.ejs') %>
+<%- partial ('../partials/navbar_loggedin.ejs') %>
 <% } else { %>
-  <%- partial ('../partials/navbar_loggedout.ejs') %>
+<%- partial ('../partials/navbar_loggedout.ejs') %>
 <% } %>
-
 <h2>Inspiration Feed</h2>
 <div>
-<button id="getsuggestions">Get a suggestion</button>
-  <div id="suggestions">
-  </div>
+   <h3>Still not feeling inspired?</h3>
+   <button id="getsuggestions" type="button" class="btn btn-success">
+   See trending acts of kindess
+   </button>
+   <button id="joingagroup" type="button" class="btn btn-success">
+   Get involved with a group
+   </button>
+   <button id="maplink" type="button" class="btn btn-success">
+   Find acts of kindess happening near you
+   </button>
+   <div id="suggestions">
+   </div>
 </div>
+<br />
+<br />
 <div id="inspiration-feed">
-  <% for (i in inspirations) { %>
-           <% if (session.authenticated) { %>
-           <form method="post" action="/inspiration/create">
-            <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
-             <input type='hidden' name='_csrf' value='<%= _csrf %>'>
-         </div>
-      </div>
-
-        <input type="submit" value=" This inspires me!" id="submit" class="btn btn-sm btn-primary inspire_link">
+    <% for (i in inspirations) { %>
+      <% if (session.authenticated) { %>
+      <form method="post" action="/inspiration/create">
+         <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
+         <input type='hidden' name='_csrf' value='<%= _csrf %>'>
       </form>
-
-       <script>
-      $('#inspiration-feed form').on("submit", function(e) {
-        e.preventDefault();
-
-        $.ajax({
-          url: '/inspiration/create',
-          type: 'POST',
-            data: {
-              user_id: <%= session.User.id %>,
-              user_username: '<%= session.User.username %>',
-              original_creator_id: '<%= inspirations[i].user_id %>',
-              original_creator_name: '<%= inspirations[i].user_username %>',
-              // uses double quotes in case there is a single quote or apostrophe.
-              // TODO escape the text in a better way.
-              text: "<%= inspirations[i].text %>",
-              done: 0,
-              _csrf: '<%= _csrf %>'
-            }
-         })
-        .success(function(data) {
-          obj = {
-            inspiration: data,
-         };
-
-          $('#inspiration-todo-list div#notdone').prepend(
-          JST['assets/linker/templates/addInspiration.ejs'](obj)
-          ).masonry('reloadItems');
-         });
-       });
-
+      <script>
+         $('button#submit.inspire_link').on("submit", function(e) {
+           e.preventDefault();
+           $.ajax({
+             url: '/inspiration/create',
+             type: 'POST',
+               data: {
+                 user_id: <%= session.User.id %>,
+                 user_username: '<%= session.User.username %>',
+                 original_creator_id: '<%= inspirations[i].user_id %>',
+                 original_creator_name: '<%= inspirations[i].user_username %>',
+                 // uses double quotes in case there is a single quote or apostrophe.
+                 // TODO escape the text in a better way.
+                 text: "<%= inspirations[i].text %>",
+                 done: 0,
+                 _csrf: '<%= _csrf %>'
+               }
+            })
+           .success(function(data) {});
       </script>
-
-                    <% } %>
-
-  <div class="inspiration-item">
+      <% } %>
+    <div class="inspiration-item">
+      <div class="toppish">
+      </div>
       <div class="inspiration-text">
         <%= inspirations[i].text %>
       </div>
-      <div class="inspiration-user">
-        <%= inspirations[i].user_id %>
+      <div class="buttons">
+         <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link" title="Like this idea and add it to your own queue">
+         <i class="fa fa-heart"></i>
+         </button>
+         <button type="button" class="btn btn-sm btn-warning inspiration_map" title="View this inspiration on a map">
+         <i class="fa fa-map-marker"></i>
+         </button>
+         <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
+         <i class="fa fa-clipboard"></i>
+         </button>
       </div>
-  </div>
-  <% } %>
+      <div class="meta">
+        <span><i class="fa fa-user"></i> <a href="#"><%= inspirations[i].user_username %></a></span>
+        <span><i class="fa fa-heart"></i> <%= inspirations[i].repin_count %></span>
+      </div>
+    </div>
+   <% } %>
 </div>
-
 <script>
-(function(){
-  $('#suggestions').hide();
-  $.get("/inspiration/mostPopular", function(data) {
-    $('#suggestions').html('<div>You could: <br/>');
-    for (var i in data.suggestions) {
-      $('#suggestions').append(data.suggestions[i].text + '<br/>');
-    }
-    $('#suggestions').append('</div>');
-  });
-  $('#getsuggestions').on('click', function() {
-    $('#suggestions').toggle();
-  });
-})();
+   (function(){
+     $('#suggestions').hide();
+     $.get("/inspiration/mostPopular", function(data) {
+       $('#suggestions').html('<div>You could: <br/>');
+       for (var i in data.suggestions) {
+         $('#suggestions').append(data.suggestions[i].text + '<br/>');
+       }
+       $('#suggestions').append('</div>');
+     });
+     $('#getsuggestions').on('click', function() {
+       $('#suggestions').toggle();
+     });
+   })();
 </script>

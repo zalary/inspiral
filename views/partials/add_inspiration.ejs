@@ -19,8 +19,6 @@ $(document).ready(function() {
   navigator.geolocation.getCurrentPosition(function(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    console.log(latitude);
-    console.log(longitude);
   });
 
   var watchUser = navigator.geolocation.watchPosition(function(position) {
@@ -49,6 +47,15 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
     done_status = 0;
   };
 
+  if (latitude) {
+    latitude = latitude * 1000;
+    longitude = longitude * 1000;
+  }
+  else {
+    latitude = 0;
+    longitude = 0;
+  };
+
   $.ajax({
     url: '/inspiration/create',
     type: 'POST',
@@ -59,8 +66,8 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
-      latitude: latitude * 1000,
-      longitude: longitude * 1000,
+      latitude: latitude,
+      longitude: longitude,
       _csrf: '<%= _csrf %>'
     }
   })
@@ -68,7 +75,6 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
     obj = {
       inspiration: data,
     };
-    console.log(data);
     if (data.done) {
       $container = $('#done');
     }
@@ -77,7 +83,7 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
     };
     $container
         .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
-        .masonry('reloadItems')
-        .masonry('layout');
+        .masonry('prepended', $item);
   });
+});
 </script>
