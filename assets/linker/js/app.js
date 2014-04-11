@@ -84,21 +84,22 @@ function updateInspirationInDom(message) {
   }
 }
 
-  var InspirationIndexPage = {
+var InspirationIndexPage = {
 
-    addInspiration: function(inspiration) {
+  addInspiration: function(inspiration) {
 
-      var obj = {
-        inspiration: inspiration.data,
-        _csrf: window.csrf || ''
-      };
+    var obj = {
+      inspiration: inspiration.data,
+      _csrf: window.csrf || ''
+    };
 
-      $container = $('#inspiration-feed');
+    $container = $('#inspiration-feed');
 
-      $container
-        .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
-        .masonry('reloadItems')
-        .masonry('layout');
-    }
-  
+    $container
+      .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
+      .masonry('prepended', $container)
+      .masonry('reloadItems')
+      .masonry('layout');
+  }
+
 };

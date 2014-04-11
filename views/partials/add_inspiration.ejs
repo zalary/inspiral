@@ -16,9 +16,9 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-8 container dashboard-inspiration-add">
+  <div class="col-xs-8 container">
     <div class="well well-sm">
-      <form method="post" action="/inspiration/create">
+      <form method="post" action="/inspiration/create" class="dashboard-inspiration-add">
         <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
         <textarea type="text" name="text" id="new-inspiration" placeholder=" What inspires you?" rows="3"> </textarea><br />
         <div id="done-checkbox">
@@ -61,7 +61,7 @@ $('#new-inspiration').on('click', function(e) {
 });
 
 // post the new inspiration through ajax
-$('.dashboard-inspiration-add form').on("submit", function(e) {
+$('.dashboard-inspiration-add').on("submit", function(e) {
   e.preventDefault();
 
   var done_status = $('input[type="checkbox"]').prop('checked');

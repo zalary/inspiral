@@ -1,8 +1,28 @@
-<div class="inspiration-item">
-  <div class="inspiration-text">
-    <%= inspiration.text %>
+
+
+  <div class="inspiration-item">
+<div class="toppish"></div>
+      <div class="inspiration-text">
+        <div class="text">
+        <%= inspirations.text %>
+      </div>
+
+
+<div class="buttons">
+            <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link" title="Like this idea and add it to your own queue">
+            <i class="fa fa-heart"></i></button>
+        <button type="button" class="btn btn-sm btn-warning inspiration_map" title="View this inspiration on a map">
+          <i class="fa fa-map-marker"></i></button>
+        <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
+          <i class="fa fa-clipboard"></i></button>
+      </div>
+    </div>
+<!--       <div class="inspiration-user">
+        <%= inspirations.user_id %>
+      </div> -->
+      <div class="meta">
+
+              <span><i class="fa fa-user"></i> <a href="#"><%= inspirations.user_username %></a></span>
+              <span><i class="fa fa-heart"></i> <%= inspirations.repin_count %></span>
+            </div>
   </div>
-  <div class="inspiration-user">
-    <%= inspiration.user %>
-  </div>
-</div>
