@@ -282,6 +282,13 @@ div.inspiration-user{
   border-radius: 5px;
 }
 
+#map-canvas {
+    height: 500px;
+    width:800px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+}
 /* sticky navbar */
 #main {
   width:650px;
@@ -310,5 +317,9 @@ div.inspiration-user{
   width: 1050px; /* MUST HAVE WIDTH SET, should be the sidebar width + main width */
   margin-left: auto;
   margin-right: auto;
+}
+
+.map-header {
+    text-align: center;
 }
 

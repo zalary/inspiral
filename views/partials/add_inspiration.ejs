@@ -59,8 +59,8 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
-      latitude: latitude,
-      longitude: longitude,
+      latitude: latitude * 1000,
+      longitude: longitude * 1000,
       _csrf: '<%= _csrf %>'
     }
   })
@@ -80,5 +80,4 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
         .masonry('reloadItems')
         .masonry('layout');
   });
-});
 </script>
