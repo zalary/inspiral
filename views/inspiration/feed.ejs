@@ -6,10 +6,12 @@
 
 <h2>Inspiration Feed</h2>
 <div>
-<button id="getsuggestions">Get a suggestion</button>
+  <h3>Still not feeling inspired?</h3>
+<button id="getsuggestions" type="button" class="btn btn-success">See trending acts of kindess </button> <button id="joingagroup" type="button" class="btn btn-success">Get involved with a group </button> <button id="maplink" type="button" class="btn btn-success">Find acts of kindess happening near you</button>
   <div id="suggestions">
   </div>
 </div>
+<br /> <br />
 <div id="inspiration-feed">
   <% for (i in inspirations) { %>
            <% if (session.authenticated) { %>
@@ -57,12 +59,30 @@
                     <% } %>
 
   <div class="inspiration-item">
+<div class="toppish"></div>
       <div class="inspiration-text">
+        <div class="text">
         <%= inspirations[i].text %>
       </div>
-      <div class="inspiration-user">
-        <%= inspirations[i].user_id %>
+
+
+<div class="buttons">
+            <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link">
+            <i class="fa fa-heart"></i></button>
+        <button type="button" class="btn btn-sm btn-warning inspiration_map">
+          <i class="fa fa-map-marker"></i></button>
+        <button type="button" class="btn btn-sm btn-info story_link">
+          <i class="fa fa-clipboard"></i></button>
       </div>
+    </div>
+<!--       <div class="inspiration-user">
+        <%= inspirations[i].user_id %>
+      </div> -->
+      <div class="meta">
+
+              <span><i class="fa fa-user"></i> <a href="#"><%= inspirations[i].user_username %></a></span>
+              <span><i class="fa fa-heart"></i> <%= inspirations[i].repin_count %></span>
+            </div>
   </div>
   <% } %>
 </div>

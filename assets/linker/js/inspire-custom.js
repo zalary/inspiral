@@ -29,7 +29,7 @@
   (function() {
     for (var i = 1; i <= $('#notdone div.inspiration-item').length; i++) {
       var width = Math.floor((Math.random() * 75)) + 75;
-      var height = Math.floor((Math.random() * 75)) + 75;
+      //var height = Math.floor((Math.random() * 75)) + 75;
       var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
       $('#notdone div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
     };
@@ -38,7 +38,7 @@
   (function() {
     for (var i = 1; i <= $('#done div.inspiration-item').length; i++) {
       var width = Math.floor((Math.random() * 75)) + 75;
-      var height = Math.floor((Math.random() * 75)) + 75;
+      //var height = Math.floor((Math.random() * 75)) + 75;
       var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
       $('#done div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
     };
@@ -46,10 +46,11 @@
   // iterate through Feed and randomly assign width, height, background
   (function() {
     for (var i = 1; i <= $('#inspiration-feed div.inspiration-item').length; i++) {
-      var width = Math.floor((Math.random() * 75)) + 75;
-      var height = Math.floor((Math.random() * 75)) + 75;
+      //var width = Math.floor((Math.random() * 75)) + 125;
+      //var height = Math.floor((Math.random() * 75)) + 75;
       var backgroundPaperUrl = backgroundPapers[Math.floor(Math.random() * backgroundPapers.length)];
-      $('#inspiration-feed div.inspiration-item:nth-child(' + i + ')').css("width", width).css("height", height).css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
+      $('#inspiration-feed div.inspiration-item:nth-child(' + i + ')').css("width", "190px").css("height", "100%").css("min-height", "150px");
+      //.css("background-image", 'url("' + backgroundPaperUrl + '")').css("opacity", .85);
     };
   })();
 })();
