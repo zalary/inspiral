@@ -24,6 +24,8 @@ $(document).ready(function() {
   var watchUser = navigator.geolocation.watchPosition(function(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
+    console.log(latitude);
+    console.log(longitude);
   });
 
 });
@@ -48,8 +50,8 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
   };
 
   if (latitude) {
-    latitude = latitude * 1000;
-    longitude = longitude * 1000;
+    latitude *= 1000;
+    longitude *= 1000;
   }
   else {
     latitude = 0;
@@ -75,12 +77,12 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
     obj = {
       inspiration: data,
     };
-    if (data.done) {
-      $container = $('#done');
-    }
-    else {
-      $container = $('#notdone');
-    };
+    // if (data.done) {
+      $container = $('#allDashboardInspirations');
+    // }
+    // else {
+    //   $container = $('#notdone');
+    // };
     $container
         .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
         .masonry('prepended', $item);

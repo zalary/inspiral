@@ -311,6 +311,10 @@ div.meta a {
      margin-left: 350px;
 }
 
+#inspiration-feed-title {
+    margin-top: 75px;
+}
+
 #inspiration-feed {
   max-width: 840px;
 }

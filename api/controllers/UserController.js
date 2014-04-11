@@ -52,33 +52,41 @@ module.exports = {
       if (err) return next(err);
       if (!user) return next();
       Inspiration.find().where({
-        user_id: req.param('id'),
-        done: 1
-      }).exec(function (err, doneInspirations) {
+        user_id: req.param('id')
+      }).exec(function (err, inspirations) {
         if (err) return next(err);
         Inspiration.find().where({
-          user_id: req.param('id'),
-          done: 0
-        }).exec(function (err, todoInspirations) {
+        user_id: req.param('id'),
+        done: 1
+        }).exec(function (err, doneInspirations) {
           if (err) return next(err);
-          // does the user own this page?
-          if ((req.session.authenticated) && (req.session.User.id) == (req.param('id'))) {
-            res.view({
-              layout: 'admin-show.ejs',
-              user: user,
-              doneInspirations: doneInspirations,
-              todoInspirations: todoInspirations
-            });
-          } else {
+          Inspiration.find().where({
+            user_id: req.param('id'),
+            done: 0
+          }).exec(function (err, todoInspirations) {
+            if (err) return next(err);
+            // does the user own this page?
+            if ((req.session.authenticated) && (req.session.User.id) == (req.param('id'))) {
+              res.view({
+                layout: 'admin-show.ejs',
+                user: user,
+                inspirations: inspirations,
+                doneInspirations: doneInspirations,
+                todoInspirations: todoInspirations
+              });
+            } else {
+              console.log("inspirations: " + inspirations);
 
-            res.view({
-              user: user,
-              doneInspirations: doneInspirations,
-              todoInspirations: todoInspirations
-            });
+              res.view({
+                user: user,
+                inspirations: inspirations,
+                doneInspirations: doneInspirations,
+                todoInspirations: todoInspirations
+              });
 
           }
 
+          });
         });
       });
     });

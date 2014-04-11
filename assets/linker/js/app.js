@@ -89,7 +89,7 @@ var InspirationIndexPage = {
   addInspiration: function(inspiration) {
 
     var obj = {
-      inspirations: inspiration.data,
+      inspiration: inspiration.data,
       _csrf: window.csrf || ''
     };
 

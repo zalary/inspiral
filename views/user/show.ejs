@@ -1,4 +1,4 @@
-<script src="../linker/js/stickyMojo.js"></script>
+<script src="../../linker/js/stickyMojo.js"></script>
 
 <!-- Check to see which navbar partial to load -->
 <div class='container'>
@@ -75,7 +75,7 @@
         <span class="kindness-column-title">
           <%= user.name %>'s Future Kindnesses
         </span>
-        <div id="notdone">
+        <div id="allDashboardInspirations">
           <% for (var i in todoInspirations) { %>
             <% if (session.authenticated) { %>
               <form method="post" action="/inspiration/create">
@@ -98,7 +98,7 @@
           <% } %>
       </div>
 
-        <span class="kindness-column-title">
+        <!-- <span class="kindness-column-title">
           <%= user.name %>'s Past Kindnesses
         </span>
         <div id="done">
@@ -113,7 +113,7 @@
               </div>
             </div>
           <% } %>
-        </div>
+        </div> -->
       </div>
   </div>
 
@@ -133,6 +133,8 @@
 
 <script type="text/javascript">
 
+  //Logic for the Nodemailer to share inspirations with friends and invite
+  //
   $('#share-inspiration').on('click', function(e) {
     e.preventDefault();
 
@@ -152,6 +154,8 @@
     console.log("yay mailer");
     });
   });
+
+  $container = $('#allDashboardInspirations');
 </script>
 
 
