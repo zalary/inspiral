@@ -11,12 +11,13 @@
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <li class="navbar-links"><a href="/user/show/<%= session.User.id %>"><span class="glyphicon glyphicon-certificate"></span> my kindness board</a></li>
-      <li class="navbar-links"><a href="/inspiration/feed"><span class="glyphicon glyphicon-th-list"></span> feed</a></li>
-      <li class="navbar-links"><a href="/inspiration/map"><span class="glyphicon glyphicon-globe"></span> near me</a></li>
+      <li class="navbar-links"><a href="/inspiration/feed"><span class="glyphicon glyphicon-th-list"></span>  Feed</a></li>
+      <li class="navbar-links"><a href="/inspiration/map"><span class="glyphicon glyphicon-globe"></span> Near Me</a></li>
+      <li class="navbar-links"><a href="/group/"><span class="glyphicon glyphicon-group"></span> Groups</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown navbar-links">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> my account<b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> My account<b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="/user/edit/<%= session.User.id %>">Edit Profile</a></li>
           <li><a href="/user/destroy">Log out</a></li>
