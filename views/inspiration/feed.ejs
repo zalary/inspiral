@@ -46,6 +46,7 @@
                }
             })
            .success(function(data) {});
+         });
       </script>
       <% } %>
      <% if (inspirations[i].done == 0) { %>
@@ -72,7 +73,7 @@
          <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
          <i class="fa fa-clipboard"></i>
          </button>
-         <button type="button" id="submit inspiration-email-test" class="btn btn-sm btn-success this-inspires inspire_link" title="Email to a friend" data-toggle="modal" data-target="#emailModal">
+         <button type="button" id="submit" class="btn btn-sm btn-success inspiration-email-test" title="Email to a friend" data-toggle="modal" data-text="<%=inspirations[i].text %>" data-target="#emailModal">
           <i class="fa fa-envelope"></i>
           </button>
       </div>
@@ -83,6 +84,31 @@
     </div>
    <% } %>
 </div>
+
+<!-- Email Modal -->
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Invite a friend to join in spreading kindness</h4>
+      </div>
+      <div class="modal-body">
+        <label>Inspiration to share: </label>
+        <p id="inspiration-share-text"></p>
+        </br>
+        <label>Your friend's email: </label>
+        <input type="text" id="friend-share-email-input" placeholder="type here"></input>
+        <input type="hidden" id="email-text" value="Placeholder inspiration text"></input>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="share-inspiration">Share inspiration!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
    (function(){
      $('#suggestions').hide();
@@ -97,4 +123,34 @@
        $('#suggestions').toggle();
      });
    })();
+
+   //Grab inspiration text for modal
+  $('.inspiration-email-test').on('click', function(e) {
+    e.preventDefault();
+    console.log($(this).data('text'));
+    $('#inspiration-share-text').text($(this).data('text'));
+    $('#inspiration-share-text').val($(this).data('text'));
+  });
+
+  //Logic for the Nodemailer to share inspirations with friends and invite
+  //them to join user on the site
+  $('#share-inspiration').on('click', function(e) {
+    console.log("hello share button");
+    console.log($('#inspiration-share-text').val());
+
+    $.ajax({
+    url: '/emailer/create',
+    type: 'POST',
+    data: {
+      email_to: $('#friend-share-email-input').val(),
+      subject: "Your friend wants to inspiral you",
+      text: $('#inspiration-share-text').val(),
+      _csrf: '<%= _csrf %>'
+    }
+  })
+  .success(function(data) {
+    console.log("yay mailer");
+    });
+    $('#emailModal').modal('hide');
+  });
 </script>
