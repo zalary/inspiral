@@ -83,6 +83,10 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       $container
           .prepend($item)
           .masonry('prepended', $item);
+
+      $('#new-inspiration').val("");
+      $('#new-inspiration').height(40);
+      $('#new-inspiration').width(250);
   });
 });
 </script>

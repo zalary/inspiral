@@ -53,7 +53,7 @@ module.exports = {
       if (!user) return next();
       Inspiration.find().where({
         user_id: req.param('id')
-      }).exec(function (err, inspirations) {
+      }).sort('createdAt DESC').exec(function (err, inspirations) {
         if (err) return next(err);
         Inspiration.find().where({
         user_id: req.param('id'),
@@ -75,15 +75,12 @@ module.exports = {
                 todoInspirations: todoInspirations
               });
             } else {
-              console.log("inspirations: " + inspirations);
-
               res.view({
                 user: user,
                 inspirations: inspirations,
                 doneInspirations: doneInspirations,
                 todoInspirations: todoInspirations
               });
-
           }
 
           });
@@ -152,6 +149,25 @@ module.exports = {
       res.redirect('/user/show/' + userid);
     });
   },
+
+  // kindnessTitle: function(req, res, next) {
+  //   var title;
+  //   Inspiration.find().where({
+  //       user_id: req.param('id')
+  //     }).exec(function (err, inspirations) {
+  //     console.log("inspirations: " + inspirations);
+  //     if (inspirations.length < 5) {
+  //       title = "kind soul";
+  //     } else {
+  //       title = "compassionate one";
+  //     }
+  //     console.log(title);
+  //     res.send(
+  //       title
+  //     )
+
+  //   });
+  // },
 
   /**
    * Overrides for the settings in `config/controllers.js`
