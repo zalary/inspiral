@@ -46,10 +46,12 @@
   <!-- Main section containing user's pinned kindnesses -->
   <div id="main">
     <div id="inspiration-todo-list">
-        Filter by
-        <button id="all-kindnesses-filter">All Kindnesses</button>
-        <button id="past-kindnesses-filter">Past kindnesses</button>
-        <button id="future-kindnesses-filter">Future kindnesses</button>
+      <div id="filter-inspirations">
+        <span id="filter-text">Filter by</span>
+        <button class="btn btn-primary btn-small filter-buttons" id="all-kindnesses-filter">All Kindnesses</button>
+        <button class="btn btn-primary btn-small filter-buttons" id="past-kindnesses-filter">Past kindnesses</button>
+        <button class="btn btn-primary btn-small filter-buttons" id="future-kindnesses-filter">Future kindnesses</button>
+      </div>
         <div id="allDashboardInspirations">
           <% for (i in inspirations) { %>
            <% if (session.authenticated) { %>
@@ -83,12 +85,12 @@
       <% if (inspirations[i].done == 0) { %>
         <div class="inspiration-item todoItem">
           <div class="toppish">
-            <p>future kindness</p>
+            <p>future</p>
           </div>
       <% } else { %>
         <div class="inspiration-item doneItem">
-          <div class="toppish">
-            <p>past kindness</p>
+          <div class="toppish past-kindness-card">
+            <p>past</p>
           </div>
       <% } %>
         <div class="inspiration-text">
