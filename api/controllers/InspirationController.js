@@ -58,7 +58,7 @@ module.exports = {
 
   feed: function(req, res, next) {
     // returns an array of inspirations
-    Inspiration.find(function foundInspirations(err, inspirations) {
+    Inspiration.find().sort('createdAt DESC').exec(function foundInspirations(err, inspirations) {
       if (err) return next(err);
       res.view({
         inspirations: inspirations

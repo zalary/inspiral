@@ -46,9 +46,10 @@
   <!-- Main section containing user's pinned kindnesses -->
   <div id="main">
     <div id="inspiration-todo-list">
-        <span class="kindness-column-title">
-          <%= user.name %>'s Kindnesses
-        </span>
+        <h4>All Kindnesses</h4>
+        Filter by
+        <button id="past-kindnesses-filter">Past kindnesses</button>
+        <button id="future-kindnesses-filter">Future kindnesses</button>
         <div id="allDashboardInspirations">
           <% for (i in inspirations) { %>
            <% if (session.authenticated) { %>
@@ -79,7 +80,11 @@
       </script>
       <% } %>
       <!-- Adds each kindness item to user's dashboard -->
-      <div class="inspiration-item">
+      <% if (inspirations[i].done == 0) { %>
+        <div class="inspiration-item todoItem">
+      <% } else { %>
+        <div class="inspiration-item doneItem">
+      <% } %>
         <div class="toppish">
         </div>
         <div class="inspiration-text">
@@ -174,6 +179,18 @@
     console.log("yay mailer");
     });
   });
+
+  // $("#past-kindnesses-filter").on('click', function(e) {
+
+    // $container = $('#allDashboardInspirations');
+
+    // $container.masonry({});
+
+  //   $todoInspirations = $('.todoItem');
+  //   console.log($todoInspirations);
+
+  //   $container.masonry('hide', $todoInspirations);
+  // });
 
 </script>
 
