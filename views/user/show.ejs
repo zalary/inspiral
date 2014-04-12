@@ -108,7 +108,7 @@
            <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
            <i class="fa fa-clipboard"></i>
            </button>
-           <button type="button" id="submit inspiration-email-test" class="btn btn-sm btn-success this-inspires inspire_link" title="Email to a friend" data-toggle="modal" data-target="#emailModal">
+           <button type="button" id="submit" class="btn btn-sm btn-success inspiration-email-test" title="Email to a friend" data-toggle="modal" data-text="<%= inspirations[i].text %>" data-target="#emailModal">
            <i class="fa fa-envelope"></i>
            </button>
         </div>
@@ -139,7 +139,7 @@
       </div>
       <div class="modal-body">
         <label>Inspiration to share: </label>
-        <p id="inspiration-share-text">Placeholder inspiration text</p>
+        <p id="inspiration-share-text"></p>
         </br>
         <label>Your friend's email: </label>
         <input type="text" id="friend-share-email-input" placeholder="type here"></input>
@@ -163,11 +163,16 @@
 
 <script type="text/javascript">
 
+  $('.inspiration-email-test').on('click', function(e) {
+    e.preventDefault();
+    console.log($(this).data('text'));
+    $('#inspiration-share-text').text($(this).data('text'));
+    $('#inspiration-share-text').val($(this).data('text'));
+  });
+
   //Logic for the Nodemailer to share inspirations with friends and invite
   //them to join user on the site
   $('#share-inspiration').on('click', function(e) {
-    e.preventDefault();
-
     console.log("hello share button");
     console.log($('#inspiration-share-text').val());
 
@@ -177,13 +182,14 @@
     data: {
       email_to: $('#friend-share-email-input').val(),
       subject: "Your friend " + "<%= user.name %>" + " wants to inspiral you",
-      text: $('#email-text').val(),
+      text: $('#inspiration-share-text').val(),
       _csrf: '<%= _csrf %>'
     }
   })
   .success(function(data) {
     console.log("yay mailer");
     });
+    $('#emailModal').modal('hide');
   });
 
   //Displays only past kindnesses on user dashboard
