@@ -15,7 +15,8 @@
     "mocha": ">= 0",
     "handlebars": "~2.0.0-alpha.2",
     "sails-redis": "~0.9.3",
-    "moment": "^2.5.1"
+    "moment": "^2.5.1",
+    "node-uuid": "~1.4.1"
   },
   "scripts": {
     "start": "node app.js",
