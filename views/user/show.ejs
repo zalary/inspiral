@@ -174,15 +174,13 @@
 
 <script type="text/javascript">
 
-  //If user clicks not on input for adding inspiration, box resizes to original size
+  //If user clicks on main area, box resizes to original size
   //Also hide checkbox and button
-  $(document).on('click', function(e) {
-    if (!$(e.target).is('#new-inspiration')) {
-      $('#new-inspiration').height(40);
-      $('#new-inspiration').width(250);
-      $('.input_done').hide();
-      $('.new-inspiration-button').hide();
-    }
+  $('#main').on('click', function(e) {
+    $('#new-inspiration').height(40);
+    $('#new-inspiration').width(250);
+    $('.input_done').hide();
+    $('.new-inspiration-button').hide();
   });
 
   //Grab inspiration text for modal
@@ -226,18 +224,21 @@
   $("#past-kindnesses-filter").on('click', function(e) {
     $('.todoItem').hide();
     $('.doneItem').show();
+    $('#allDashboardInspirations').reload();
   });
 
   //Displays only future kindnesses on user dashboard
   $("#future-kindnesses-filter").on('click', function(e) {
     $('.doneItem').hide();
     $('.todoItem').show();
+    $('#allDashboardInspirations').reload();
   });
 
   //Displays all kindnesses on user dashboard
   $("#all-kindnesses-filter").on('click', function(e) {
     $('.doneItem').show();
     $('.todoItem').show();
+    $('#allDashboardInspirations').reload();
   });
 
 </script>
