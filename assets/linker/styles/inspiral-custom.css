@@ -276,6 +276,7 @@ div.meta a {
 
 #new-inspiration {
     margin-top: 15px;
+    padding: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     height: 40px;

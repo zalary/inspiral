@@ -1,6 +1,6 @@
 <!-- Form for adding new inspiration -->
 <form method="post" class="dashboard-inspiration-add" action="/inspiration/create">
-  <textarea type="text" name="text" id="new-inspiration" placeholder=" add new kindness" rows="3"> </textarea><br />
+  <textarea type="text" name="text" id="new-inspiration" placeholder="add new kindness" rows="3"> </textarea><br />
     <div id="done-checkbox">
       <span class="input_done">
         <input type="checkbox"> I've already done this
@@ -84,7 +84,9 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
           .prepend($item)
           .masonry('prepended', $item);
 
-      //Reset input value, input height and width, and uncheck checkbox
+      //Reset input value, input height and width, latitude, longitude, and uncheck checkbox
+      latitude = latitude / 1000;
+      longitude = longitude / 1000;
       $('#new-inspiration').val("");
       $('#new-inspiration').height(40);
       $('#new-inspiration').width(250);

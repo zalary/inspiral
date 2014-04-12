@@ -108,9 +108,11 @@
            <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
            <i class="fa fa-clipboard"></i>
            </button>
+           <% if (session.authenticated) { %>
            <button type="button" id="submit" class="btn btn-sm btn-success inspiration-email-test" title="Email to a friend" data-toggle="modal" data-text="<%= inspirations[i].text %>" data-target="#emailModal">
            <i class="fa fa-envelope"></i>
            </button>
+           <% } %>
         </div>
         <div class="meta">
           <span><i class="fa fa-user"></i> <a href="#"><%= inspirations[i].user_username %></a></span>
