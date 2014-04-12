@@ -34,8 +34,4 @@ module.exports = {
     },
 
   },
-
-  getMembers: function(group_id) {
-    GroupUser.query('SELECT groupuser (member_id) WHERE (group_id' + group_id + ')', function(err, data) {})
-  },
-}
+};

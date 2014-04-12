@@ -17,25 +17,43 @@
 
 module.exports = {
 
-  'new': function(req, res) {
+  new: function(req, res) {
     res.view();
   },
 
-  joinGroup: function(req, res, err) {
+  join: function(req, res, err) {
     //only deals with join table
-    GroupUser.query('INSERT INTO groupuser (group_id, member_id) VALUES (' + req.param("groupid") + ',' + req.param("memberid") + ')', function(err, data) {})
-    return res.send(200);
+    GroupUser.query('INSERT INTO groupuser (group_id, member_id) VALUES (' + req.param("groupid") + ',' + req.param("memberid") + ')', function(err, data) {});
+    res.send(200);
   },
 
-  show: function(req, res) {
-    Group.findOne(req.param('id'), function foundUser(err, group) {
+  show: function(req, res, next) {
 
-      var members = Group.getMembers(req.param('id'));
+    Group.findOne(req.param('id'), function(err, group) {
+      GroupUser.query('SELECT member_id FROM groupuser WHERE group_id =' + req.param('id') + ';', function(err, memberIdData) {
+        var memberIds = [];
 
-      res.view({
-        group: group,
-        members: members
+        for (var i = 0; i < memberIdData.rows.length; i++) {
+          memberIds.push(memberIdData.rows[i].member_id);
+        };
+
+        User.find().where({
+          id: memberIds
+        }).exec(function(err, foundMember) {
+          res.view({
+            members: foundMember,
+            group: group
+          })
+        })
       })
+    })
+  },
+
+  index: function(req, res, err) {
+    Group.find(req.param(), function foundGroups(err, groups) {
+      res.view({
+        groups: groups
+      });
     });
   },
 

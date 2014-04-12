@@ -25,16 +25,20 @@ $('form#registergroup').on("submit", function(e) {
       description: $('input[name="description"]').val(),
       _csrf: '<%= _csrf %>'
     }
-  }).success(function(data) {
-    obj = {
-      group: data,
-    };
+  }).success(function (data) {
     $('#registergroup-container').empty();
-    $('#registergroup-container').append(
-      '<div>
-      Successfully created ' + group.org +
-      '</div>'
-      )
+    $('#registergroup-container').append("Registering group " + data.org);
+    $.ajax({
+      url: '/group/join',
+      type: 'POST',
+      data: {
+        memberid: <%= session.User.id %>,
+        groupid: data.id,
+        _csrf: '<%= _csrf %>'
+      }
+    }).success(function (data2) {
+      window.location.href = '../show/'+data.id;
+    })
   })
 });
 </script>
