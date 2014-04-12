@@ -1,8 +1,14 @@
-
-
-  <div class="inspiration-item">
-        <div class="toppish">
-        </div>
+<% if (inspiration.done == 0) { %>
+        <div class="inspiration-item todoItem">
+          <div class="toppish">
+            <p>future kindness</p>
+          </div>
+      <% } else { %>
+        <div class="inspiration-item doneItem">
+          <div class="toppish">
+            <p>past kindness</p>
+          </div>
+      <% } %>
         <div class="inspiration-text">
           <%= inspiration.text %>
         </div>

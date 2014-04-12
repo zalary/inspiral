@@ -46,8 +46,8 @@
   <!-- Main section containing user's pinned kindnesses -->
   <div id="main">
     <div id="inspiration-todo-list">
-        <h4>All Kindnesses</h4>
         Filter by
+        <button id="all-kindnesses-filter">All Kindnesses</button>
         <button id="past-kindnesses-filter">Past kindnesses</button>
         <button id="future-kindnesses-filter">Future kindnesses</button>
         <div id="allDashboardInspirations">
@@ -82,11 +82,15 @@
       <!-- Adds each kindness item to user's dashboard -->
       <% if (inspirations[i].done == 0) { %>
         <div class="inspiration-item todoItem">
+          <div class="toppish">
+            <p>future kindness</p>
+          </div>
       <% } else { %>
         <div class="inspiration-item doneItem">
+          <div class="toppish">
+            <p>past kindness</p>
+          </div>
       <% } %>
-        <div class="toppish">
-        </div>
         <div class="inspiration-text">
           <%= inspirations[i].text %>
         </div>
@@ -180,17 +184,23 @@
     });
   });
 
-  // $("#past-kindnesses-filter").on('click', function(e) {
+  //Displays only past kindnesses on user dashboard
+  $("#past-kindnesses-filter").on('click', function(e) {
+    $('.todoItem').hide();
+    $('.doneItem').show();
+  });
 
-    // $container = $('#allDashboardInspirations');
+  //Displays only future kindnesses on user dashboard
+  $("#future-kindnesses-filter").on('click', function(e) {
+    $('.doneItem').hide();
+    $('.todoItem').show();
+  });
 
-    // $container.masonry({});
-
-  //   $todoInspirations = $('.todoItem');
-  //   console.log($todoInspirations);
-
-  //   $container.masonry('hide', $todoInspirations);
-  // });
+  //Displays all kindnesses on user dashboard
+  $("#all-kindnesses-filter").on('click', function(e) {
+    $('.doneItem').show();
+    $('.todoItem').show();
+  });
 
 </script>
 
