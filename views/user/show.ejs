@@ -1,4 +1,5 @@
 <script src="../../linker/js/stickyMojo.js"></script>
+<script src="../../linker/js/md5.min.js"></script>
 
 <!-- Check to see which navbar partial to load -->
 <div class='container'>
@@ -15,7 +16,11 @@
   <div id="sidebar">
     <div class="well well-sm">
       <div id="user-gravatar">
-        <img src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"></img>
+        <img id="user-gravatar-image"></img>
+        <script>
+        var hash = md5("<%= user.email %>");
+          $('#user-gravatar-image').attr('src','http://www.gravatar.com/avatar/' + hash + '?d=identicon');
+        </script>
       </div>
       <h3><%= user.username %></h3>
       <span id="kindness-title">
@@ -161,6 +166,7 @@
 <script>
   //Uses stickyMojo to make sidebar sticky
   $(document).ready(function(){
+
     $('#sidebar').stickyMojo({footerID: '#footer', contentID: '#main'});
   });
 </script>
