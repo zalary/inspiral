@@ -84,10 +84,11 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
           .prepend($item)
           .masonry('prepended', $item);
 
+      //Reset input value, input height and width, and uncheck checkbox
       $('#new-inspiration').val("");
       $('#new-inspiration').height(40);
       $('#new-inspiration').width(250);
-      $('input[type="checkbox"]').attr("checked",false).checkboxradio("refresh");
+      $('input[type="checkbox"]').attr("checked",false);
   });
 });
 </script>

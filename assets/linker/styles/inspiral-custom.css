@@ -152,6 +152,16 @@ iframe {
     background: #404040;
 }
 
+.modal-input {
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.modal-body {
+    background-color: #F0F0F0;
+    text-align: center;
+}
+
 #filter-inspirations {
     margin-bottom: 10px;
 }

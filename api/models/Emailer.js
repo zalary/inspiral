@@ -22,6 +22,16 @@ module.exports = {
 
     subject: {
       type: 'string'
+    },
+
+    friend_to: {
+      type: 'string',
+      required: true
+    },
+
+    sending_user: {
+      type: 'string',
+      required: true
     }
   	/* e.g.
   	nickname: 'string'

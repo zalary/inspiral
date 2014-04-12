@@ -135,14 +135,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Invite a friend to join in spreading kindness</h4>
+        <h4 class="modal-title" id="myModalLabel">Invite a friend to join you in spreading kindness</h4>
       </div>
       <div class="modal-body">
-        <label>Inspiration to share: </label>
+        <h4>Inspiration to share: </h4>
         <p id="inspiration-share-text"></p>
         </br>
-        <label>Your friend's email: </label>
-        <input type="text" id="friend-share-email-input" placeholder="type here"></input>
+        <h4>Your friend's name: </h4>
+        <input type="text" class="modal-input" id="friend-share-name-input" placeholder="Enter name here"></input>
+        </br>
+        <h4>Your friend's email: </h4>
+        <input type="text" class="modal-input" id="friend-share-email-input" placeholder="Enter email here"></input>
         <input type="hidden" id="email-text" value="Placeholder inspiration text"></input>
       </div>
       <div class="modal-footer">
@@ -176,21 +179,28 @@
   $('#share-inspiration').on('click', function(e) {
     console.log("hello share button");
     console.log($('#inspiration-share-text').val());
+    console.log($('#friend-share-name-input').val()),
 
     $.ajax({
     url: '/emailer/create',
     type: 'POST',
     data: {
       email_to: $('#friend-share-email-input').val(),
+      friend_to: $('#friend-share-name-input').val(),
       subject: "Your friend " + "<%= user.name %>" + " wants to inspiral you",
       text: $('#inspiration-share-text').val(),
+      sending_user: "<%= user.name %>",
       _csrf: '<%= _csrf %>'
     }
   })
   .success(function(data) {
     console.log("yay mailer");
     });
+
+    //Close email modal after sending email, and clear modal input fields
     $('#emailModal').modal('hide');
+    $('#friend-share-email-input').val("");
+    $('#friend-share-name-input').val("");
   });
 
   //Displays only past kindnesses on user dashboard
