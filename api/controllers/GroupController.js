@@ -23,19 +23,22 @@ module.exports = {
 
   join: function(req, res, err) {
     //only deals with join table
-    GroupUser.query('INSERT INTO groupuser (group_id, member_id) VALUES (' + req.param("groupid") + ',' + req.param("memberid") + ')', function(err, data) {})
+    GroupUser.query('INSERT INTO groupuser (group_id, member_id) VALUES (' + req.param("groupid") + ',' + req.param("memberid") + ')', function(err, data) {});
     res.send(200);
   },
 
-  show: function(req, res) {
-    var members = Group.getMembers(req.param('id'));
+  show: function(req, res, next) {
+    // console.log(req);
+    // console.log(res);
+    // console.log(next);
     Group.findOne(req.param('id'), function foundGroup(err, group) {
-
-      res.view({
-        group: group,
-        members: members
-      })
-
+      GroupUser.query('SELECT member_id FROM groupuser WHERE group_id =' + req.param('id') + ';', function(err, data) {
+        //
+        res.view({
+          members: data.rows,
+          group: group
+        });
+      });
     });
   },
 
@@ -43,8 +46,8 @@ module.exports = {
     Group.find(req.param(), function foundGroups(err, groups) {
       res.view({
         groups: groups
-      })
-    })
+      });
+    });
   },
 
 
