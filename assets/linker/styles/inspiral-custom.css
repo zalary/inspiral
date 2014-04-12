@@ -287,6 +287,14 @@ div.meta a {
     color:#222;
 }
 
+.input_done {
+    display: none;
+}
+
+.new-inspiration-button {
+    display: none;
+}
+
 .dashboard-profile {
     text-align: center;
 }

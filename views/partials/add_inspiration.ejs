@@ -1,12 +1,12 @@
 <!-- Form for adding new inspiration -->
 <form method="post" class="dashboard-inspiration-add" action="/inspiration/create">
-  <textarea type="text" name="text" id="new-inspiration" placeholder="add new kindness" rows="3"> </textarea><br />
+  <textarea type="text" name="text" id="new-inspiration" placeholder="add new kindness..." rows="3"></textarea>
     <div id="done-checkbox">
       <span class="input_done">
         <input type="checkbox"> I've already done this
       </span>
     </div>
-    <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-sm">
+    <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-sm new-inspiration-button">
 </form>
 
 <script>
@@ -30,11 +30,13 @@ $(document).ready(function() {
 
 });
 
-// Make the textarea bigger when it is clicked
+// Make the textarea bigger when it is clicked, also show checkbox and button
 $('#new-inspiration').on('click', function(e) {
   e.preventDefault();
     $(this).height(100);
     $(this).width(240);
+    $('.input_done').show();
+    $('.new-inspiration-button').show();
 });
 
 // Post the new inspiration through AJAX

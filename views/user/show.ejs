@@ -175,10 +175,13 @@
 <script type="text/javascript">
 
   //If user clicks not on input for adding inspiration, box resizes to original size
+  //Also hide checkbox and button
   $(document).on('click', function(e) {
     if (!$(e.target).is('#new-inspiration')) {
       $('#new-inspiration').height(40);
       $('#new-inspiration').width(250);
+      $('.input_done').hide();
+      $('.new-inspiration-button').hide();
     }
   });
 
