@@ -5,7 +5,10 @@
   <div>inspiraling by <%= group.description %></div>
   <div>Members:
   <% for (var i in members) { %>
-    <div class="member"><% if (members[i]) { link_to(members[i].name, 'user/' + members[i].id) } %></div>
+    <div class="member"><% if (members[i]) { %>
+      <a href="../../user/show/<%= members[i].id %>"><%= members[i].name %></a> 
+      <% } %>
+    </div>
   <% } %>
   </div>
 </div>

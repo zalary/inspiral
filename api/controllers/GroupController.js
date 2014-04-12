@@ -28,18 +28,25 @@ module.exports = {
   },
 
   show: function(req, res, next) {
-    // console.log(req);
-    // console.log(res);
-    // console.log(next);
-    Group.findOne(req.param('id'), function foundGroup(err, group) {
-      GroupUser.query('SELECT member_id FROM groupuser WHERE group_id =' + req.param('id') + ';', function(err, data) {
-        //
-        res.view({
-          members: data.rows,
-          group: group
-        });
-      });
-    });
+
+    Group.findOne(req.param('id'), function(err, group) {
+      GroupUser.query('SELECT member_id FROM groupuser WHERE group_id =' + req.param('id') + ';', function(err, memberIdData) {
+        var memberIds = [];
+
+        for (var i = 0; i < memberIdData.rows.length; i++) {
+          memberIds.push(memberIdData.rows[i].member_id);
+        };
+
+        User.find().where({
+          id: memberIds
+        }).exec(function(err, foundMember) {
+          res.view({
+            members: foundMember,
+            group: group
+          })
+        })
+      })
+    })
   },
 
   index: function(req, res, err) {
