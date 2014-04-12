@@ -9,7 +9,7 @@
 $('.join form').on("submit", function(e) {
   e.preventDefault();
   $.ajax({
-    url: '/group/joinGroup',
+    url: '/group/join',
     type: 'POST',
     data: {
       member_id: <%= session.User.id %>,
