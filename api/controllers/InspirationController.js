@@ -22,7 +22,7 @@ module.exports = {
   },
 
   create: function(req, res, next) {
-    //console.log('i#create');
+    console.log('i#create');
     Inspiration.create(req.params.all(), function inspirationCreated(err, inspiration) {
 
       if (err) {
