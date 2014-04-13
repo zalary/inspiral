@@ -79,6 +79,8 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       inspiration: data,
     };
 
+      // $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
+
       $container = $('#allDashboardInspirations');
 
       $container.masonry({});
@@ -113,4 +115,6 @@ $('#new-inspiration').keyup(function () {
     $('#charNum').css('color', '#B80000');
   }
 });
+
+
 </script>
