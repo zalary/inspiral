@@ -29,7 +29,7 @@ function InspirationMissingStub() {
 describe('InspirationModel', function() {
 
   afterEach(function(done) {
-    // remove all users after each test block
+    // remove all inspirations after each test block
     Inspiration.destroy(function(err) {
       if (err) return done(err);
       done();
@@ -74,7 +74,7 @@ describe('InspirationModel', function() {
       });
     });
 
-    it("Should find by id and return one user object ", function(done) {
+    it("Should find by id and return one inspiration object ", function(done) {
       var inspiration;
 
       Inspiration.findOneById(inspSaved.id).done(function(err, insp) {
@@ -106,7 +106,7 @@ describe('InspirationModel', function() {
       });
     });
 
-    it("Should delete user by id", function(done) {
+    it("Should delete inspiration by id", function(done) {
       Inspiration.destroy({
         id: inspSaved.id
       }).done(function(err) {
