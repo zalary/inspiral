@@ -102,15 +102,13 @@
           <%= inspirations[i].text %>
         </div>
         <div class="buttons">
-           <% if (session.authenticated && (session.User.id != inspirations[i])) { %>
+           <% if (session.authenticated && (session.User.id != inspirations[i].user_id)) { %>
            <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link repin-button" title="Like this idea and add it to your own queue">
            <i class="fa fa-heart"></i>
-           <p class="text">Repin</p>
            </button>
            <% } %>
            <button type="button" class="btn btn-sm btn-warning inspiration_map map-button" title="View this inspiration on a map">
            <i class="fa fa-map-marker"></i>
-           <p class="text">Map</p>
            </button>
            <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
            <i class="fa fa-clipboard"></i>
