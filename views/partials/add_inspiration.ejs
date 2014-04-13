@@ -6,6 +6,7 @@
         <input type="checkbox"> I've already done this
       </span>
     </div>
+    <p id="charNum"></p>
     <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-sm new-inspiration-button">
 </form>
 
@@ -98,5 +99,16 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       $('.input_done').hide();
       $('.new-inspiration-button').hide();
   });
+});
+
+//Show remaining characters in input field as type
+$('#new-inspiration').keyup(function () {
+  var max = 150;
+  var len = $(this).val().length;
+  var characters = max - len;
+  $('#charNum').text(characters + ' characters left');
+  if (len > max) {
+    $('#charNum').css('color', '#B80000');
+  }
 });
 </script>
