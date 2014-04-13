@@ -1,12 +1,10 @@
 <form action="/session/create" method="POST" class="form-signin" target="_top">
   <h2>Sign in</h2>
 
-  <% if(flash && flash.err) { %>
-    <ul class="alert alert-success">
-  <% Object.keys(flash.err).forEach(function(error) { %>
-    <li><%- JSON.stringify(flash.err[error]) %></li>
-  <% }) %>
-  </ul>
+   <% if(flash && flash.err) { %>
+    <ul class="alert alert-warning">
+      <li style="list-style-type: none"><%= flash.err %></li>
+    </ul>
   <% } %>
 
   <input type="text" class="form-control" placeholder="email address" name="email">

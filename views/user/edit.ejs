@@ -19,12 +19,10 @@
 <form action="/user/update/<%= user.id %>" method="POST" class="form-signin">
   <h2>Update your info: </h2>
 
-  <% if(flash && flash.err) { %>
-    <ul class="alert alert-success">
-  <% Object.keys(flash.err).forEach(function(error) { %>
-    <li><%- JSON.stringify(flash.err[error]) %></li>
-  <% }) %>
-  </ul>
+   <% if(flash && flash.err) { %>
+    <ul class="alert alert-warning">
+      <li style="list-style-type: none"><%= flash.err %></li>
+    </ul>
   <% } %>
 
   <input type="text" class="form-control" placeholder="your name" name="name">
