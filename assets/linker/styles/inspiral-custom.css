@@ -384,6 +384,14 @@ div.meta a {
     height: 140px;
 }
 
+#createdAt {
+    font-size: 12px;
+    background: #f6f6f6; /* Old browsers */
+    text-align: right;
+    margin-right: 0px;
+    padding-right: 5px;
+}
+
 #submit {
     font-family: Verdana, Geneva, sans-serif;
 }
@@ -394,10 +402,19 @@ div.meta a {
 
 #inspiration-feed-title {
     margin-top: 75px;
+    float:left;
+    margin-left: 20px;
+}
+
+#getsuggestions {
+    margin-left: 50px;
+    margin-top: 75px;
+    float:left;
 }
 
 #inspiration-feed {
   max-width: 840px;
+  clear: both;
 }
 
 #inspiration-feed-header {
@@ -431,7 +448,7 @@ div.meta a {
 /* sticky navbar */
 #main {
   width:740px;
-  height: 100%; /*can be anything, just should make sure it is taller than the sidebar*/
+  min-height: 1000px; /*can be anything, just should make sure it is taller than the sidebar*/
   margin-top: 50px;
   float: left;
   background-color: #ccc;
@@ -444,7 +461,7 @@ div.meta a {
   min-height: 650px;
   margin-top: 50px;
   margin-right: 10px;
-  /*margin: 50px 0 15px 0; *//*controls the cutoff of the top and bottom limitations*/
+  /*margin: 50px 0 15px 0;*/ /*controls the cutoff of the top and bottom limitations*/
   padding: 15px 10px;
   float: left; /* float right for a right aligned sidebar */
   -webkit-border-radius: 5px 5px 5px 5px;
@@ -455,7 +472,7 @@ div.meta a {
   width: 940px;
   clear:both;
   background-color: #ccc;
-  height: 150px;
+  height: 40px;
   margin-top: 100px;
 }
 
