@@ -107,12 +107,15 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
 //Show remaining characters in input field as type
 $('#new-inspiration').keyup(function () {
   $('#charNum').show();
-  var max = 150;
+  var max = 140;
   var len = $(this).val().length;
   var characters = max - len;
   $('#charNum').text(characters + ' characters left');
   if (len > max) {
     $('#charNum').css('color', '#B80000');
+    $(".new-inspiration-button").prop('disabled', true);
+  } else {
+    $(".new-inspiration-button").prop('disabled', false);
   }
 });
 
