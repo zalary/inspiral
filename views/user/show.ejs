@@ -1,5 +1,6 @@
 <script src="../../linker/js/stickyMojo.js"></script>
 <script src="../../linker/js/md5.min.js"></script>
+<script src="../../linker/js/moment.min.js"></script>
 
 <!-- Check to see which navbar partial to load -->
 <div class='container'>
@@ -101,15 +102,17 @@
         <div class="inspiration-text">
           <%= inspirations[i].text %>
         </div>
+        <div id="createdAt">
+          <script>
+            $('#createdAt').text(moment("<%= inspirations[i].createdAt %>").fromNow());
+          </script>
+        </div>
         <div class="buttons">
            <% if (session.authenticated && (session.User.id != inspirations[i].user_id)) { %>
            <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link repin-button" title="Like this idea and add it to your own queue">
            <i class="fa fa-heart"></i>
            </button>
            <% } %>
-           <button type="button" class="btn btn-sm btn-warning inspiration_map map-button" title="View this inspiration on a map">
-           <i class="fa fa-map-marker"></i>
-           </button>
            <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
            <i class="fa fa-clipboard"></i>
            </button>
@@ -130,7 +133,8 @@
 </div>
 
   <div id="footer">
-    Footer
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2014 Adam, Kathryn & Zalary &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
   </div>
 
 </div>

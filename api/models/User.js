@@ -37,7 +37,7 @@ module.exports = {
 
   },
 
-  beforeCreate: function (values, next) {
+  beforeCreate: function(values, next) {
     //Check that password is correct and matches confirmation.
     if (!values.password || values.password != values.confirmation) {
       return next({
