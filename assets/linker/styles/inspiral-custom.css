@@ -134,7 +134,7 @@ iframe {
 
 .navbar-inverse {
     background: black;
-    opacity:0.6;
+    opacity:0.7;
     filter:alpha(opacity=60);
     border: none;
 }
@@ -326,6 +326,10 @@ div.meta a {
   max-width: 840px;
 }
 
+#inspiration-feed-header {
+    margin-top: 70px;
+}
+
 /* clearfix */
 #inspiration-feed:after {
   content: '';
@@ -376,6 +380,10 @@ div.meta a {
 
 .map-header {
     text-align: center;
+}
+
+#top-map-header {
+    margin-top: 70px;
 }
 
 div.group-gravatar {
