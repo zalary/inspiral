@@ -87,6 +87,17 @@ module.exports = {
     });
   },
 
+  mostRecent: function(req, res, next) {
+    console.log("querying");
+    Inspiration.find().limit(5).sort('createdAt DESC').done(function(err, inspirations) {
+      console.log("preparing response");
+      res.json({
+        mostRecentInspirations: inspirations
+      });
+
+    });
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to InspirationController)

@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-xs-12">
           <h3>Top Repins</h3>
-          <ul class="list-group">
+          <ul class="list-group top-repins">
           </ul>
         </div>
       </div>
@@ -64,12 +64,7 @@
       <div class="row">
         <div class="col-xs-12">
           <h3>Most Recent</h3>
-          <ul class="list-group">
-            <li class="list-group-item">I want to buy coffee for the person behind me in line</li>
-            <li class="list-group-item">Write a love letter to a stranger and leave it somewhere to be found</li>
-            <li class="list-group-item">Leave a 50% tip on a dinner out, just because</li>
-            <li class="list-group-item">Spend money only at local businesses for three days straight</li>
-            <li class="list-group-item">Send a book to someone that I loved that I think they would also love, maybe with comments I left in it for them to discover</li>
+          <ul class="list-group most-recent-inspirations">
           </ul>
         </div>
       </div>
@@ -100,11 +95,18 @@
 
     <!--  PAGE SPECIFIC JS -->
 <script>
-  //Grabs most popular inspirations for top repins section
   $(document).ready(function() {
+    //Grabs most popular inspirations for top repins section
     $.get("/inspiration/mostPopular", function(data) {
        for (var i in data.suggestions) {
-         $('.list-group').append('<li class="list-group-item">' + data.suggestions[i].text + '<span class="badge">' + data.suggestions[i].repin_count + '</span></li>');
+         $('.top-repins').append('<li class="list-group-item">' + data.suggestions[i].text + '<span class="badge">' + data.suggestions[i].repin_count + '</span></li>');
+       }
+     });
+
+    //Grabs most recent inspirations
+     $.get("/inspiration/mostRecent", function(data) {
+       for (var i in data.mostRecentInspirations) {
+         $('.most-recent-inspirations').append('<li class="list-group-item recent-inspirations-list">' + data.mostRecentInspirations[i].text + '<span id="recent-inspirations">' + ' added by ' + '<a href="/user/show/' + data.mostRecentInspirations[i].user_id + '" id="added-by-homepage">' + data.mostRecentInspirations[i].user_username + '</a></span></li>');
        }
      });
   });

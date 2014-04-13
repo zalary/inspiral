@@ -121,6 +121,17 @@ iframe {
     text-decoration: none;
 }
 
+#recent-inspirations {
+    float:right;
+    font-size: 12px;
+    color:#222;
+}
+
+.recent-inspirations-list {
+    font-size: 16px;
+    color:#222;
+}
+
 .navbar-inverse {
     background: black;
     opacity:0.6;
