@@ -98,11 +98,13 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       $('input[type="checkbox"]').attr("checked",false);
       $('.input_done').hide();
       $('.new-inspiration-button').hide();
+      $('#charNum').hide();
   });
 });
 
 //Show remaining characters in input field as type
 $('#new-inspiration').keyup(function () {
+  $('#charNum').show();
   var max = 150;
   var len = $(this).val().length;
   var characters = max - len;
