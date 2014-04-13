@@ -18,7 +18,7 @@ module.exports = {
       required: true
     },
 
-    image_url: 'string',
+    // image_url: 'string',
 
     description: {
       type: 'string',
@@ -27,21 +27,15 @@ module.exports = {
   },
 
   parse: function(data) {
-    // data is a big old JSON
-    // console.log(data.items[0]);
-
-    //iterate through the data JSON object, and store it in a model
+    //iterate through the data JSON object, and store it in the model
     for (var i = 0; i < data.items.length; i++) {
       var url = data.items[i].link;
       var description = data.items[i].snippet;
 
-      console.log(url);
-      console.log(description);
-
       NewsItem.create({
-        url: url,
-        description: description
-      });
+        "url": url,
+        "description": description
+      }, function(err, data) {});
     };
   }
 
