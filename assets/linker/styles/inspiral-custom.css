@@ -240,7 +240,7 @@ div.inspiration-text{
     background-color : transparent;
     font-size: 1.5vw;
     text-align: left;
-    min-height: 200px;
+    min-height: 170px;
     border: 1px solid #fafafa;
     /*border-top: 2px solid #fafafa; */
     background: #f6f6f6; /* Old browsers */
@@ -252,7 +252,7 @@ div.inspiration-text{
     text-shadow: 0px 1px 0px #fff;
 
 
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 div.inspiration-text .text { min-height: 150px; }
@@ -413,6 +413,11 @@ div.meta a {
   float: left;
 }
 
+.buttons {
+    margin-bottom: 0px;
+    background: #f6f6f6; /* Old browsers */
+}
+
 #map-canvas {
     height: 500px;
     width:800px;
@@ -447,7 +452,7 @@ div.meta a {
   width: 940px;
   clear:both;
   background-color: #ccc;
-  height: 500px;
+  height: 150px;
   margin-top: 100px;
 }
 

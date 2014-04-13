@@ -5,15 +5,9 @@
 <% } %>
 <h2 id="inspiration-feed-title">Inspiration Feed</h2>
 <div>
-   <h3>Still not feeling inspired?</h3>
+   <h3>Want more?</h3>
    <button id="getsuggestions" type="button" class="btn btn-success">
    See trending acts of kindness
-   </button>
-   <button id="joingagroup" type="button" class="btn btn-success">
-   Get involved with a group
-   </button>
-   <button id="maplink" type="button" class="btn btn-success">
-   Find acts of kindness happening near you
    </button>
    <div id="suggestions">
    </div>
@@ -52,12 +46,12 @@
      <% if (inspirations[i].done == 0) { %>
         <div class="inspiration-item todoItem">
           <div class="toppish">
-            <p>future kindness</p>
+            <p>future</p>
           </div>
       <% } else { %>
         <div class="inspiration-item doneItem">
-          <div class="toppish">
-            <p>past kindness</p>
+          <div class="toppish past-kindness-card">
+            <p>past</p>
           </div>
       <% } %>
       <div class="inspiration-text">
@@ -69,9 +63,6 @@
          <i class="fa fa-heart"></i>
          </button>
          <% } %>
-         <button type="button" class="btn btn-sm btn-warning inspiration_map" title="View this inspiration on a map">
-         <i class="fa fa-map-marker"></i>
-         </button>
          <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
          <i class="fa fa-clipboard"></i>
          </button>
