@@ -194,6 +194,11 @@ iframe {
     color: #A0A0A0;
 }
 
+.trending-kindness-card {
+    color: #FF9933;
+    font-style: bold;
+}
+
 #inspiration-todo-list {
     width: 95%;
     margin-right: 60px;
