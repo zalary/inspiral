@@ -79,17 +79,17 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       inspiration: data,
     };
 
-      // $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
+      $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
 
-      $container = $('#allDashboardInspirations');
+      // $container = $('#allDashboardInspirations');
 
-      $container.masonry({});
+      // $container.masonry({});
 
-      $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
+      // $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
 
-      $container
-          .prepend($item)
-          .masonry('prepended', $item);
+      // $container
+      //     .prepend($item)
+      //     .masonry('prepended', $item);
 
       //Reset input value, input height and width, latitude, longitude, and uncheck checkbox
       latitude = latitude / 1000;

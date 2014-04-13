@@ -241,6 +241,7 @@ div.inspiration-text{
     font-size: 1.5vw;
     text-align: left;
     min-height: 170px;
+    word-wrap:break-word;
     border: 1px solid #fafafa;
     /*border-top: 2px solid #fafafa; */
     background: #f6f6f6; /* Old browsers */
@@ -415,6 +416,7 @@ div.meta a {
 
 .buttons {
     margin-bottom: 0px;
+    padding-bottom: 5px;
     background: #f6f6f6; /* Old browsers */
 }
 
