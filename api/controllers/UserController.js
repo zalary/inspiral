@@ -52,33 +52,38 @@ module.exports = {
       if (err) return next(err);
       if (!user) return next();
       Inspiration.find().where({
-        user_id: req.param('id'),
-        done: 1
-      }).exec(function (err, doneInspirations) {
+        user_id: req.param('id')
+      }).sort('createdAt DESC').exec(function (err, inspirations) {
         if (err) return next(err);
         Inspiration.find().where({
-          user_id: req.param('id'),
-          done: 0
-        }).exec(function (err, todoInspirations) {
+        user_id: req.param('id'),
+        done: 1
+        }).exec(function (err, doneInspirations) {
           if (err) return next(err);
-          // does the user own this page?
-          if ((req.session.authenticated) && (req.session.User.id) == (req.param('id'))) {
-            res.view({
-              layout: 'admin-show.ejs',
-              user: user,
-              doneInspirations: doneInspirations,
-              todoInspirations: todoInspirations
-            });
-          } else {
-
-            res.view({
-              user: user,
-              doneInspirations: doneInspirations,
-              todoInspirations: todoInspirations
-            });
-
+          Inspiration.find().where({
+            user_id: req.param('id'),
+            done: 0
+          }).exec(function (err, todoInspirations) {
+            if (err) return next(err);
+            // does the user own this page?
+            if ((req.session.authenticated) && (req.session.User.id) == (req.param('id'))) {
+              res.view({
+                layout: 'admin-show.ejs',
+                user: user,
+                inspirations: inspirations,
+                doneInspirations: doneInspirations,
+                todoInspirations: todoInspirations
+              });
+            } else {
+              res.view({
+                user: user,
+                inspirations: inspirations,
+                doneInspirations: doneInspirations,
+                todoInspirations: todoInspirations
+              });
           }
 
+          });
         });
       });
     });
@@ -144,6 +149,25 @@ module.exports = {
       res.redirect('/user/show/' + userid);
     });
   },
+
+  // kindnessTitle: function(req, res, next) {
+  //   var title;
+  //   Inspiration.find().where({
+  //       user_id: req.param('id')
+  //     }).exec(function (err, inspirations) {
+  //     console.log("inspirations: " + inspirations);
+  //     if (inspirations.length < 5) {
+  //       title = "kind soul";
+  //     } else {
+  //       title = "compassionate one";
+  //     }
+  //     console.log(title);
+  //     res.send(
+  //       title
+  //     )
+
+  //   });
+  // },
 
   /**
    * Overrides for the settings in `config/controllers.js`

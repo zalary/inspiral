@@ -41,7 +41,8 @@ module.exports = {
         from: process.env.MANDRILL_USER,
         to: email.email_to,
         subject: email.subject,
-        text: email.text
+        text: email.text,
+        html: "<p>Hello " + email.friend_to + ",</p><br><p>Join me on <a href=http://localhost:1337/>Inspiral</a> and be a part of a community of people who spread acts of kindness. Here's an act of kindness I thought you would like and wanted to share with you.</p><br>" + email.text + "<br>" + "<p>See you there!</p><br>" + email.sending_user
       }
 
       //Send mail

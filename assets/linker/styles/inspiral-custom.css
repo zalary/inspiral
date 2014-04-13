@@ -152,9 +152,43 @@ iframe {
     background: #404040;
 }
 
+.modal-input {
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.modal-body {
+    background-color: #F0F0F0;
+    text-align: center;
+}
+
+#filter-inspirations {
+    margin-bottom: 10px;
+}
+
+#filter-text {
+    font-size: 16px;
+}
+
+.filter-buttons {
+    margin-left: 10px;
+}
+
+.toppish p {
+    text-align: center;
+    padding-top: 4px;
+}
+
+.past-kindness-card {
+    color: #A0A0A0;
+}
+
 #inspiration-todo-list {
     width: 95%;
-    margin: 20px 90px 20px;
+    margin-right: 60px;
+    margin-left: 60px;
+    padding-top: 20px;
+    /*text-align: center;*/
 }
 #inspiration-todo-list .done {
     float: right;
@@ -163,12 +197,6 @@ iframe {
 #inspiration-todo-list .notdone {
     float: left;
     width: 50%;
-}
-
-.kindness-column-title {
-    font-family: "Lucida Console", Monaco, monospace;
-    font-size: 24px;
-    text-shadow: 0 1px 0 white;
 }
 
 .inspiration-item {
@@ -195,6 +223,7 @@ iframe {
        -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
             box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 div.inspiration-text{
     background-color : transparent;
@@ -247,6 +276,7 @@ div.meta a {
 
 #new-inspiration {
     margin-top: 15px;
+    padding: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     height: 40px;
@@ -257,6 +287,14 @@ div.meta a {
     color:#222;
 }
 
+.input_done {
+    display: none;
+}
+
+.new-inspiration-button {
+    display: none;
+}
+
 .dashboard-profile {
     text-align: center;
 }
@@ -265,10 +303,36 @@ div.meta a {
     text-align: center;
 }
 
+#allDashboardInspirations .inspiration-item {
+  float: left;
+}
+
 #user-gravatar {
     margin-top: 10px;
     text-align: center;
 }
+
+.repin-button .text {
+    position:relative;
+    visibility: hidden;
+    display:none;
+}
+
+/*.repin-button:hover .text {
+    visibility: visible;
+    display:inline;
+}*/
+
+.map-button .text {
+    position:relative;
+    visibility: hidden;
+    display:none;
+}
+
+/*.map-button:hover .text {
+    visibility: visible;
+    display:inline;
+}*/
 
 .well-sm {
     -webkit-border-radius: 5px 5px 5px 5px;
@@ -293,6 +357,10 @@ div.meta a {
     margin-left: 15px;
 }
 
+#profile-count-wrapper {
+    height: 40px;
+}
+
 #user-profile-groups {
     text-align: center;
     margin-top: 20px;
@@ -309,6 +377,10 @@ div.meta a {
 
 #add-inspiration input[type="button"] {
      margin-left: 350px;
+}
+
+#inspiration-feed-title {
+    margin-top: 75px;
 }
 
 #inspiration-feed {
@@ -335,28 +407,35 @@ div.meta a {
 }
 /* sticky navbar */
 #main {
-  width:650px;
-  height: 2000px; /*can be anything, just should make sure it is taller than the sidebar*/
-  padding: 25px;
+  width:740px;
+  height: 100%; /*can be anything, just should make sure it is taller than the sidebar*/
   margin-top: 50px;
   float: left;
-  background-color: #F0F0F0;
+  background-color: #ccc;
+  -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
 }
 #sidebar {
-  width: 300px;
+  width: 280px;
   background-color: #ccc;
   min-height: 650px;
-  margin: 50px 0 15px 0; /*controls the cutoff of the top and bottom limitations*/
+  margin-top: 50px;
+  margin-right: 10px;
+  /*margin: 50px 0 15px 0; *//*controls the cutoff of the top and bottom limitations*/
   padding: 15px 10px;
   float: left; /* float right for a right aligned sidebar */
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
+
 #footer {
   width: 940px;
   clear:both;
   background-color: #ccc;
-  height: 100px;
+  height: 500px;
   margin-top: 100px;
 }
+
 #wrapper {
   width: 1050px; /* MUST HAVE WIDTH SET, should be the sidebar width + main width */
   margin-left: auto;

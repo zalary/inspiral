@@ -1,4 +1,5 @@
-<script src="../linker/js/stickyMojo.js"></script>
+<script src="../../linker/js/stickyMojo.js"></script>
+<script src="../../linker/js/md5.min.js"></script>
 
 <!-- Check to see which navbar partial to load -->
 <div class='container'>
@@ -15,19 +16,25 @@
   <div id="sidebar">
     <div class="well well-sm">
       <div id="user-gravatar">
-        <img src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"></img>
+        <img id="user-gravatar-image"></img>
+        <script>
+        var hash = md5("<%= user.email %>");
+          $('#user-gravatar-image').attr('src','http://www.gravatar.com/avatar/' + hash + '?d=identicon');
+        </script>
       </div>
       <h3><%= user.username %></h3>
-      <span id="kindness-title">Kindness Title</span>
+      <span id="kindness-title">
+        kind soul
+      </span>
     </div>
-      <div>
+      <div id="profile-count-wrapper">
         <div class="profile-count">
           Future Kindnesses</br>
-          <span class="badge">24</span>
+          <span class="badge future-badge"><%= todoInspirations.length %></span>
         </div>
         <div class="profile-count">
           Past Kindnesses</br>
-          <span class="badge">12</span>
+          <span class="badge past-badge"><%= doneInspirations.length %></span>
         </div>
       </div>
 
@@ -39,83 +46,90 @@
       <div id="user-profile-groups">
         <h4>Groups</h4>
       </div>
-
-       <!-- button trigger modal -->
-    <button class="btn btn-primary btn-sm" id="inspiration-email-test" data-toggle="modal" data-target="#myModal">
-      <span class="glyphicon glyphicon-share-alt"></span>share
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Invite your friends to join in spreading kindness</h4>
-          </div>
-          <div class="modal-body">
-            <label>Inspiration to share: </label>
-            <p id="inspiration-share-text">inspiration text</p>
-            </br>
-            <label>your friend's email: </label>
-            <input type="text" id="friend-share-email-input" placeholder="type here"></input>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="share-inspiration">Share inspiration!</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Main section containing user's pinned kindnesses -->
   <div id="main">
     <div id="inspiration-todo-list">
-        <span class="kindness-column-title">
-          <%= user.name %>'s Future Kindnesses
-        </span>
-        <div id="notdone">
-          <% for (var i in todoInspirations) { %>
-            <% if (session.authenticated) { %>
-              <form method="post" action="/inspiration/create">
-                <input type='hidden' name='_csrf' value='<%= _csrf %>'>
-                <input type='hidden' name="user_id" value='<%= session.User.id %>'>
-                <input type='hidden' name="original_creator_id" value='<%= todoInspirations[i].original_creator_id %>'>
-                <input type='hidden' value='0' name='done'>
-                <input type="hidden" value='<%= todoInspirations[i].text %>' name="text"> <br />
-              </form>
-            <% } %>
-            <div class="inspiration-item">
-              <input type="submit" value=" This inspires me!" id="submit" class="btn btn-sm btn-primary this-inspires inspire_link">
-              <div class="inspiration-text">
-                <%= todoInspirations[i].text %>
-              </div>
-              <div class="inspiration-user">
-                <%= todoInspirations[i].user_id %>
-              </div>
-            </div>
-          <% } %>
+      <div id="filter-inspirations">
+        <span id="filter-text">Filter by</span>
+        <button class="btn btn-primary btn-small filter-buttons" id="all-kindnesses-filter">All Kindnesses</button>
+        <button class="btn btn-primary btn-small filter-buttons" id="past-kindnesses-filter">Past Kindnesses</button>
+        <button class="btn btn-primary btn-small filter-buttons" id="future-kindnesses-filter">Future Kindnesses</button>
       </div>
-
-        <span class="kindness-column-title">
-          <%= user.name %>'s Past Kindnesses
-        </span>
-        <div id="done">
-          <% for (var i in doneInspirations) { %>
-            <div class="inspiration-item">
-              <input type="submit" value=" This inspires me!" id="submit" class="btn btn-sm btn-primary this-inspires inspire_link">
-              <div class="inspiration-text">
-                <%= doneInspirations[i].text %>
-              </div>
-              <div class="inspiration-user">
-                <%= doneInspirations[i].user_id %>
-              </div>
-            </div>
-          <% } %>
+        <div id="allDashboardInspirations">
+          <% for (i in inspirations) { %>
+           <% if (session.authenticated) { %>
+      <form method="post" action="/inspiration/create">
+         <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
+         <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+      </form>
+      <script>
+         $('button#submit.inspire_link').on("submit", function(e) {
+           e.preventDefault();
+           $.ajax({
+             url: '/inspiration/create',
+             type: 'POST',
+               data: {
+                 user_id: <%= session.User.id %>,
+                 user_username: '<%= session.User.username %>',
+                 original_creator_id: '<%= inspirations[i].user_id %>',
+                 original_creator_name: '<%= inspirations[i].user_username %>',
+                 // uses double quotes in case there is a single quote or apostrophe.
+                 // TODO escape the text in a better way.
+                 text: "<%= inspirations[i].text %>",
+                 done: 0,
+                 _csrf: '<%= _csrf %>'
+               }
+            })
+           .success(function(data) {});
+         });
+      </script>
+      <% } %>
+      <!-- Adds each kindness item to user's dashboard -->
+      <% if (inspirations[i].done == 0) { %>
+        <div class="inspiration-item todoItem">
+          <div class="toppish">
+            <p>future</p>
+          </div>
+      <% } else { %>
+        <div class="inspiration-item doneItem">
+          <div class="toppish past-kindness-card">
+            <p>past</p>
+          </div>
+      <% } %>
+        <div class="inspiration-text">
+          <%= inspirations[i].text %>
+        </div>
+        <div class="buttons">
+           <% if (session.authenticated && (session.User.id != inspirations[i])) { %>
+           <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link repin-button" title="Like this idea and add it to your own queue">
+           <i class="fa fa-heart"></i>
+           <p class="text">Repin</p>
+           </button>
+           <% } %>
+           <button type="button" class="btn btn-sm btn-warning inspiration_map map-button" title="View this inspiration on a map">
+           <i class="fa fa-map-marker"></i>
+           <p class="text">Map</p>
+           </button>
+           <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
+           <i class="fa fa-clipboard"></i>
+           </button>
+           <% if (session.authenticated) { %>
+           <button type="button" id="submit" class="btn btn-sm btn-success inspiration-email-test" title="Email to a friend" data-toggle="modal" data-text="<%= inspirations[i].text %>" data-target="#emailModal">
+           <i class="fa fa-envelope"></i>
+           </button>
+           <% } %>
+        </div>
+        <div class="meta">
+          <span><i class="fa fa-user"></i> <a href="#"><%= inspirations[i].user_username %></a></span>
+          <span><i class="fa fa-heart"></i> <%= inspirations[i].repin_count %></span>
         </div>
       </div>
+      <% } %>
+    </div>
   </div>
+</div>
 
   <div id="footer">
     Footer
@@ -123,9 +137,12 @@
 
 </div>
 
+<%- partial ('../partials/email_modal.ejs') %>
+
 <script>
   //Uses stickyMojo to make sidebar sticky
   $(document).ready(function(){
+
     $('#sidebar').stickyMojo({footerID: '#footer', contentID: '#main'});
   });
 </script>
@@ -133,25 +150,75 @@
 
 <script type="text/javascript">
 
-  $('#share-inspiration').on('click', function(e) {
-    e.preventDefault();
+  //If user clicks on main area, box resizes to original size
+  //Also hide checkbox and button
+  $('#main').on('click', function(e) {
+    $('#new-inspiration').height(40);
+    $('#new-inspiration').width(250);
+    $('.input_done').hide();
+    $('.new-inspiration-button').hide();
+    $('#charNum').hide();
+    $('#new-inspiration').val("");
+  });
 
+  //Grab inspiration text for modal
+  $('.inspiration-email-test').on('click', function(e) {
+    e.preventDefault();
+    console.log($(this).data('text'));
+    $('#inspiration-share-text').text($(this).data('text'));
+    $('#inspiration-share-text').val($(this).data('text'));
+  });
+
+  //Logic for the Nodemailer to share inspirations with friends and invite
+  //them to join user on the site
+  $('#share-inspiration').on('click', function(e) {
     console.log("hello share button");
+    console.log($('#inspiration-share-text').val());
+    console.log($('#friend-share-name-input').val()),
 
     $.ajax({
     url: '/emailer/create',
     type: 'POST',
     data: {
       email_to: $('#friend-share-email-input').val(),
-      subject: "Your friend wants to inspire you",
-      text: "inspiration text",
+      friend_to: $('#friend-share-name-input').val(),
+      subject: "Your friend " + "<%= user.name %>" + " wants to inspiral you",
+      text: $('#inspiration-share-text').val(),
+      sending_user: "<%= user.name %>",
       _csrf: '<%= _csrf %>'
     }
   })
   .success(function(data) {
     console.log("yay mailer");
     });
+
+    //Close email modal after sending email, and clear modal input fields
+    $('#emailModal').modal('hide');
+    $('#friend-share-email-input').val("");
+    $('#friend-share-name-input').val("");
   });
+
+  //Displays only past kindnesses on user dashboard
+  $("#past-kindnesses-filter").on('click', function(e) {
+    $('.todoItem').hide();
+    $('.doneItem').show();
+    $('#allDashboardInspirations').reload();
+  });
+
+  //Displays only future kindnesses on user dashboard
+  $("#future-kindnesses-filter").on('click', function(e) {
+    $('.doneItem').hide();
+    $('.todoItem').show();
+    $('#allDashboardInspirations').reload();
+  });
+
+  //Displays all kindnesses on user dashboard
+  $("#all-kindnesses-filter").on('click', function(e) {
+    $('.doneItem').show();
+    $('.todoItem').show();
+    $('#allDashboardInspirations').reload();
+  });
+
 </script>
 
 
