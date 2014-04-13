@@ -1,0 +1,10 @@
+<h2>Random Acts of Kindness in the News</h2>
+
+<% for (var i = 0; i < newsitems.length; i++) { %>
+  <div class="group-index">
+  <div class="group-gravatar" style="background-image:url(<%=newsitems[i].image_url%>)"></div>
+  <h5><a href="<%=newsitems[i].url%>"><%=newsitems[i].title%></a></h5>
+  <p><%=newsitems[i].description%></p>
+  </div>
+<% } %>
+

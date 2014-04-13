@@ -14,7 +14,7 @@ module.exports = {
 
 module.exports.bootstrap = function(cb) {
 
-  var milisecondsInHour = 60 * 60 * 60;
+  var milisecondsInHour = 3600000;
   var searchFunction = function() {
     var cx = "017312239661215396283:ro3gbwbzdeg";
     var key = "AIzaSyBErLFUTnJrntP3aS-RFo18Nt4WtqC_owI";
@@ -29,8 +29,8 @@ module.exports.bootstrap = function(cb) {
       if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
         var data = JSON.parse(xmlHttp.responseText);
         NewsItem.parse(data);
-      }
-    }
+      };
+    };
 
     xmlHttp.send();
   }

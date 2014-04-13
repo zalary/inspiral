@@ -17,6 +17,14 @@
 
 module.exports = {
 
+  index: function(req, res) {
+    NewsItem.find(req.param(), function(err, newsitems) {
+      res.view({
+        newsitems: newsitems
+      });
+    });
+  },
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to NewsItemController)
