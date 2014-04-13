@@ -46,9 +46,11 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
   var done_status = $('input[type="checkbox"]').prop('checked');
   if (done_status) {
     done_status = 1;
+    $('.past-badge').text(<%= doneInspirations.length + 1 %>);
   }
   else {
     done_status = 0;
+    $('.future-badge').text(<%= todoInspirations.length + 1 %>);
   };
 
   if (!latitude) {
@@ -93,6 +95,8 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       $('#new-inspiration').height(40);
       $('#new-inspiration').width(250);
       $('input[type="checkbox"]').attr("checked",false);
+      $('.input_done').hide();
+      $('.new-inspiration-button').hide();
   });
 });
 </script>

@@ -30,11 +30,11 @@
       <div id="profile-count-wrapper">
         <div class="profile-count">
           Future Kindnesses</br>
-          <span class="badge"><%= todoInspirations.length %></span>
+          <span class="badge future-badge"><%= todoInspirations.length %></span>
         </div>
         <div class="profile-count">
           Past Kindnesses</br>
-          <span class="badge"><%= doneInspirations.length %></span>
+          <span class="badge past-badge"><%= doneInspirations.length %></span>
         </div>
       </div>
 
@@ -102,7 +102,7 @@
           <%= inspirations[i].text %>
         </div>
         <div class="buttons">
-           <% if (session.authenticated) { %>
+           <% if (session.authenticated && (session.User.id != inspirations[i])) { %>
            <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link repin-button" title="Like this idea and add it to your own queue">
            <i class="fa fa-heart"></i>
            <p class="text">Repin</p>
