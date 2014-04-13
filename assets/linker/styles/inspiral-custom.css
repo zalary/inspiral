@@ -408,7 +408,7 @@ div.meta a {
 #inspiration-feed-title {
     margin-top: 75px;
     float:left;
-    margin-left: 20px;
+    margin-left: 25%;
 }
 
 #getsuggestions {
@@ -420,6 +420,8 @@ div.meta a {
 #inspiration-feed {
   max-width: 840px;
   clear: both;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #inspiration-feed-header {
