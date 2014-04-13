@@ -8,12 +8,12 @@
    <button id="getsuggestions" type="button" class="btn btn-success">
    See trending acts of kindness
    </button>
-   <div id="suggestions">
-   </div>
 </div>
 <br />
 <br />
 <div id="inspiration-feed">
+  <div id="suggestions">
+  </div>
     <% for (i in inspirations) { %>
       <% if (session.authenticated) { %>
       <form method="post" action="/inspiration/create">
@@ -82,17 +82,21 @@
 <%- partial ('../partials/email_modal.ejs') %>
 
 <script>
+    //Grab trending kindnesses on user click, and bring to top of feed
+    //Toggle between show and hide at top of feed
    (function(){
      $('#suggestions').hide();
      $.get("/inspiration/mostPopular", function(data) {
-       $('#suggestions').html('<div>You could: <br/>');
-       for (var i in data.suggestions) {
-         $('#suggestions').append(data.suggestions[i].text + '<br/>');
-       }
-       $('#suggestions').append('</div>');
-     });
-     $('#getsuggestions').on('click', function() {
+        console.log(data.suggestions[0]);
+        for (var i in data.suggestions) {
+          obj = {
+            inspiration: data.suggestions[i]
+          }
+          $('#suggestions').append($(JST['assets/linker/templates/trendingKindness.ejs'](obj)));
+        }
+       $('#getsuggestions').on('click', function() {
        $('#suggestions').toggle();
+     });
      });
    })();
 
