@@ -2,4 +2,14 @@
 <%- partial('../partials/display_group') %>
 <% if (session.User) { %>
   <%- partial('../partials/join_group') %>
+  <%- partial('../partials/group_inspiration') %>
 <% } %>
+
+<div id="groupInspirations">
+
+<% for (i in inspirations) { %>
+  <div class="inspiration-text">
+        <%= inspirations[i].text %>
+      </div>
+<% } %>
+</div>
