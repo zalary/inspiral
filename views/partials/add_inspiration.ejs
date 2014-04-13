@@ -1,12 +1,13 @@
 <!-- Form for adding new inspiration -->
 <form method="post" class="dashboard-inspiration-add" action="/inspiration/create">
-  <textarea type="text" name="text" id="new-inspiration" placeholder=" add new kindness" rows="3"> </textarea><br />
+  <textarea type="text" name="text" id="new-inspiration" placeholder="add new kindness..." rows="3"></textarea>
     <div id="done-checkbox">
       <span class="input_done">
         <input type="checkbox"> I've already done this
       </span>
     </div>
-    <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-sm">
+    <p id="charNum"></p>
+    <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-sm new-inspiration-button">
 </form>
 
 <script>
@@ -24,15 +25,19 @@ $(document).ready(function() {
   var watchUser = navigator.geolocation.watchPosition(function(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
+    console.log(latitude);
+    console.log(longitude);
   });
 
 });
 
-// Make the textarea bigger when it is clicked
+// Make the textarea bigger when it is clicked, also show checkbox and button
 $('#new-inspiration').on('click', function(e) {
   e.preventDefault();
     $(this).height(100);
     $(this).width(240);
+    $('.input_done').show();
+    $('.new-inspiration-button').show();
 });
 
 // Post the new inspiration through AJAX
@@ -42,16 +47,14 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
   var done_status = $('input[type="checkbox"]').prop('checked');
   if (done_status) {
     done_status = 1;
+    $('.past-badge').text(<%= doneInspirations.length + 1 %>);
   }
   else {
     done_status = 0;
+    $('.future-badge').text(<%= todoInspirations.length + 1 %>);
   };
 
-  if (latitude) {
-    latitude = latitude * 1000;
-    longitude = longitude * 1000;
-  }
-  else {
+  if (!latitude) {
     latitude = 0;
     longitude = 0;
   };
@@ -66,8 +69,8 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
-      latitude: latitude,
-      longitude: longitude,
+      latitude: latitude *= 1000,
+      longitude: longitude *= 1000,
       _csrf: '<%= _csrf %>'
     }
   })
@@ -75,15 +78,43 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
     obj = {
       inspiration: data,
     };
-    if (data.done) {
-      $container = $('#done');
-    }
-    else {
-      $container = $('#notdone');
-    };
-    $container
-        .prepend(JST['assets/linker/templates/addInspiration.ejs'](obj))
-        .masonry('prepended', $item);
+
+      // $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
+
+      $container = $('#allDashboardInspirations');
+
+      $container.masonry({});
+
+      $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
+
+      $container
+          .prepend($item)
+          .masonry('prepended', $item);
+
+      //Reset input value, input height and width, latitude, longitude, and uncheck checkbox
+      latitude = latitude / 1000;
+      longitude = longitude / 1000;
+      $('#new-inspiration').val("");
+      $('#new-inspiration').height(40);
+      $('#new-inspiration').width(250);
+      $('input[type="checkbox"]').attr("checked",false);
+      $('.input_done').hide();
+      $('.new-inspiration-button').hide();
+      $('#charNum').hide();
   });
 });
+
+//Show remaining characters in input field as type
+$('#new-inspiration').keyup(function () {
+  $('#charNum').show();
+  var max = 150;
+  var len = $(this).val().length;
+  var characters = max - len;
+  $('#charNum').text(characters + ' characters left');
+  if (len > max) {
+    $('#charNum').css('color', '#B80000');
+  }
+});
+
+
 </script>

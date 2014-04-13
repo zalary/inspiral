@@ -3,17 +3,17 @@
 <% } else { %>
 <%- partial ('../partials/navbar_loggedout.ejs') %>
 <% } %>
-<h2 id="inspiration-feed-header">Inspiration Feed</h2>
+<h2 id="inspiration-feed-title">Inspiration Feed</h2>
 <div>
    <h3>Still not feeling inspired?</h3>
    <button id="getsuggestions" type="button" class="btn btn-success">
-   See trending acts of kindess
+   See trending acts of kindness
    </button>
    <button id="joingagroup" type="button" class="btn btn-success">
    Get involved with a group
    </button>
    <button id="maplink" type="button" class="btn btn-success">
-   Find acts of kindess happening near you
+   Find acts of kindness happening near you
    </button>
    <div id="suggestions">
    </div>
@@ -46,24 +46,40 @@
                }
             })
            .success(function(data) {});
+         });
       </script>
       <% } %>
-    <div class="inspiration-item">
-      <div class="toppish">
-      </div>
+     <% if (inspirations[i].done == 0) { %>
+        <div class="inspiration-item todoItem">
+          <div class="toppish">
+            <p>future kindness</p>
+          </div>
+      <% } else { %>
+        <div class="inspiration-item doneItem">
+          <div class="toppish">
+            <p>past kindness</p>
+          </div>
+      <% } %>
       <div class="inspiration-text">
         <%= inspirations[i].text %>
       </div>
       <div class="buttons">
+         <% if (session.authenticated && (session.User.id != inspirations[i].user_id)) { %>
          <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link" title="Like this idea and add it to your own queue">
          <i class="fa fa-heart"></i>
          </button>
+         <% } %>
          <button type="button" class="btn btn-sm btn-warning inspiration_map" title="View this inspiration on a map">
          <i class="fa fa-map-marker"></i>
          </button>
          <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
          <i class="fa fa-clipboard"></i>
          </button>
+         <% if (session.authenticated) { %>
+         <button type="button" id="submit" class="btn btn-sm btn-success inspiration-email-test" title="Email to a friend" data-toggle="modal" data-text="<%=inspirations[i].text %>" data-target="#emailModal">
+          <i class="fa fa-envelope"></i>
+          </button>
+          <% } %>
       </div>
       <div class="meta">
         <span><i class="fa fa-user"></i> <a href="#"><%= inspirations[i].user_username %></a></span>
@@ -72,6 +88,9 @@
     </div>
    <% } %>
 </div>
+
+<%- partial ('../partials/email_modal.ejs') %>
+
 <script>
    (function(){
      $('#suggestions').hide();
@@ -86,4 +105,34 @@
        $('#suggestions').toggle();
      });
    })();
+
+   //Grab inspiration text for modal
+  $('.inspiration-email-test').on('click', function(e) {
+    e.preventDefault();
+    console.log($(this).data('text'));
+    $('#inspiration-share-text').text($(this).data('text'));
+    $('#inspiration-share-text').val($(this).data('text'));
+  });
+
+  //Logic for the Nodemailer to share inspirations with friends and invite
+  //them to join user on the site
+  $('#share-inspiration').on('click', function(e) {
+    console.log("hello share button");
+    console.log($('#inspiration-share-text').val());
+
+    $.ajax({
+    url: '/emailer/create',
+    type: 'POST',
+    data: {
+      email_to: $('#friend-share-email-input').val(),
+      subject: "Your friend wants to inspiral you",
+      text: $('#inspiration-share-text').val(),
+      _csrf: '<%= _csrf %>'
+    }
+  })
+  .success(function(data) {
+    console.log("yay mailer");
+    });
+    $('#emailModal').modal('hide');
+  });
 </script>
