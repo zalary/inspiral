@@ -21,7 +21,7 @@ module.exports = {
 
     image_url: {
       type: 'string',
-      default: '/images/kitten_small.png'
+      defaultsTo: '/images/kitten_small.png'
     },
 
     city: {

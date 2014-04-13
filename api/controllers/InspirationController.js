@@ -17,12 +17,11 @@
 
 module.exports = {
 
-  'new': function(req, res) {
+  new: function(req, res) {
 
   },
 
   create: function(req, res, next) {
-    console.log('i#create');
     Inspiration.create(req.params.all(), function inspirationCreated(err, inspiration) {
 
       if (err) {
@@ -77,9 +76,7 @@ module.exports = {
   },
 
   mostPopular: function(req, res, next) {
-    console.log("querying");
     Inspiration.find().limit(5).sort('repin_count DESC').done(function(err, inspirations) {
-      console.log("preparing response");
       res.json({
         suggestions: inspirations
       });
@@ -88,9 +85,7 @@ module.exports = {
   },
 
   mostRecent: function(req, res, next) {
-    console.log("querying");
     Inspiration.find().limit(5).sort('createdAt DESC').done(function(err, inspirations) {
-      console.log("preparing response");
       res.json({
         mostRecentInspirations: inspirations
       });

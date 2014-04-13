@@ -17,11 +17,6 @@
 
 module.exports = {
 
-  create: function(req, res, err) {
-    console.log(req);
-    console.log(res);
-  },
-
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to NewsItemController)
