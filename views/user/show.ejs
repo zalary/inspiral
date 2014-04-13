@@ -25,7 +25,7 @@
       </div>
       <h3><%= user.username %></h3>
       <span id="kindness-title">
-        kind soul
+        Kind Soul
       </span>
     </div>
       <div id="profile-count-wrapper">
@@ -142,10 +142,19 @@
 <%- partial ('../partials/email_modal.ejs') %>
 
 <script>
-  //Uses stickyMojo to make sidebar sticky
   $(document).ready(function(){
-
+    //Uses stickyMojo to make sidebar sticky
     $('#sidebar').stickyMojo({footerID: '#footer', contentID: '#main'});
+
+    //Logic to calculate user's kindness title for profile
+    var inspirationLength = <%= inspirations.length %>
+    if (inspirationLength > 5 && inspirationLength <= 10) {
+      $('#kindness-title').text("Compassionate One");
+    } else if (inspirationLength > 10 && inspirationLength <= 50) {
+      $('#kindness-title').text("Goodness Guru");
+    } else {
+      $('#kindness-title').text("Altruistic Enlightenment");
+    }
   });
 </script>
 
