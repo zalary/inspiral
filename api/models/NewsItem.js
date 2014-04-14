@@ -40,7 +40,9 @@ module.exports = {
       var url = data.items[i].link;
       var title = data.items[i].title;
       var description = data.items[i].snippet;
-      var thumb = data.items[i].pagemap.cse_image[0].src;
+      if (data.items[i].pagemap.cse_image) {
+        var thumb = data.items[i].pagemap.cse_image[0].src;
+      }
 
       NewsItem.create({
         "url": url,

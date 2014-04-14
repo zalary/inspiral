@@ -3,6 +3,7 @@
 <% } else { %>
 <%- partial ('../partials/navbar_loggedout.ejs') %>
 <% } %>
+<div class="center-main">
 <h2 id="inspiration-feed-title">Inspiration Feed</h2>
 <div id="feed-want-more">
    <button id="getsuggestions" type="button" class="btn btn-success">
@@ -15,10 +16,6 @@
   <div id="suggestions">
   </div>
     <% for (i in inspirations) { %>
-
-
-
-
      <% if (inspirations[i].done == 0) { %>
         <div class="inspiration-item todoItem">
           <div class="toppish">
@@ -54,7 +51,7 @@
          </form>
 
          <% } %>
-         <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
+         <button type="button" class="btn btn-sm btn-info story_link" onclick="location.href='../story/show/<%= inspirations[i].original_post_id %>'" title="View the story of this inspiration">
          <i class="fa fa-clipboard"></i>
          </button>
          <% if (session.authenticated) { %>
@@ -70,6 +67,7 @@
     </div>
    <% } %>
 </div>
+</div>
 
 <%- partial ('../partials/email_modal.ejs') %>
 
@@ -79,12 +77,11 @@
    (function(){
      $('#suggestions').hide();
      $.get("/inspiration/mostPopular", function(data) {
-        console.log(data.suggestions[0]);
         for (var i in data.suggestions) {
           obj = {
             inspiration: data.suggestions[i]
           }
-          $('#suggestions').append($(JST['assets/linker/templates/trendingKindness.ejs'](obj)));
+          // $('#suggestions').append($(JST['assets/linker/templates/trendingKindness.ejs'](obj)));
         }
        $('#getsuggestions').on('click', function() {
        $('#suggestions').toggle();
@@ -128,12 +125,15 @@
            e.preventDefault();
            console.log(
             $(this).closest('form').children('input[name="user_username"]').val());
-
+           var user_id = "0";
+           <% if (session.authenticated) { %>
+             user_id = "<%= session.User.id %>";
+           <% } %>
            $.ajax({
              url: '/inspiration/create',
              type: 'POST',
                data: {
-                 user_id: <%= session.User.id %>,
+                 user_id: user_id,
                  user_username: $(this).closest('form').children('input[name="user_username"]').val(),
                  original_creator_id: $(this).closest('form').children('input[name="original_creator_id"]').val(),
                  original_creator_name: $(this).closest('form').children('input[name="original_creator_name"]').val(),
@@ -147,14 +147,14 @@
                }
             })
            .success(function(data) {
-             console.log('hi');
+
             $.ajax({
               url: '/story/update',
               type: 'POST',
                 data: {
                   inspiration_id: data.original_post_id,
                   pinned_from: data.user_username,
-                  pinned_by: '<%= session.User.name %>',
+                  pinned_by: "<% if (session.authenticated) { %><%= session.User.id %><% } %>",
                   _csrf: '<%= _csrf %>'
                 }
            });
