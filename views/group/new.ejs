@@ -1,2 +1,7 @@
-
+<% if (session.authenticated) { %>
+<%- partial ('../partials/navbar_loggedin.ejs') %>
+<% } else { %>
+<%- partial ('../partials/navbar_loggedout.ejs') %>
+<% } %>
+<br /><br />
 <%- partial('../partials/register_group') %>
