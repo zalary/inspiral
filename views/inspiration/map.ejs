@@ -21,20 +21,22 @@ $(document).ready(function() {
     timeout: 5000
   }
 
+  //Callback on successful location
   function success(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
+    addMap();
   }
 
+  //Callback on error
   function error(error) {
     latitude = 30.2500;
     longitude = 97.7500;
+    addMap();
   }
 
   navigator.geolocation.getCurrentPosition(success, error, options);
 
-  addMap();
-  });
 });
 
 //Initialize the map and set its view to the user's location
@@ -43,6 +45,7 @@ var addMap = function() {
     center: new google.maps.LatLng(latitude, longitude),
     zoom: 16
   };
+
     map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
 
@@ -78,11 +81,13 @@ var addMarkers = function() {
     });
 
     //Define marker
+    var spiral_image = '../../images/Map_Spiral.svg.png';
     markerLatitude = <%= (inspirations[i].latitude / 1000) %>
     markerLongitude = <%= (inspirations[i].longitude / 1000) %>
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(markerLatitude, markerLongitude),
       map: map,
+      icon: spiral_image,
       animation: google.maps.Animation.DROP,
       title: "<%= inspirations[i].text %>"
     });
