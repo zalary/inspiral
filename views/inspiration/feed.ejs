@@ -92,7 +92,6 @@
    //Grab inspiration text for modal
   $('.inspiration-email-test').on('click', function(e) {
     e.preventDefault();
-    console.log($(this).data('text'));
     $('#inspiration-share-text').text($(this).data('text'));
     $('#inspiration-share-text').val($(this).data('text'));
   });
@@ -100,9 +99,6 @@
   //Logic for the Nodemailer to share inspirations with friends and invite
   //them to join user on the site
   $('#share-inspiration').on('click', function(e) {
-    console.log("hello share button");
-    console.log($('#inspiration-share-text').val());
-
     $.ajax({
     url: '/emailer/create',
     type: 'POST',
@@ -114,7 +110,6 @@
     }
   })
   .success(function(data) {
-    console.log("yay mailer");
     });
     $('#emailModal').modal('hide');
   });
@@ -123,8 +118,6 @@
 
          $('button#submit.inspire_link').on("click", function(e) {
            e.preventDefault();
-           console.log(
-            $(this).closest('form').children('input[name="user_username"]').val());
            var user_id = "0";
            <% if (session.authenticated) { %>
              user_id = "<%= session.User.id %>";
@@ -149,7 +142,6 @@
                }
             })
            .success(function(data) {
-              console.log(data);
             $.ajax({
               url: '/story/update',
               type: 'POST',
