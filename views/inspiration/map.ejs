@@ -16,9 +16,22 @@ var latitude, longitude, map, marker, markerLatitude, markerLongitude, contentSt
 
 //Locate user and grab their latitude and longitude
 $(document).ready(function() {
-  navigator.geolocation.getCurrentPosition(function(position) {
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000
+  }
+
+  function success(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+  }
+
+  function error(error) {
+    latitude = 30.2500;
+    longitude = 97.7500;
+  }
+
+  navigator.geolocation.getCurrentPosition(success, error, options);
 
   addMap();
   });

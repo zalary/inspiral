@@ -17,16 +17,26 @@ var orig_latitude, orig_longitude;
 //Use geolocator to grab user's latitude and longitude
 $(document).ready(function() {
 
-  navigator.geolocation.getCurrentPosition(function(position) {
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000
+  }
+
+  function success(position) {
     orig_latitude = position.coords.latitude;
     orig_longitude = position.coords.longitude;
-  });
+  }
+
+  function error(error) {
+    orig_latitude = 0;
+    orig_longitude = 0;
+  }
+
+  navigator.geolocation.getCurrentPosition(success, error, options);
 
   var watchUser = navigator.geolocation.watchPosition(function(position) {
     orig_latitude = position.coords.latitude;
     orig_longitude = position.coords.longitude;
-    console.log(latitude);
-    console.log(longitude);
   });
 
 });
