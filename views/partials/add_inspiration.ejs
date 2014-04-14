@@ -12,19 +12,32 @@
 
 <script>
 
-var latitude, longitude;
+var orig_latitude, orig_longitude;
 
 //Use geolocator to grab user's latitude and longitude
 $(document).ready(function() {
 
-  navigator.geolocation.getCurrentPosition(function(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-  });
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000
+  }
+
+  function success(position) {
+    orig_latitude = position.coords.latitude;
+    orig_longitude = position.coords.longitude;
+  }
+
+  function error(error) {
+    orig_latitude = 0;
+    orig_longitude = 0;
+  }
+
+  navigator.geolocation.getCurrentPosition(success, error, options);
 
   var watchUser = navigator.geolocation.watchPosition(function(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
+    orig_latitude = position.coords.latitude;
+    orig_longitude = position.coords.longitude;
+
   });
 
 });
@@ -52,9 +65,9 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
     $('.future-badge').text(<%= todoInspirations.length + 1 %>);
   };
 
-  if (!latitude) {
-    latitude = 0;
-    longitude = 0;
+  if (!orig_latitude) {
+    orig_latitude = 0;
+    orig_longitude = 0;
   };
 
   $.ajax({
@@ -67,8 +80,9 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
-      latitude: latitude *= 1000, //sometimes this still multiplies things too much
-      longitude: longitude *= 1000, // sometimes this still multiplies things too much
+      latitude: orig_latitude * 1000,
+      longitude: orig_longitude * 1000,
+
       _csrf: '<%= _csrf %>'
     }
   })
@@ -89,9 +103,7 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       //     .prepend($item)
       //     .masonry('prepended', $item);
 
-      //Reset input value, input height and width, latitude, longitude, and uncheck checkbox
-      latitude = latitude / 1000;
-      longitude = longitude / 1000;
+      //Reset input value, input height and width, and uncheck checkbox
       $('#new-inspiration').val("");
       $('#new-inspiration').height(40);
       $('#new-inspiration').width(250);
