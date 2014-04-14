@@ -143,12 +143,19 @@
 
     //Logic to calculate user's kindness title for profile
     var inspirationLength = <%= inspirations.length %>
-    if (inspirationLength > 5 && inspirationLength <= 10) {
+    if (inspirationLength <= 5) {
+      $('#kindness-title').text("Kind Soul");
+    } else if (inspirationLength > 5 && inspirationLength <= 10) {
       $('#kindness-title').text("Compassionate One");
     } else if (inspirationLength > 10 && inspirationLength <= 50) {
       $('#kindness-title').text("Goodness Guru");
     } else {
       $('#kindness-title').text("Altruistic Enlightenment");
+    }
+
+    //Adds a welcome info box for new users
+    if (inspirationLength == 0) {
+      $('#filter-inspirations').append('<div class="get-started-dashboard">' + '<p id="begin-adding">' + 'Welcome to Inspiral!' + '<br>' + '<span class="glyphicon glyphicon-arrow-left"></span>' + '  Begin adding kindnesses now' + '</p>' + '</div>');
     }
   });
 </script>
