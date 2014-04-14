@@ -1,3 +1,10 @@
+<% if (session.authenticated) { %>
+<%- partial ('../partials/navbar_loggedin.ejs') %>
+<% } else { %>
+<%- partial ('../partials/navbar_loggedout.ejs') %>
+<% } %>
+
+<br /><br />
 
 <%- partial('../partials/display_group') %>
 <% if (session.User) { %>

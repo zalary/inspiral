@@ -1,14 +1,19 @@
 
-<div class="group">
-  <div class="group-gravatar" style="background: url(<%= group.image_url %>); background-size: 110px;
-    background-repeat: no-repeat;"></div>
+
+
+<div class="group formwrapper">
+  <div class="group-gravatar" style="background-image: url(<%= group.image_url %>); background-size: 250px; background-repeat: no-repeat;"></div>
   <h3><%= group.org %></h3>
   <h5>located in <%= group.city %></h5>
   <span>inspiraling by <%= group.description %></span>
+  <br clear="both" />
+
+
+
   <h6>Members:</h6>
   <% for (var i in members) { %>
     <div class="member"><% if (members[i]) { %>
-      <a href="../../user/show/<%= members[i].id %>"><%= members[i].name %></a> 
+      <a href="../../user/show/<%= members[i].id %>"><%= members[i].name %></a>
       <% } %>
     </div>
   <% } %>

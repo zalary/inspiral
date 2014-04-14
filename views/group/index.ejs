@@ -1,6 +1,14 @@
-<h2>Find Cool People to Inspiral with!</h2>
-<h6><a href="/group/new/">Register a new group</a></h6>
+<% if (session.authenticated) { %>
+<%- partial ('../partials/navbar_loggedin.ejs') %>
+<% } else { %>
+<%- partial ('../partials/navbar_loggedout.ejs') %>
+<% } %>
+<br /><br />
 
+<div class="formwrapper">
+  <h2>Find Cool People to Inspiral with!</h2>
+<a href="/group/new/" class="btn btn-lg btn-primary btn-block">Register a new group</a>
+</div>
 <div id="inspiration-feed">
 <% for (var i in groups) {%>
   <div class="group-index">
