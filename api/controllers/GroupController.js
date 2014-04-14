@@ -40,14 +40,27 @@ module.exports = {
         User.find().where({
           id: memberIds
         }).exec(function(err, foundMember) {
-          res.view({
-            members: foundMember,
-            group: group
-          })
-        })
-      })
-    })
+
+          GroupInspiration.find().where({
+            group_id: req.param('id')
+          }).sort('createdAt DESC').exec(function(err, inspirations) {
+
+            res.view({
+              members: foundMember,
+              group: group,
+              inspirations: inspirations
+            });
+          });
+        });
+      });
+    });
   },
+
+
+
+
+
+
 
   index: function(req, res, err) {
     Group.find(req.param(), function foundGroups(err, groups) {

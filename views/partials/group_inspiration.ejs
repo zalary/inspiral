@@ -1,0 +1,98 @@
+<!-- Form for adding new inspiration -->
+<form method="post" class="group-inspiration-add" action="/inspiration/create">
+  <textarea type="text" name="text" id="new-inspiration" placeholder="add new kindness..." rows="3"></textarea> <br />
+  <input type="text" id="location" name="location" placeholder="location of event (Zilker Park)"></input>
+  <input type="text" id="activitydate" name="activitydate" placeholder="activity date and time"></input>
+    <div id="done-checkbox">
+      <span class="input_done">
+        <input type="checkbox"> I've already done this
+      </span>
+    </div>
+    <p id="charNum"></p>
+    <input type="submit" value="add new kindness" id="submit" class="btn btn-primary btn-sm new-inspiration-button">
+</form>
+
+<script>
+
+// Make the textarea bigger when it is clicked, also show checkbox and button
+
+$(document).ready(function() {
+  // Handler for .ready() called.
+$('#activitydate').datetimepicker();
+});
+
+$('#new-inspiration').on('click', function(e) {
+  e.preventDefault();
+    $(this).height(100);
+    $(this).width(240);
+    $('.input_done').show();
+    $('.new-inspiration-button').show();
+});
+
+// Post the new inspiration through AJAX
+$('.group-inspiration-add').on("submit", function(e) {
+  e.preventDefault();
+
+  var done_status = $('input[type="checkbox"]').prop('checked');
+  if (done_status) {
+    done_status = 1;
+  }
+  else {
+    done_status = 0;
+  };
+
+
+  $.ajax({
+    url: '/groupinspiration/create',
+    type: 'POST',
+    data: {
+      group_id: <%= group.id %>,
+      text: $('#new-inspiration').val(),
+      done: done_status,
+      location: $('#location').val,
+      activitydate: $('#activitydate').val(),
+      _csrf: '<%= _csrf %>'
+    }
+  })
+  .success(function(data) {
+    obj = {
+      inspiration: data,
+    };
+
+      // $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
+
+      $container = $('#groupInspirations');
+
+      $container.masonry({});
+
+      $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
+
+      $container
+          .prepend($item)
+          .masonry('prepended', $item);
+
+      //Reset input value, input height and width, latitude, longitude, and uncheck checkbox
+      $('#new-inspiration').val("");
+      $('#new-inspiration').height(40);
+      $('#new-inspiration').width(250);
+      $('input[type="checkbox"]').attr("checked",false);
+      $('.input_done').hide();
+      $('.new-inspiration-button').hide();
+      $('#charNum').hide();
+  });
+});
+
+//Show remaining characters in input field as type
+$('#new-inspiration').keyup(function () {
+  $('#charNum').show();
+  var max = 150;
+  var len = $(this).val().length;
+  var characters = max - len;
+  $('#charNum').text(characters + ' characters left');
+  if (len > max) {
+    $('#charNum').css('color', '#B80000');
+  }
+});
+
+
+</script>

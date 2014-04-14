@@ -194,6 +194,11 @@ iframe {
     color: #A0A0A0;
 }
 
+.trending-kindness-card {
+    color: #FF9933;
+    font-style: bold;
+}
+
 #inspiration-todo-list {
     width: 95%;
     margin-right: 60px;
@@ -238,9 +243,11 @@ iframe {
 }
 div.inspiration-text{
     background-color : transparent;
-    font-size: 1.5vw;
+    font-size: 16px;
+    /*font-size: 1.5vw;*/
     text-align: left;
     min-height: 200px;
+    word-wrap:break-word;
     border: 1px solid #fafafa;
     /*border-top: 2px solid #fafafa; */
     background: #f6f6f6; /* Old browsers */
@@ -252,7 +259,7 @@ div.inspiration-text{
     text-shadow: 0px 1px 0px #fff;
 
 
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 div.inspiration-text .text { min-height: 150px; }
@@ -382,6 +389,14 @@ div.meta a {
     height: 140px;
 }
 
+#createdAt {
+    font-size: 12px;
+    background: #f6f6f6; /* Old browsers */
+    text-align: right;
+    margin-right: 0px;
+    padding-right: 5px;
+}
+
 #submit {
     font-family: Verdana, Geneva, sans-serif;
 }
@@ -392,10 +407,21 @@ div.meta a {
 
 #inspiration-feed-title {
     margin-top: 75px;
+    float:left;
+    margin-left: 25%;
+}
+
+#getsuggestions {
+    margin-left: 50px;
+    margin-top: 75px;
+    float:left;
 }
 
 #inspiration-feed {
   max-width: 840px;
+  clear: both;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #inspiration-feed-header {
@@ -413,6 +439,12 @@ div.meta a {
   float: left;
 }
 
+.buttons {
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+    background: #f6f6f6; /* Old browsers */
+}
+
 #map-canvas {
     height: 500px;
     width:800px;
@@ -423,7 +455,7 @@ div.meta a {
 /* sticky navbar */
 #main {
   width:740px;
-  height: 100%; /*can be anything, just should make sure it is taller than the sidebar*/
+  min-height: 1000px; /*can be anything, just should make sure it is taller than the sidebar*/
   margin-top: 50px;
   float: left;
   background-color: #ccc;
@@ -436,7 +468,7 @@ div.meta a {
   min-height: 650px;
   margin-top: 50px;
   margin-right: 10px;
-  /*margin: 50px 0 15px 0; *//*controls the cutoff of the top and bottom limitations*/
+  /*margin: 50px 0 15px 0;*/ /*controls the cutoff of the top and bottom limitations*/
   padding: 15px 10px;
   float: left; /* float right for a right aligned sidebar */
   -webkit-border-radius: 5px 5px 5px 5px;
@@ -447,7 +479,7 @@ div.meta a {
   width: 940px;
   clear:both;
   background-color: #ccc;
-  height: 500px;
+  height: 40px;
   margin-top: 100px;
 }
 
@@ -511,4 +543,55 @@ div.group-index {
        -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
             box-shadow: 0px 1px 1px rgba(0,0,0,.15), 0px 2px 1px rgba(0,0,0,.10), 0px 3px 1px rgba(0,0,0,.05);
     margin-bottom: 10px;
+}
+
+.story-page-top {
+    margin-top: 80px;
+    text-align: center;
+}
+
+#kindness-created {
+    color:white;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.inspiration-text {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.kindness-story-item {
+    border: 1px solid #fafafa;
+    width: 190px;
+    /*border-top: 2px solid #fafafa; */
+    background: #f6f6f6; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYWVhZWEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #f6f6f6 0%, #eaeaea 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f6f6), color-stop(100%,#9a9a9a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f6f6f6 0%,#9a9a9a 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f6f6f6 0%,#9a9a9a 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f6f6f6 0%,#9a9a9a 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #f6f6f6 0%,#9a9a9a 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#9a9a9a',GradientType=0 ); /* IE6-8 */
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+.story-event {
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    width: 500px;
+    height: 90px;
+    background-color: #ccc;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
 }

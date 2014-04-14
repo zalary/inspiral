@@ -1,19 +1,42 @@
-  <div class="col-xs-6">
-    <span class="inspiration-column-title">
-     <div> <%= story[0].insp_text %> </div>
-    </span>
-
-      <% for (var i in story) { %>
-         This inspiration was created by <%= story[0].created_by %>
-        <% for (var x in story[0].events) { %>
-        <div class="story-event">
-
-            This inspiration was pinned by: <%= story[0].events[x].event.pinned_by %> from: <%= story[0].events[x].event.pinned_from %>
-
-
-          </div>
-        <% } %>
-      <% } %>
-    </div>
-
+ <!-- Check to see which navbar partial to load -->
+<div class='container'>
+  <% if (session.authenticated) { %>
+  <%- partial ('../partials/navbar_loggedin.ejs') %>
+  <% } else { %>
+  <%- partial ('../partials/navbar_loggedout.ejs') %>
+  <% } %>
 </div>
+
+<div id="kindness-story-wrapper">
+  <div class="story-page-top">
+    <h2>Kindness Story</h2>
+    <div class="kindness-story-item container">
+        <div class="toppish">
+        </div>
+        <div class="inspiration-text">
+          <%= story[0].insp_text %>
+        </div>
+        <div id="kindness-created">Created by <%= story[0].created_by %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<% for (var i in story) { %>
+  <% for (var x in story[0].events) { %>
+  <div class="story-event">
+      This kindness was pinned by: <%= story[0].events[x].event.pinned_by %>
+      <br>
+      pinned from: <%= story[0].events[x].event.pinned_from %>
+  </div>
+  <% } %>
+<% } %>
+
+<script>
+// $(document).ready(function() {
+//   console.log(<%= story[0].id %>);
+//   $.get('/inspiration/storyInspiration/'+ '<%= story[0].id %>', function(data) {
+//     $('#story-inspiration-card').append($(JST['assets/linker/templates/addInspiration.ejs'](data)));
+//   });
+// });
+</script>

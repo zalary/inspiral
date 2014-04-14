@@ -15,7 +15,14 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access)
-  '*': 'flash'
+  '*': 'flash',
+
+
+  GroupController: {
+    'new': 'isAuthenticated',
+    'create': 'isAuthenticated'
+
+  }
 
   /*
 	// Here's an example of adding some policies to a controller
@@ -34,26 +41,27 @@ module.exports.policies = {
 		feed : ['isNiceToAnimals', 'hasRabbitFood']
 	}
 	*/
-};
 
-/**
- * Here's what the `isNiceToAnimals` policy from above might look like:
- * (this file would be located at `policies/isNiceToAnimals.js`)
- *
- * We'll make some educated guesses about whether our system will
- * consider this user someone who is nice to animals.
- *
- * Besides protecting rabbits (while a noble cause, no doubt),
- * here are a few other example use cases for policies:
- *
- *	+ cookie-based authentication
- *	+ role-based access control
- *	+ limiting file uploads based on MB quotas
- *	+ OAuth
- *	+ BasicAuth
- *	+ or any other kind of authentication scheme you can imagine
- *
- */
+  /**
+   * Here's what the `isNiceToAnimals` policy from above might look like:
+   * (this file would be located at `policies/isNiceToAnimals.js`)
+   *
+   * We'll make some educated guesses about whether our system will
+   * consider this user someone who is nice to animals.
+   *
+   * Besides protecting rabbits (while a noble cause, no doubt),
+   * here are a few other example use cases for policies:
+   *
+   *	+ cookie-based authentication
+   *	+ role-based access control
+   *	+ limiting file uploads based on MB quotas
+   *	+ OAuth
+   *	+ BasicAuth
+   *	+ or any other kind of authentication scheme you can imagine
+   *
+   */
+
+};
 
 /*
 module.exports = function isNiceToAnimals (req, res, next) {

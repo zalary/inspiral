@@ -27,6 +27,7 @@ module.exports = {
     story_text = req.param('text');
     story_creator = req.param('created_by');
     story_creator_id = req.param('created_by_id');
+    story_created_time = new Date();
 
     Story.native(function(err, collection) {
 
@@ -34,7 +35,8 @@ module.exports = {
         _id: parseInt(story_id),
         insp_text: story_text,
         created_by: story_creator,
-        created_by_id: story_creator_id
+        created_by_id: story_creator_id,
+        created_at: story_created_time
       }, function(err, doc) {
 
         console.log(doc);
@@ -53,6 +55,7 @@ module.exports = {
     story_id = parseInt(sid);
     story_pinned = req.param('pinned_from');
     story_pinner = req.param('pinned_by');
+    pinned_time = new Date();
 
     event = {
       pinned_by: story_pinner,
@@ -72,7 +75,8 @@ module.exports = {
           events: {
             event: {
               pinned_from: story_pinned,
-              pinned_by: story_pinner
+              pinned_by: story_pinner,
+              pinned_time: pinned_time
             }
           }
         }

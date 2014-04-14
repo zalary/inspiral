@@ -17,11 +17,11 @@
 
 module.exports = {
 
-  'new': function (req, res) {
+  'new': function(req, res) {
     res.view();
   },
 
-  create: function (req, res, next) {
+  create: function(req, res, next) {
 
     //Creating a user with params from signup form
     User.create(req.params.all(), function userCreated(err, user) {
@@ -47,23 +47,23 @@ module.exports = {
   },
 
   // render the profile view
-  show: function (req, res, next) {
+  show: function(req, res, next) {
     User.findOne(req.param('id'), function foundUser(err, user) {
       if (err) return next(err);
       if (!user) return next();
       Inspiration.find().where({
         user_id: req.param('id')
-      }).sort('createdAt DESC').exec(function (err, inspirations) {
+      }).sort('createdAt DESC').exec(function(err, inspirations) {
         if (err) return next(err);
         Inspiration.find().where({
-        user_id: req.param('id'),
-        done: 1
-        }).exec(function (err, doneInspirations) {
+          user_id: req.param('id'),
+          done: 1
+        }).exec(function(err, doneInspirations) {
           if (err) return next(err);
           Inspiration.find().where({
             user_id: req.param('id'),
             done: 0
-          }).exec(function (err, todoInspirations) {
+          }).exec(function(err, todoInspirations) {
             if (err) return next(err);
             // does the user own this page?
             if ((req.session.authenticated) && (req.session.User.id) == (req.param('id'))) {
@@ -81,7 +81,7 @@ module.exports = {
                 doneInspirations: doneInspirations,
                 todoInspirations: todoInspirations
               });
-          }
+            }
 
           });
         });
@@ -89,7 +89,7 @@ module.exports = {
     });
   },
 
-  index: function (req, res, next) {
+  index: function(req, res, next) {
     // returns an array of users
     User.find(function foundUsers(err, users) {
       if (err) return next(err);
@@ -100,7 +100,7 @@ module.exports = {
     });
   },
 
-  edit: function (req, res, next) {
+  edit: function(req, res, next) {
     User.findOne(req.param('id'), function foundUser(err, user) {
       if (err) return next(err);
       if (!user) return next();
@@ -111,7 +111,7 @@ module.exports = {
     });
   },
 
-  update: function (req, res, next) {
+  update: function(req, res, next) {
     User.findOne(req.param('id'), function foundUser(err, user) {
       if (err) {
         return res.redirect('/user/edit/' + req.param('id'));
@@ -137,7 +137,7 @@ module.exports = {
 
   },
 
-  destroy: function (req, res, next) {
+  destroy: function(req, res, next) {
     User.findOne(req.session.User.id, function foundUser(err, user) {
       var userid = req.session.User.id;
       if (err) return next(err);

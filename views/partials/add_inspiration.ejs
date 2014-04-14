@@ -79,17 +79,17 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       inspiration: data,
     };
 
-      // $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
+      $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
 
-      $container = $('#allDashboardInspirations');
+      // $container = $('#allDashboardInspirations');
 
-      $container.masonry({});
+      // $container.masonry({});
 
-      $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
+      // $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
 
-      $container
-          .prepend($item)
-          .masonry('prepended', $item);
+      // $container
+      //     .prepend($item)
+      //     .masonry('prepended', $item);
 
       //Reset input value, input height and width, latitude, longitude, and uncheck checkbox
       latitude = latitude / 1000;
@@ -101,18 +101,33 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       $('.input_done').hide();
       $('.new-inspiration-button').hide();
       $('#charNum').hide();
-  });
+  }).done(function(data) {
+            $.ajax({
+              url: '/story/create',
+              type: 'POST',
+                data: {
+                  inspiration_id: data.id,
+                  created_by: data.user_username,
+                  text: data.text,
+                  _csrf: '<%= _csrf %>'
+                }
+           });
+         });
+
 });
 
 //Show remaining characters in input field as type
 $('#new-inspiration').keyup(function () {
   $('#charNum').show();
-  var max = 150;
+  var max = 140;
   var len = $(this).val().length;
   var characters = max - len;
   $('#charNum').text(characters + ' characters left');
   if (len > max) {
     $('#charNum').css('color', '#B80000');
+    $(".new-inspiration-button").prop('disabled', true);
+  } else {
+    $(".new-inspiration-button").prop('disabled', false);
   }
 });
 

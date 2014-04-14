@@ -4,60 +4,30 @@
 <%- partial ('../partials/navbar_loggedout.ejs') %>
 <% } %>
 <h2 id="inspiration-feed-title">Inspiration Feed</h2>
-<div>
-   <h3>Still not feeling inspired?</h3>
+<div id="feed-want-more">
    <button id="getsuggestions" type="button" class="btn btn-success">
    See trending acts of kindness
    </button>
-   <button id="joingagroup" type="button" class="btn btn-success">
-   Get involved with a group
-   </button>
-   <button id="maplink" type="button" class="btn btn-success">
-   Find acts of kindness happening near you
-   </button>
-   <div id="suggestions">
-   </div>
 </div>
 <br />
 <br />
 <div id="inspiration-feed">
+  <div id="suggestions">
+  </div>
     <% for (i in inspirations) { %>
-      <% if (session.authenticated) { %>
-      <form method="post" action="/inspiration/create">
-         <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
-         <input type='hidden' name='_csrf' value='<%= _csrf %>'>
-      </form>
-      <script>
-         $('button#submit.inspire_link').on("submit", function(e) {
-           e.preventDefault();
-           $.ajax({
-             url: '/inspiration/create',
-             type: 'POST',
-               data: {
-                 user_id: <%= session.User.id %>,
-                 user_username: '<%= session.User.username %>',
-                 original_creator_id: '<%= inspirations[i].user_id %>',
-                 original_creator_name: '<%= inspirations[i].user_username %>',
-                 // uses double quotes in case there is a single quote or apostrophe.
-                 // TODO escape the text in a better way.
-                 text: "<%= inspirations[i].text %>",
-                 done: 0,
-                 _csrf: '<%= _csrf %>'
-               }
-            })
-           .success(function(data) {});
-         });
-      </script>
-      <% } %>
+
+
+
+
      <% if (inspirations[i].done == 0) { %>
         <div class="inspiration-item todoItem">
           <div class="toppish">
-            <p>future kindness</p>
+            <p>future</p>
           </div>
       <% } else { %>
         <div class="inspiration-item doneItem">
-          <div class="toppish">
-            <p>past kindness</p>
+          <div class="toppish past-kindness-card">
+            <p>past</p>
           </div>
       <% } %>
       <div class="inspiration-text">
@@ -65,13 +35,25 @@
       </div>
       <div class="buttons">
          <% if (session.authenticated && (session.User.id != inspirations[i].user_id)) { %>
-         <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link" title="Like this idea and add it to your own queue">
-         <i class="fa fa-heart"></i>
+            <form method="post" action="/inspiration/create">
+               <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
+               <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+               <input type='hidden' name='user_id' value='<%= session.User.id %>'>
+               <input type='hidden' name='user_username' value='<%= session.User.username %>'>
+               <input type='hidden' name='original_creator_id' value='<%= inspirations[i].user_id %>'>
+               <input type='hidden' name='original_creator_name' value='<%= inspirations[i].user_username %>'>
+               <input type='hidden' name='original_post_id' value='<%= inspirations[i].original_post_id %>'>
+               <input type='hidden' name='repin_count' value='<%= inspirations[i].repin_count += 1 %>'>
+               <!-- uses double quotes in case there is a single quote or apostrophe.
+                    TODO escape the text in a better way. -->
+               <input type='hidden' name='text' value="<%= inspirations[i].text %>">
+
+               <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link" title="Like this idea and add it to your own queue">
+               <i class="fa fa-heart"></i>
          </button>
+         </form>
+
          <% } %>
-         <button type="button" class="btn btn-sm btn-warning inspiration_map" title="View this inspiration on a map">
-         <i class="fa fa-map-marker"></i>
-         </button>
          <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
          <i class="fa fa-clipboard"></i>
          </button>
@@ -92,17 +74,21 @@
 <%- partial ('../partials/email_modal.ejs') %>
 
 <script>
+    //Grab trending kindnesses on user click, and bring to top of feed
+    //Toggle between show and hide at top of feed
    (function(){
      $('#suggestions').hide();
      $.get("/inspiration/mostPopular", function(data) {
-       $('#suggestions').html('<div>You could: <br/>');
-       for (var i in data.suggestions) {
-         $('#suggestions').append(data.suggestions[i].text + '<br/>');
-       }
-       $('#suggestions').append('</div>');
-     });
-     $('#getsuggestions').on('click', function() {
+        console.log(data.suggestions[0]);
+        for (var i in data.suggestions) {
+          obj = {
+            inspiration: data.suggestions[i]
+          }
+          $('#suggestions').append($(JST['assets/linker/templates/trendingKindness.ejs'](obj)));
+        }
+       $('#getsuggestions').on('click', function() {
        $('#suggestions').toggle();
+     });
      });
    })();
 
@@ -135,4 +121,46 @@
     });
     $('#emailModal').modal('hide');
   });
-</script>
+
+
+
+         $('button#submit.inspire_link').on("click", function(e) {
+           e.preventDefault();
+           console.log(
+            $(this).closest('form').children('input[name="user_username"]').val());
+
+           $.ajax({
+             url: '/inspiration/create',
+             type: 'POST',
+               data: {
+                 user_id: <%= session.User.id %>,
+                 user_username: $(this).closest('form').children('input[name="user_username"]').val(),
+                 original_creator_id: $(this).closest('form').children('input[name="original_creator_id"]').val(),
+                 original_creator_name: $(this).closest('form').children('input[name="original_creator_name"]').val(),
+                 original_post_id: $(this).closest('form').children('input[name="original_post_id"]').val(),
+                 repin_count: parseInt($(this).closest('form').children('input[name="repin_count"]').val())+1,
+                 // uses double quotes in case there is a single quote or apostrophe.
+                 // TODO escape the text in a better way.
+                 text: $(this).closest('form').children('input[name="text"]').val(),
+                 done: 0,
+                 _csrf: $(this).closest('form').children('input[name="_csrf"]').val(),
+               }
+            })
+           .success(function(data) {
+             console.log('hi');
+            $.ajax({
+              url: '/story/update',
+              type: 'POST',
+                data: {
+                  inspiration_id: data.original_post_id,
+                  pinned_from: data.user_username,
+                  pinned_by: '<%= session.User.name %>',
+                  _csrf: '<%= _csrf %>'
+                }
+           });
+
+
+           });
+         });
+      </script>
+

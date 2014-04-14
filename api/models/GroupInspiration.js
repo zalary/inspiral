@@ -1,5 +1,5 @@
 /**
- * Group
+ * GroupInspiration
  *
  * @module      :: Model
  * @description :: A short summary of how this model works and what it represents.
@@ -8,30 +8,32 @@
 
 module.exports = {
 
-  adapter: 'psdb',
-  schema: true,
-
   attributes: {
 
-    org: {
+    group_id: {
+      type: 'integer',
+      required: true
+    },
+
+    activitydate: {
       type: 'string',
-      required: true,
-      unique: true
+      required: true
     },
 
-    image_url: {
+    text: {
       type: 'string',
-      defaultsTo: '/images/kitten_small.png'
+      required: true
     },
 
-    city: {
+    done: {
+      type: 'boolean'
+    },
+
+    location: {
       type: 'string',
-      required: true,
-    },
+      required: true
+    }
 
-    description: {
-      type: 'text',
-    },
+  }
 
-  },
 };
