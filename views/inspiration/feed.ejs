@@ -74,8 +74,7 @@
 <script>
     //Grab trending kindnesses on user click, and bring to top of feed
     //Toggle between show and hide at top of feed
-   (function(){
-     $('#suggestions').hide();
+    $(document).ready(function() {
      $.get("/inspiration/mostPopular", function(data) {
         for (var i in data.suggestions) {
           obj = {
@@ -83,11 +82,12 @@
           }
           $('#suggestions').append($(JST['assets/linker/templates/trendingKindness.ejs'](obj)));
         }
-       $('#getsuggestions').on('click', function() {
-       $('#suggestions').toggle();
-     });
-     });
-   })();
+      });
+    });
+
+    $('#getsuggestions').on('click', function() {
+      $('#suggestions').toggle();
+    });
 
    //Grab inspiration text for modal
   $('.inspiration-email-test').on('click', function(e) {

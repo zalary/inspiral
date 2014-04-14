@@ -459,6 +459,10 @@ div.meta a {
     text-align: center;
 }
 
+#suggestions {
+    display:none;
+}
+
 #getsuggestions {
     margin: auto;
 }
