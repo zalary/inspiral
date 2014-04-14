@@ -262,10 +262,10 @@ iframe {
 }
 div.inspiration-text{
     background-color : transparent;
-    font-size: 16px;
+    font-size: 14px;
     /*font-size: 1.5vw;*/
     text-align: left;
-    min-height: 200px;
+    min-height: 210px;
     word-wrap:break-word;
     border: 1px solid #fafafa;
     /*border-top: 2px solid #fafafa; */
