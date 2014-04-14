@@ -10,5 +10,14 @@ module.exports = {
 
   adapter: 'mongo',
 
+  autoCreatedAt: true,
+  autoUpdatedAt: false,
+
+  attributes: {
+
+    // Timestamp is not supported but Time, Date, and DateTime are
+    updated_at: 'DATETIME',
+    created_at: 'DATETIME'
+  }
 
 };
