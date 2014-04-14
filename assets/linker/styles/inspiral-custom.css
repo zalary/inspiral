@@ -468,13 +468,17 @@ div.meta a {
 }
 
 #map-canvas {
-    height: 500px;
-    width:800px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 50px;
+    height: 800px;
+    width:100%;
+    margin-top: 20px;
     margin-bottom: 100px;
 }
+
+.map-header {
+    text-align: center;
+    margin-top: 70px;
+}
+
 /* sticky navbar */
 #main {
   width:740px;
@@ -510,14 +514,6 @@ div.meta a {
   width: 1050px; /* MUST HAVE WIDTH SET, should be the sidebar width + main width */
   margin-left: auto;
   margin-right: auto;
-}
-
-.map-header {
-    text-align: center;
-}
-
-#top-map-header {
-    margin-top: 70px;
 }
 
 div.group-gravatar {
