@@ -10,7 +10,7 @@
 <!-- Kindness card featured on this story page -->
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-s-9 col-md-9">
       <div class="kindness-story-top">
         <div class="inspiration-item story-item">
           <div class="toppish">
@@ -32,21 +32,17 @@
 <!-- Add a story event for each user who repins kindness -->
 <% for (var i in story) { %>
   <% for (var x in story[0].events) { %>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-3">
-      <div class="group-gravatar">
+<div class="container">
+  <div class="row story-row">
+    <div class="col-xs-12 col-s-9 col-md-9">
+      <div class="story-gravatar left-gravatar">
       </div>
-    </div>
-    <div class="col-xs-6">
         <div class="story-event">
             This kindness was pinned by: <%= story[0].events[x].event.pinned_by %>
             <br>
             pinned from: <%= story[0].events[x].event.pinned_from %>
         </div>
-    </div>
-    <div class="col-xs-3">
-      <div class="group-gravatar">
+      <div class="story-gravatar right-gravatar">
       </div>
     </div>
   </div>
