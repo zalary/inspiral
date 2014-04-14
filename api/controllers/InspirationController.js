@@ -97,7 +97,7 @@ module.exports = {
     Inspiration.findOne(req.param('id'), function foundInspiration(err, inspiration) {
       if (err) return next(err);
       console.log("hello story inspiration");
-      console.log(inspiration);
+      //console.log(inspiration);
       res.json({
         inspiration: inspiration
       });

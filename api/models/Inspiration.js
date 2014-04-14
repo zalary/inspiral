@@ -10,14 +10,45 @@ module.exports = {
 
   afterCreate: function(newlyInsertedRecord, next) {
     if (!newlyInsertedRecord.original_post_id) {
-      Inspiration.update({
-        id: newlyInsertedRecord.id
-      }, {
-        original_post_id: newlyInsertedRecord.id
-      }, function(err, inspiration) {
-        next();
-      });
+
+      // console.log("The newlyInsertedRecord id is:");
+      // console.log(newlyInsertedRecord.id);
+
+      sails.models.inspiration.findOne(newlyInsertedRecord.id).done(
+        function(err, model) {
+          // console.log("lets see what happens here:");
+          // console.log(model.id); // THAT Works as expected.
+
+          Inspiration.update({
+              id: model.id
+            }, {
+              original_post_id: model.id
+            },
+            function(err, inspiration) {
+              if (err) {
+                return console.log(err);
+              } else {
+                console.log("Inspiration updated:", inspiration);
+              }
+            }
+          );
+        });
+
+      // This is what we tried before, it didn't work as expected (no db update occurs)
+      // Inspiration.update({
+      //   id: newlyInsertedRecord.id
+      // }, {
+      //   original_post_id: 50
+      // }, function(err, inspiration) {
+      //   if (err) {
+      //     return console.log(err);
+      //   } else {
+      //     console.log("Inspiration updated:", inspiration);
+      //   }
+      // });
+
     }
+    next();
   },
 
   attributes: {
