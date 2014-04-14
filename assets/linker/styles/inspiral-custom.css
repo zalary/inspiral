@@ -130,9 +130,25 @@ iframe {
     color:#222;
 }
 
-.recent-inspirations-list {
+.home-trending-title {
+    margin-bottom: 20px;
+}
+
+.top-and-most-recent {
+    min-height: 70px;
     font-size: 16px;
     color:#222;
+    border: 1px solid #C0C0C0;
+    -webkit-box-shadow: 2px 2px 2px 2px #6E6E6E;
+    box-shadow: 2px 2px 2px 2px #6E6E6E;
+    background: rgb(245,246,246); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(245,246,246,1) 0%, rgba(219,220,226,1) 0%, rgba(184,186,198,1) 100%, rgba(245,246,246,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,246,246,1)), color-stop(0%,rgba(219,220,226,1)), color-stop(100%,rgba(184,186,198,1)), color-stop(100%,rgba(245,246,246,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(245,246,246,1) 0%,rgba(219,220,226,1) 0%,rgba(184,186,198,1) 100%,rgba(245,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(245,246,246,1) 0%,rgba(219,220,226,1) 0%,rgba(184,186,198,1) 100%,rgba(245,246,246,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(245,246,246,1) 0%,rgba(219,220,226,1) 0%,rgba(184,186,198,1) 100%,rgba(245,246,246,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(245,246,246,1) 0%,rgba(219,220,226,1) 0%,rgba(184,186,198,1) 100%,rgba(245,246,246,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', endColorstr='#f5f6f6',GradientType=0 ); /* IE6-9 */
 }
 
 .navbar-inverse {

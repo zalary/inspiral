@@ -48,7 +48,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <h3>Top Repins</h3>
+          <h3 class="home-trending-title">Top Repins</h3>
           <ul class="list-group top-repins">
           </ul>
         </div>
@@ -63,7 +63,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <h3>Most Recent</h3>
+          <h3 class="home-trending-title">Most Recent Kindnesses</h3>
           <ul class="list-group most-recent-inspirations">
           </ul>
         </div>
@@ -99,14 +99,16 @@
     //Grabs most popular inspirations for top repins section
     $.get("/inspiration/mostPopular", function(data) {
        for (var i in data.suggestions) {
-         $('.top-repins').append('<li class="list-group-item">' + data.suggestions[i].text + '<span class="badge">' + data.suggestions[i].repin_count + '</span></li>');
+         $('.top-repins').append('<li class="list-group-item top-and-most-recent">' + data.suggestions[i].text + '<span class="badge">' + data.suggestions[i].repin_count + '</span></li>');
        }
      });
 
+    var timeOf;
     //Grabs most recent inspirations
      $.get("/inspiration/mostRecent", function(data) {
        for (var i in data.mostRecentInspirations) {
-         $('.most-recent-inspirations').append('<li class="list-group-item recent-inspirations-list">' + data.mostRecentInspirations[i].text + '<span id="recent-inspirations">' + ' added by ' + '<a href="/user/show/' + data.mostRecentInspirations[i].user_id + '" id="added-by-homepage">' + data.mostRecentInspirations[i].user_username + '</a></span></li>');
+        timeOf = moment("data.mostRecentInspirations[i].createdAt").fromNow();
+         $('.most-recent-inspirations').append('<li class="list-group-item top-and-most-recent">' + data.mostRecentInspirations[i].text + '<span id="recent-inspirations">' + ' added ' + timeOf + ' by ' + '<a href="/user/show/' + data.mostRecentInspirations[i].user_id + '" id="added-by-homepage">' + data.mostRecentInspirations[i].user_username + '</a></span></li>');
        }
      });
   });
@@ -114,6 +116,7 @@
 
 <script type="text/paperscript" src="/linker/js/homepage_canvas_2.js" canvas="homepageCanvas-2"></script>
 <script type="text/paperscript" src="/linker/js/homepage_canvas_1.js"canvas="homepageCanvas"></script>
+<script src="../../linker/js/moment.min.js"></script>
 
 
 
