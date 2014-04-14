@@ -101,7 +101,19 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       $('.input_done').hide();
       $('.new-inspiration-button').hide();
       $('#charNum').hide();
-  });
+  }).done(function(data) {
+            $.ajax({
+              url: '/story/create',
+              type: 'POST',
+                data: {
+                  inspiration_id: data.id,
+                  created_by: data.user_username,
+                  text: data.text,
+                  _csrf: '<%= _csrf %>'
+                }
+           });
+         });
+
 });
 
 //Show remaining characters in input field as type
