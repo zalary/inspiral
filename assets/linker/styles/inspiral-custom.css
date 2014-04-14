@@ -344,6 +344,31 @@ div.meta a {
   float: left;
 }
 
+.get-started-dashboard {
+    height: 150px;
+    width: 370px;
+    margin-top: 150px;
+    margin-left: 20px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
+    color: #E0E0E0;
+    background: rgb(89,89,89); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(89,89,89,1) 12%, rgba(71,71,71,1) 16%, rgba(44,44,44,1) 50%, rgba(43,43,43,1) 76%, rgba(76,76,76,1) 90%, rgba(76,76,76,1) 90%, rgba(76,76,76,1) 90%, rgba(102,102,102,1) 98%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(12%,rgba(89,89,89,1)), color-stop(16%,rgba(71,71,71,1)), color-stop(50%,rgba(44,44,44,1)), color-stop(76%,rgba(43,43,43,1)), color-stop(90%,rgba(76,76,76,1)), color-stop(90%,rgba(76,76,76,1)), color-stop(90%,rgba(76,76,76,1)), color-stop(98%,rgba(102,102,102,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(89,89,89,1) 12%,rgba(71,71,71,1) 16%,rgba(44,44,44,1) 50%,rgba(43,43,43,1) 76%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(102,102,102,1) 98%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(89,89,89,1) 12%,rgba(71,71,71,1) 16%,rgba(44,44,44,1) 50%,rgba(43,43,43,1) 76%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(102,102,102,1) 98%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(89,89,89,1) 12%,rgba(71,71,71,1) 16%,rgba(44,44,44,1) 50%,rgba(43,43,43,1) 76%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(102,102,102,1) 98%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(89,89,89,1) 12%,rgba(71,71,71,1) 16%,rgba(44,44,44,1) 50%,rgba(43,43,43,1) 76%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(76,76,76,1) 90%,rgba(102,102,102,1) 98%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#595959', endColorstr='#666666',GradientType=0 ); /* IE6-9 */
+}
+
+#begin-adding {
+    font-size: 20px;
+    margin-left: 5px;
+    padding-top: 40px;
+}
+
 #user-gravatar {
     margin-top: 10px;
     text-align: center;

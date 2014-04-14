@@ -91,6 +91,7 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       inspiration: data,
     };
 
+      $('.get-started-dashboard').hide();
       $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
 
       // $container = $('#allDashboardInspirations');
