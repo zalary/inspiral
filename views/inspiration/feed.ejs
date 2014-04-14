@@ -36,9 +36,9 @@
                <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
                <input type='hidden' name='_csrf' value='<%= _csrf %>'>
                <input type='hidden' name='user_id' value='<%= session.User.id %>'>
-               <input type='hidden' name='user_username' value='<%= session.User.username %>'>
+               <input type='hidden' name='user_username' value='<%= inspirations[i].user_username %>'>
                <input type='hidden' name='original_creator_id' value='<%= inspirations[i].user_id %>'>
-               <input type='hidden' name='original_creator_name' value='<%= inspirations[i].user_username %>'>
+               <input type='hidden' name='original_creator_name' value='<%= inspirations[i].original_creator_name %>'>
                <input type='hidden' name='original_post_id' value='<%= inspirations[i].original_post_id %>'>
                <input type='hidden' name='repin_count' value='<%= inspirations[i].repin_count += 1 %>'>
                <!-- uses double quotes in case there is a single quote or apostrophe.
@@ -92,7 +92,6 @@
    //Grab inspiration text for modal
   $('.inspiration-email-test').on('click', function(e) {
     e.preventDefault();
-    console.log($(this).data('text'));
     $('#inspiration-share-text').text($(this).data('text'));
     $('#inspiration-share-text').val($(this).data('text'));
   });
@@ -100,9 +99,6 @@
   //Logic for the Nodemailer to share inspirations with friends and invite
   //them to join user on the site
   $('#share-inspiration').on('click', function(e) {
-    console.log("hello share button");
-    console.log($('#inspiration-share-text').val());
-
     $.ajax({
     url: '/emailer/create',
     type: 'POST',
@@ -114,7 +110,6 @@
     }
   })
   .success(function(data) {
-    console.log("yay mailer");
     });
     $('#emailModal').modal('hide');
   });
@@ -123,18 +118,18 @@
 
          $('button#submit.inspire_link').on("click", function(e) {
            e.preventDefault();
-           console.log(
-            $(this).closest('form').children('input[name="user_username"]').val());
            var user_id = "0";
            <% if (session.authenticated) { %>
              user_id = "<%= session.User.id %>";
+             user_username = "<%= session.User.name %>";
            <% } %>
            $.ajax({
              url: '/inspiration/create',
              type: 'POST',
                data: {
                  user_id: user_id,
-                 user_username: $(this).closest('form').children('input[name="user_username"]').val(),
+                 user_username: user_username,
+                 //$(this).closest('form').children('input[name="user_username"]').val(),
                  original_creator_id: $(this).closest('form').children('input[name="original_creator_id"]').val(),
                  original_creator_name: $(this).closest('form').children('input[name="original_creator_name"]').val(),
                  original_post_id: $(this).closest('form').children('input[name="original_post_id"]').val(),
@@ -147,14 +142,13 @@
                }
             })
            .success(function(data) {
-
             $.ajax({
               url: '/story/update',
               type: 'POST',
                 data: {
                   inspiration_id: data.original_post_id,
                   pinned_from: data.user_username,
-                  pinned_by: "<% if (session.authenticated) { %><%= session.User.id %><% } %>",
+                  pinned_by: "<% if (session.authenticated) { %><%= session.User.username %><% } %>",
                   _csrf: '<%= _csrf %>'
                 }
            });
