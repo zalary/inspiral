@@ -7,28 +7,50 @@
   <% } %>
 </div>
 
-<div id="kindness-story-wrapper">
-  <div class="story-page-top">
-    <h2>Kindness Story</h2>
-    <div class="kindness-story-item container">
-        <div class="toppish">
+<!-- Kindness card featured on this story page -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="kindness-story-top">
+        <div class="inspiration-item story-item">
+          <div class="toppish">
+            <p>Original Kindness</p>
+          </div>
+          <div class="inspiration-text">
+            <%= story[0].insp_text %>
+          </div>
+          <div class="meta">
+            <span><i class="fa fa-user"></i> <a href="#"><%= story[0].created_by %></a></span>
+          </div>
         </div>
-        <div class="inspiration-text">
-          <%= story[0].insp_text %>
-        </div>
-        <div id="kindness-created">Created by <%= story[0].created_by %>
-        </div>
+        <h2 id="kindness-story-title">Kindness Story</h2>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- Add a story event for each user who repins kindness -->
 <% for (var i in story) { %>
   <% for (var x in story[0].events) { %>
-  <div class="story-event">
-      This kindness was pinned by: <%= story[0].events[x].event.pinned_by %>
-      <br>
-      pinned from: <%= story[0].events[x].event.pinned_from %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-3">
+      <div class="group-gravatar">
+      </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="story-event">
+            This kindness was pinned by: <%= story[0].events[x].event.pinned_by %>
+            <br>
+            pinned from: <%= story[0].events[x].event.pinned_from %>
+        </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="group-gravatar">
+      </div>
+    </div>
   </div>
+</div>
   <% } %>
 <% } %>
 
