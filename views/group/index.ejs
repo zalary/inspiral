@@ -1,16 +1,18 @@
 <h2>Find Cool People to Inspiral with!</h2>
 <h6><a href="/group/new/">Register a new group</a></h6>
-<div id="main">
+
+<div id="inspiration-feed">
 <% for (var i in groups) {%>
   <div class="group-index">
-    <div class="group-gravatar" style="background: url(<%= groups[i].image_url %>); background-size: 110px; background-repeat: no-repeat;"></div>
+    <div class="group-gravatar" style="background-image: url(<%= groups[i].image_url %>); background-size: 250px; background-repeat: no-repeat;"></div>
     <div class="group-content">
       <h3><a href="/group/show/<%= groups[i].id %>"><%= groups[i].org %></a></h3>
       <h5><%= groups[i].city %></h5>
-      <% var groupDesc = groups[i].description.split(".") %> 
+      <% var groupDesc = groups[i].description.split(".") %>
       <h4><%= groupDesc.splice(0,1) %>.</h4>
       <%= groupDesc.join(".") %>
     </div>
   </div>
+
 <% } %>
-</div>
+

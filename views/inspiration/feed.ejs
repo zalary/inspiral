@@ -3,6 +3,7 @@
 <% } else { %>
 <%- partial ('../partials/navbar_loggedout.ejs') %>
 <% } %>
+<div class="center-main">
 <h2 id="inspiration-feed-title">Inspiration Feed</h2>
 <div id="feed-want-more">
    <button id="getsuggestions" type="button" class="btn btn-success">
@@ -66,6 +67,7 @@
     </div>
    <% } %>
 </div>
+</div>
 
 <%- partial ('../partials/email_modal.ejs') %>
 
@@ -75,7 +77,6 @@
    (function(){
      $('#suggestions').hide();
      $.get("/inspiration/mostPopular", function(data) {
-        console.log(data.suggestions[0]);
         for (var i in data.suggestions) {
           obj = {
             inspiration: data.suggestions[i]
@@ -124,12 +125,15 @@
            e.preventDefault();
            console.log(
             $(this).closest('form').children('input[name="user_username"]').val());
-
+           var user_id = "0";
+           <% if (session.authenticated) { %>
+             user_id = "<%= session.User.id %>";
+           <% } %>
            $.ajax({
              url: '/inspiration/create',
              type: 'POST',
                data: {
-                 user_id: <% if (session.authenticated) { %>"<%= session.User.id %>"<% } %>,
+                 user_id: user_id,
                  user_username: $(this).closest('form').children('input[name="user_username"]').val(),
                  original_creator_id: $(this).closest('form').children('input[name="original_creator_id"]').val(),
                  original_creator_name: $(this).closest('form').children('input[name="original_creator_name"]').val(),
