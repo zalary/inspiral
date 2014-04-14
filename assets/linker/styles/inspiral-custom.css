@@ -595,3 +595,6 @@ div.group-index {
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
 }
+
+/* div.buttons { text-align: center; } */
+button#submit.inspire_link { float: left; margin-right: 5px; margin-left: 40px;}

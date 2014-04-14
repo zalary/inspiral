@@ -8,6 +8,16 @@
 
 module.exports = {
 
+  afterCreate: function(newlyInsertedRecord, next) {
+    if (!newlyInsertedRecord.original_post_id) {
+      Inspiration.update({
+        id: newlyInsertedRecord.id
+      }, {
+        original_post_id: newlyInsertedRecord.id
+      }, function(err, inspiration) {});
+    }
+  },
+
   attributes: {
 
     //user_id: 'integer',
@@ -37,7 +47,7 @@ module.exports = {
     },
 
     original_post_id: {
-      type: 'integer'
+      type: 'integer',
     },
 
     repin_count: {
