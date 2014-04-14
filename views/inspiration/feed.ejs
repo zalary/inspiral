@@ -51,7 +51,7 @@
          </form>
 
          <% } %>
-         <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
+         <button type="button" class="btn btn-sm btn-info story_link" onclick="location.href='../story/show/<%= inspirations[i].original_post_id %>'" title="View the story of this inspiration">
          <i class="fa fa-clipboard"></i>
          </button>
          <% if (session.authenticated) { %>

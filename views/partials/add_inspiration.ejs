@@ -67,8 +67,8 @@ $('.dashboard-inspiration-add').on("submit", function(e) {
       original_creator_name: '<%= session.User.username %>',
       text: $('#new-inspiration').val(),
       done: done_status,
-      latitude: latitude *= 1000 //sometimes this still multiplies things too much
-      longitude: latitude *= 1000 // sometimes this still multiplies things too much
+      latitude: latitude *= 1000, //sometimes this still multiplies things too much
+      longitude: longitude *= 1000, // sometimes this still multiplies things too much
       _csrf: '<%= _csrf %>'
     }
   })
