@@ -134,7 +134,7 @@
                  original_creator_id: $(this).closest('form').children('input[name="original_creator_id"]').val(),
                  original_creator_name: $(this).closest('form').children('input[name="original_creator_name"]').val(),
                  original_post_id: $(this).closest('form').children('input[name="original_post_id"]').val(),
-                 repin_count: $(this).closest('form').children('input[name="repin_count"]').val()+1,
+                 repin_count: parseInt($(this).closest('form').children('input[name="repin_count"]').val())+1,
                  // uses double quotes in case there is a single quote or apostrophe.
                  // TODO escape the text in a better way.
                  text: $(this).closest('form').children('input[name="text"]').val(),
