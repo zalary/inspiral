@@ -14,7 +14,9 @@ module.exports = {
         id: newlyInsertedRecord.id
       }, {
         original_post_id: newlyInsertedRecord.id
-      }, function(err, inspiration) {});
+      }, function(err, inspiration) {
+        next();
+      });
     }
   },
 
