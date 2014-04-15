@@ -41,6 +41,30 @@ module.exports.adapters = {
 
   disk: {
     module: 'sails-disk'
-  }
+  },
 
+  'default': 'psdb',
+
+  'psdb': {
+    module: 'sails-postgresql',
+    host: 'ec2-23-23-81-171.compute-1.amazonaws.com' || 'localhost',
+    user: process.env.HK_POSTGRES_USER || 'zalary',
+    password: process.env.HK_POSTGRES_PASS || '',
+    database: 'd7h97cqpalnj0q' || 'inspiral',
+    port: 5432,
+    //this should be set to false when working locally,
+    //but must be set to true for heroku deployment
+    ssl: true,
+
+    schema: true //This makes sure that sails matches
+    //the database schema to your models.
+  },
+
+
+  'mongo': {
+
+    module: 'sails-mongo',
+    url: process.env.MHQ_URL || ''
+
+  }
 };
