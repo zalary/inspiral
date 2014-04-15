@@ -60,13 +60,37 @@
       </div>
         <div id="allDashboardInspirations">
           <% for (i in inspirations) { %>
+      <!-- Adds each kindness item to user's dashboard -->
+      <% if (inspirations[i].done == 0) { %>
+        <div class="inspiration-item todoItem">
+          <div class="toppish">
+            <p>future</p>
+          </div>
+      <% } else { %>
+        <div class="inspiration-item doneItem">
+          <div class="toppish past-kindness-card">
+            <p>past</p>
+          </div>
+      <% } %>
+        <div class="inspiration-text">
+          <%= inspirations[i].text %>
+        </div>
+        <div id="createdAt-<%=inspirations[i].id%>" class="createdAt">
+        </div>
+        <script>
+          $('#createdAt-<%=inspirations[i].id%>').text("added " + moment("<%=inspirations[i].createdAt%>").fromNow());
+        </script>
+        <div class="buttons">
            <% if (session.authenticated) { %>
+           <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link-<%=inspirations[i].id%> repin-button" title="Like this idea and add it to your own queue">
+           <i class="fa fa-heart"></i>
+           </button>
       <form method="post" action="/inspiration/create">
          <!-- Posts csrf token, user_id + original_creator_id, done_status and text to /inspiration/create -->
          <input type='hidden' name='_csrf' value='<%= _csrf %>'>
       </form>
       <script>
-         $('button#submit.inspire_link').on("click", function(e) {
+         $('.inspire_link-<%=inspirations[i].id%>').on("click", function(e) {
            e.preventDefault();
            console.log('submit');
            $.ajax({
@@ -99,32 +123,6 @@
            });
          });
       </script>
-      <% } %>
-      <!-- Adds each kindness item to user's dashboard -->
-      <% if (inspirations[i].done == 0) { %>
-        <div class="inspiration-item todoItem">
-          <div class="toppish">
-            <p>future</p>
-          </div>
-      <% } else { %>
-        <div class="inspiration-item doneItem">
-          <div class="toppish past-kindness-card">
-            <p>past</p>
-          </div>
-      <% } %>
-        <div class="inspiration-text">
-          <%= inspirations[i].text %>
-        </div>
-        <div id="createdAt-<%=inspirations[i].id%>" class="createdAt">
-        </div>
-        <script>
-          $('#createdAt-<%=inspirations[i].id%>').text("added " + moment("<%=inspirations[i].createdAt%>").fromNow());
-        </script>
-        <div class="buttons">
-           <% if (session.authenticated && (session.User.id != inspirations[i].user_id)) { %>
-           <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link repin-button" title="Like this idea and add it to your own queue">
-           <i class="fa fa-heart"></i>
-           </button>
            <% } %>
            <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
            <i class="fa fa-clipboard"></i>

@@ -95,6 +95,8 @@ var InspirationIndexPage = {
 
     $container = $('#inspiration-feed');
 
+    console.log($container);
+
     $container.masonry({});
 
     $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
