@@ -17,7 +17,7 @@
 
 module.exports = {
 
-  index: function(req, res) {
+  'index': function(req, res) {
     NewsItem.find(req.param(), function(err, newsitems) {
       res.view({
         newsitems: newsitems
