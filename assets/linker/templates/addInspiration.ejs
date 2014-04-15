@@ -12,6 +12,11 @@
         <div class="inspiration-text">
           <%= inspiration.text %>
         </div>
+        <div id="createdAt-<%=inspiration.id%>" class="createdAt">
+        </div>
+        <script>
+          $('#createdAt-<%=inspiration.id%>').text("added " + moment("<%=inspiration.createdAt%>").fromNow());
+        </script>
         <div class="buttons">
            <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link repin-button" title="Like this idea and add it to your own queue">
            <i class="fa fa-heart"></i>
