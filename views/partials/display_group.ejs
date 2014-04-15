@@ -12,10 +12,10 @@
 
   <h6>Members:</h6>
   <% for (var i in members) { %>
-    <div class="member"><% if (members[i]) { %>
-      <a href="../../user/show/<%= members[i].id %>"><%= members[i].name %></a>
+    <ul class="member"><% if (members[i]) { %>
+      <li><a href="../../user/show/<%= members[i].id %>"><%= members[i].name %></a></li>
       <% } %>
-    </div>
+    </ul>
   <% } %>
   </div>
 </div>

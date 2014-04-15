@@ -23,7 +23,7 @@ module.exports = {
 
   join: function(req, res, err) {
     //only deals with join table
-    GroupUser.query('INSERT INTO groupuser (group_id, member_id) VALUES (' + req.param("groupid") + ',' + req.param("memberid") + ')', function(err, data) {});
+    GroupUser.query('INSERT INTO groupuser (group_id, member_id) VALUES (' + req.param("group_id") + ',' + req.param("member_id") + ')', function(err, data) {});
     res.send(200);
   },
 
