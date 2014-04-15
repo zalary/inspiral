@@ -1,3 +1,5 @@
+ <script src="../../linker/js/moment.min.js"></script>
+
  <!-- Check to see which navbar partial to load -->
 <div class='container'>
   <% if (session.authenticated) { %>
@@ -10,7 +12,7 @@
 <!-- Kindness card featured on this story page -->
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-s-9 col-md-9">
+    <div class="col-s-9 col-md-9">
       <div class="kindness-story-top">
         <div class="inspiration-item story-item">
           <div class="toppish">
@@ -34,13 +36,17 @@
   <% for (var x in story[0].events) { %>
 <div class="container">
   <div class="row story-row">
-    <div class="col-xs-12 col-s-9 col-md-9">
+    <div class="col-s-9 col-md-9">
       <div class="story-gravatar left-gravatar">
       </div>
         <div class="story-event">
-            This kindness was pinned by: <%= story[0].events[x].event.pinned_by %>
+            <p id="pinned-by" class="pinned-time-<%=x%>">Pinned by <%= story[0].events[x].event.pinned_by %> </p>
+              <script>
+              //Add time from now kindness was pinned with Moment.js
+              $('.pinned-time-<%=x%>').append(moment("<%= story[0].events[x].event.pinned_time %>").fromNow());
+              </script>
             <br>
-            pinned from: <%= story[0].events[x].event.pinned_from %>
+            pinned from <%= story[0].events[x].event.pinned_from %>
         </div>
       <div class="story-gravatar right-gravatar">
       </div>
@@ -49,12 +55,3 @@
 </div>
   <% } %>
 <% } %>
-
-<script>
-// $(document).ready(function() {
-//   console.log(<%= story[0].id %>);
-//   $.get('/inspiration/storyInspiration/'+ '<%= story[0].id %>', function(data) {
-//     $('#story-inspiration-card').append($(JST['assets/linker/templates/addInspiration.ejs'](data)));
-//   });
-// });
-</script>

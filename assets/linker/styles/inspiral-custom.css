@@ -668,12 +668,17 @@ div.story-gravatar {
     margin-left: auto;
 }
 
+#pinned-by {
+    text-align: left;
+    margin-left: 4px;
+}
+
 .story-event {
     float:left;
     padding-top: 15px;
     margin-top: 50px;
     text-align: center;
-    font-size: 16px;
+    font-size: 13px;
     width: 400px;
     height: 90px;
     border: 1px solid #fafafa;
