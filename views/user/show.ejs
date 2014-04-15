@@ -66,8 +66,9 @@
          <input type='hidden' name='_csrf' value='<%= _csrf %>'>
       </form>
       <script>
-         $('button#submit.inspire_link').on("submit", function(e) {
+         $('button#submit.inspire_link').on("click", function(e) {
            e.preventDefault();
+           console.log('submit');
            $.ajax({
              url: '/inspiration/create',
              type: 'POST',
@@ -83,7 +84,19 @@
                  _csrf: '<%= _csrf %>'
                }
             })
-           .success(function(data) {});
+           .success(function(data) {
+            console.log('success');
+              $.ajax({
+              url: '/inspiration/update/' + '<%= inspirations[i].id %>',
+              type: 'POST',
+                data: {
+                  repin_count: parseInt('<%= inspirations[i].repin_count %>') + 1,
+                  _csrf: '<%= _csrf %>'
+                }
+
+              })
+
+           });
          });
       </script>
       <% } %>
@@ -170,14 +183,14 @@
 
   //If user clicks on main area, box resizes to original size
   //Also hide checkbox and button
-  $('#main').on('click', function(e) {
-    $('#new-inspiration').height(40);
-    $('#new-inspiration').width(250);
-    $('.input_done').hide();
-    $('.new-inspiration-button').hide();
-    $('#charNum').hide();
-    $('#new-inspiration').val("");
-  });
+  // $('#main').on('click', function(e) {
+  //   // $('#new-inspiration').height(40);
+  //   // $('#new-inspiration').width(250);
+  //   // $('.input_done').hide();
+  //   // $('.new-inspiration-button').hide();
+  //   // $('#charNum').hide();
+  //   // $('#new-inspiration').val("");
+  // });
 
   //Grab inspiration text for modal
   $('.inspiration-email-test').on('click', function(e) {
