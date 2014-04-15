@@ -93,17 +93,6 @@ module.exports = {
     });
   },
 
-  storyInspiration: function(req, res, next) {
-    Inspiration.findOne(req.param('id'), function foundInspiration(err, inspiration) {
-      if (err) return next(err);
-      console.log("hello story inspiration");
-      //console.log(inspiration);
-      res.json({
-        inspiration: inspiration
-      });
-    });
-  },
-
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to InspirationController)
