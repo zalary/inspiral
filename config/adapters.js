@@ -54,7 +54,7 @@ module.exports.adapters = {
     port: 5432,
     //this should be set to false when working locally,
     //but must be set to true for heroku deployment
-    ssl: true,
+    //ssl: true,
 
     schema: true //This makes sure that sails matches
     //the database schema to your models.
