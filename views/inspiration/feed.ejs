@@ -1,3 +1,5 @@
+<script src="../../linker/js/moment.min.js"></script>
+
 <% if (session.authenticated) { %>
 <%- partial ('../partials/navbar_loggedin.ejs') %>
 <% } else { %>
@@ -45,7 +47,8 @@
                <input type='hidden' name='original_creator_id' value='<%= inspirations[i].user_id %>'>
                <input type='hidden' name='original_creator_name' value='<%= inspirations[i].original_creator_name %>'>
                <input type='hidden' name='original_post_id' value='<%= inspirations[i].original_post_id %>'>
-               <input type='hidden' name='repin_count' value='<%= inspirations[i].repin_count += 1 %>'>
+               <input type='hidden' name='repin_count' value='<%= inspirations[i].repin_count %>'>
+               <input type='hidden' name='post_id' value='<%= inspirations[i].id %>'>
                <!-- uses double quotes in case there is a single quote or apostrophe.
                     TODO escape the text in a better way. -->
                <input type='hidden' name='text' value="<%= inspirations[i].text %>">
@@ -143,6 +146,8 @@
            <% if (session.authenticated) { %>
              user_id = "<%= session.User.id %>";
              user_username = "<%= session.User.name %>";
+             post_id = $(this).closest('form').children('input[name="post_id"]').val();
+             pin_count = $(this).closest('form').children('input[name="repin_count"]').val();
            <% } %>
            $.ajax({
              url: '/inspiration/create',
@@ -154,26 +159,37 @@
                  original_creator_id: $(this).closest('form').children('input[name="original_creator_id"]').val(),
                  original_creator_name: $(this).closest('form').children('input[name="original_creator_name"]').val(),
                  original_post_id: $(this).closest('form').children('input[name="original_post_id"]').val(),
-                 repin_count: parseInt($(this).closest('form').children('input[name="repin_count"]').val())+1,
+                 // this is a new pin, so repin count goes back to 0
+                 repin_count: 0,
+
                  // uses double quotes in case there is a single quote or apostrophe.
                  // TODO escape the text in a better way.
                  text: $(this).closest('form').children('input[name="text"]').val(),
                  done: 0,
-                 _csrf: $(this).closest('form').children('input[name="_csrf"]').val(),
+                 _csrf: $(this).closest('form').children('input[name="_csrf"]').val()
                }
             })
            .success(function(data) {
             $.ajax({
-              url: '/story/update',
+              url: '/inspiration/update/' + post_id,
               type: 'POST',
                 data: {
-                  inspiration_id: data.original_post_id,
-                  pinned_from: data.user_username,
-                  pinned_by: "<% if (session.authenticated) { %><%= session.User.username %><% } %>",
+                  repin_count: parseInt(pin_count) + 1,
                   _csrf: '<%= _csrf %>'
                 }
-           });
-
+            })
+              .success(function(data) {
+              $.ajax({
+                url: '/story/update',
+                type: 'POST',
+                  data: {
+                    inspiration_id: data.original_post_id,
+                    pinned_from: data.user_username,
+                    pinned_by: "<% if (session.authenticated) { %><%= session.User.username %><% } %>",
+                    _csrf: '<%= _csrf %>'
+                  }
+              });
+            });
            });
          });
 
