@@ -30,6 +30,10 @@ div.container.marketing {
     margin-left: auto;
 }
 
+.edit-account-form h2 {
+    margin-top: 80px;
+}
+
 iframe {
   width: 650px;
   height: 400px;
