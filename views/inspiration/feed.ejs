@@ -60,8 +60,8 @@
 
          <% } else if ((session.authenticated) && (session.User.id != inspirations[i].user_id)) { %>
 
- <button type="button" class="btn btn-sm btn-danger your-own" title="Like this idea and add it to your own queue">
-               <i class="fa fa-heart"></i>
+         <button type="button" class="btn btn-sm btn-danger your-own" title="Like this idea and add it to your own queue">
+         <i class="fa fa-heart"></i>
          </button>
          </form>
          <% } else { %>
@@ -85,7 +85,7 @@
           <% } %>
       </div>
       <div class="meta">
-        <span><i class="fa fa-user"></i> <a href="#"><%= inspirations[i].user_username %></a></span>
+        <span><i class="fa fa-user"></i> <a href="/user/show/<%=inspirations[i].user_id%>"><%= inspirations[i].user_username %></a></span>
         <span><i class="fa fa-heart"></i> <%= inspirations[i].repin_count %></span>
       </div>
     </div>
