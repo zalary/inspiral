@@ -30,6 +30,11 @@
       <div class="inspiration-text">
         <%= inspirations[i].text %>
       </div>
+      <div id="createdAt-<%=inspirations[i].id%>" class="createdAt">
+      </div>
+        <script>
+          $('#createdAt-<%=inspirations[i].id%>').text("added " + moment("<%=inspirations[i].createdAt%>").fromNow());
+        </script>
       <div class="buttons">
          <% if (session.authenticated && (session.User.id != inspirations[i].user_id)) { %>
             <form method="post" action="/inspiration/create">

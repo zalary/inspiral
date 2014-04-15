@@ -341,6 +341,11 @@ div.meta a {
     text-align: center;
 }
 
+.createdAt {
+    padding-left: 5px;
+    background: #f6f6f6;
+}
+
 .dashboard-inspiration-add {
     text-align: center;
 }
