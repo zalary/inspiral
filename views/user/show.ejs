@@ -168,32 +168,26 @@
     } else {
       $('#kindness-title').text("Altruistic Enlightenment");
     }
-
-    //Adds a welcome info box for new users
-    if (inspirationLength == 0) {
-      $('#filter-inspirations').append('<div class="get-started-dashboard">' + '<p id="begin-adding">' + 'Welcome to Inspiral!' + '<br>' + '<span class="glyphicon glyphicon-arrow-left"></span>' + '  Begin adding kindnesses now' + '</p>' + '</div>');
-    }
-  });
 </script>
 
 
 <script type="text/javascript">
 
-  //If user clicks on main area, box resizes to original size
-  //Also hide checkbox and button
-  // $('#main').on('click', function(e) {
-  //   // $('#new-inspiration').height(40);
-  //   // $('#new-inspiration').width(250);
-  //   // $('.input_done').hide();
-  //   // $('.new-inspiration-button').hide();
-  //   // $('#charNum').hide();
-  //   // $('#new-inspiration').val("");
-  // });
+  If user clicks on main area, box resizes to original size
+  Also hide checkbox and button
+  $('#main').on('click', function(e) {
+    $('#new-inspiration').height(40);
+    $('#new-inspiration').width(250);
+    $('.input_done').hide();
+    $('.new-inspiration-button').hide();
+    $('#charNum').hide();
+    $('#new-inspiration').val("");
+  });
 
   //Grab inspiration text for modal
   $('.inspiration-email-test').on('click', function(e) {
     e.preventDefault();
-    console.log($(this).data('text'));
+
     $('#inspiration-share-text').text($(this).data('text'));
     $('#inspiration-share-text').val($(this).data('text'));
   });
@@ -201,9 +195,6 @@
   //Logic for the Nodemailer to share inspirations with friends and invite
   //them to join user on the site
   $('#share-inspiration').on('click', function(e) {
-    console.log("hello share button");
-    console.log($('#inspiration-share-text').val());
-    console.log($('#friend-share-name-input').val()),
 
     $.ajax({
     url: '/emailer/create',
@@ -217,9 +208,7 @@
       _csrf: '<%= _csrf %>'
     }
   })
-  .success(function(data) {
-    console.log("yay mailer");
-    });
+  .success(function(data) {});
 
     //Close email modal after sending email, and clear modal input fields
     $('#emailModal').modal('hide');

@@ -34,7 +34,6 @@ module.exports = {
           return next(err);
         }
 
-        console.log("inspiration saving");
         Inspiration.publishCreate(inspiration);
         res.json(inspiration);
       });
