@@ -623,6 +623,12 @@ div.group-index ul li {
     padding-left: 50px;
 }
 
+.story-arrow {
+    height: 50px;
+    text-align: center;
+    margin-top: 10px;
+}
+
 .story-item {
     float:right;
     margin-right: 40px;
@@ -638,6 +644,7 @@ div.group-index ul li {
 
 .story-row {
     margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 div.story-gravatar {
@@ -669,8 +676,13 @@ div.story-gravatar {
 }
 
 #pinned-by {
+    text-align: right;
+    margin-right: 5px;
+}
+
+#pinned-from {
     text-align: left;
-    margin-left: 4px;
+    margin-left: 5px;
 }
 
 .story-event {
