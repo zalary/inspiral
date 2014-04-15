@@ -1,0 +1,19 @@
+<% if (session.authenticated) { %>
+<%- partial ('../partials/navbar_loggedin.ejs') %>
+<% } else { %>
+<%- partial ('../partials/navbar_loggedout.ejs') %>
+<% } %>
+
+<br /><br />
+<div class="formwrapper">
+<h2>Random Acts of Kindness in the News</h2>
+</div>
+<div class="group-index-wrap">
+<% for (var i = 0; i < newsitems.length; i++) { %>
+  <div class="group-index">
+  <div class="group-gravatar" style="background-image:url(<%=newsitems[i].image_url%>) ; background-size: 220px"></div>
+  <h5><a href="<%=newsitems[i].url%>"><%=newsitems[i].title%></a></h5>
+  <p><%=newsitems[i].description%></p>
+  </div>
+<% } %>
+</div>
