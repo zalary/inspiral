@@ -50,17 +50,33 @@
                     TODO escape the text in a better way. -->
                <input type='hidden' name='text' value="<%= inspirations[i].text %>">
 
-               <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link" title="Like this idea and add it to your own queue">
+               <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link session-exists" title="Like this idea and add it to your own queue">
                <i class="fa fa-heart"></i>
          </button>
          </form>
 
+         <% } else if ((session.authenticated) && (session.User.id != inspirations[i].user_id)) { %>
+
+ <button type="button" class="btn btn-sm btn-danger your-own" title="Like this idea and add it to your own queue">
+               <i class="fa fa-heart"></i>
+         </button>
+         </form>
+         <% } else { %>
+         <button type="button" class="btn btn-sm btn-danger need-login" title="Like this idea and add it to your own queue">
+               <i class="fa fa-heart"></i>
+         </button>
+         </form>
          <% } %>
+
          <button type="button" class="btn btn-sm btn-info story_link" onclick="location.href='../story/show/<%= inspirations[i].original_post_id %>'" title="View the story of this inspiration">
          <i class="fa fa-clipboard"></i>
          </button>
          <% if (session.authenticated) { %>
          <button type="button" id="submit" class="btn btn-sm btn-success inspiration-email-test" title="Email to a friend" data-toggle="modal" data-text="<%=inspirations[i].text %>" data-target="#emailModal">
+          <i class="fa fa-envelope"></i>
+          </button>
+          <% } else { %>
+          <button type="button" class="btn btn-sm btn-success inspiration-email-test need-login" title="Email to a friend">
           <i class="fa fa-envelope"></i>
           </button>
           <% } %>
@@ -121,7 +137,7 @@
 
 
 
-         $('button#submit.inspire_link').on("click", function(e) {
+         $('button.inspire_link').on("click", function(e) {
            e.preventDefault();
            var user_id = "0";
            <% if (session.authenticated) { %>
@@ -158,8 +174,22 @@
                 }
            });
 
-
            });
          });
-      </script>
 
+
+$('.need-login').on("click", function(e) {
+
+           bootbox.alert("<h4>You need to login to do that</h4><div>If you don't have an account yet, why not sign up now and start sharing</div>");
+
+    });
+
+$('.your-own').on("click", function(e) {
+
+           bootbox.alert("<h4>You can't repin your own ideas</h4><div>If you don't have an account yet, why not sign up now and start sharing</div>");
+
+    });
+
+
+
+ </script>
