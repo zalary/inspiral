@@ -1,19 +1,22 @@
   <base target="_top">
 
 
-    <!-- Paper.js canvas
-    ================================================== -->
-<div class="row">
-  <div class="col-xs-12">
-    <div id="homepage-inspiral">
-      <canvas id="homepageCanvas">
-      </canvas>
-      <div id="inspiral-land-title">INSPIRAL</div>
-      </br>
-      <a class="btn btn-lg btn-primary" id="signup-homepage" href="#signinup" role="button">get started now</a>
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Inspiral App - Share the things that Inspire you</title>
+
+
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 
 <% if (session.authenticated) { %>
 <%- partial ('../partials/navbar_loggedin.ejs') %>
@@ -21,76 +24,96 @@
 <%- partial ('../partials/navbar_loggedout.ejs') %>
 <% } %>
 
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+        <section class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
 
-    <div class="container-fluid" id="homepage-row-2">
+                        <h1 class="brand-heading">Inspiral</h1>
 
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-xs-4">
-          <h3 class="homepage-row-2-text">Inspire</h3>
-            <p class="homepage-para">Add acts of kindness you want to do and have done, and inspire others to add these acts of kindness to their lists. Inspiral is a community dedicated to growing the collective kindness.</p>
-        </div><!-- /.col-xs-4 -->
-        <div class="col-xs-4">
-          <h3 class="homepage-row-2-text">Discover</h3>
-            <p class="homepage-para">Random acts of kindness are contagious. Check out the inspiration feed to be inspired by the acts of kindness that other users are doing, and add them to your own list to do.</p>
-        </div><!-- /.col-xs-4 -->
-        <div class="col-xs-4">
-          <h3 class="homepage-row-2-text">Share</h3>
-          <p class="homepage-para">Kindness starts with one act, and spirals out from there. Inspire your friends to join you in acts of kindness by tweeting and emailing out your favorite inspirations.</p>
-        </div><!-- /.col-xs-4 -->
-      </div><!-- /.row -->
-
-
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row">
-        <div class="col-xs-12">
-          <h3 class="home-trending-title">Top Repins</h3>
-          <ul class="list-group top-repins">
-          </ul>
+<br /><br /><br /><br /><br />
+                        <div class="page-scroll">
+                            <p> <a href="http://startbootstrap.com/grayscale" class="btn btn-default btn-lg">Inspire with your own acts of kindness</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <hr class="featurette-divider">
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
 
-        <canvas id="homepageCanvas-2">
-        </canvas>
+                <h2>Inspire</h2>
+                    <p>Add acts of kindness you want to do and have done, and inspire others to add these acts of kindness to their lists. Inspiral is a community dedicated to growing the collective kindness.</p>
 
-      <hr class="featurette-divider">
+                <h2>Discover</h2>
+                    <p>Random acts of kindness are contagious. Check out the inspiration feed to be inspired by the acts of kindness that other users are doing, and add them to your own list to do.</p>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <h3 class="home-trending-title">Most Recent Kindnesses</h3>
-          <ul class="list-group most-recent-inspirations">
-          </ul>
+                <h2>Share</h2>
+                    <p>Kindness starts with one act, and spirals out from there. Inspire your friends to join you in acts of kindness by tweeting and emailing out your favorite inspirations. </p>           </div>
         </div>
-      </div>
+    </section>
 
-      <hr class="featurette-divider">
+    <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
 
-      <div class="row featurette">
-        <a name="signinup">
-        <div class="col-xs-12" id="start-inspiring">
-          <h2 class="featurette-heading">Start inspiring now</h2>
-          <iframe src="/user/new" scrolling="no" frameborder="0"></iframe>
+                    <p>"No act of kindness, no matter how small, is ever wasted.
+                        <p style="text-align: right">-- Aesop</p>
+                    <p>"Kindness is the language which the deaf can hear and the blind can see." </p>
+                        <p style="text-align: right">-- Mark Twain</p>
+                        <p>"Wherever there is a human being, there is an opportunity for a kindness.</p>
+<p style="text-align: right">-- Seneca</p>
+
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <hr class="featurette-divider">
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Get started with Inspiral</h2>
+                <p>Inspiral is a social web app for posting and sharing acts of kindness. We encourage you to add acts of kindness, find inspiration from others, and organize acts of kindness with your friends through groups and invitations.</p>
+                <ul class="list-inline banner-social-buttons">
+                    <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li><a href="https://github.com/shukbot/inspiral" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                  <!--   <li><a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                    </li> -->
+                </ul>
+                <ul class="list-inline banner-social-buttons">
+                    <li style="min-width: 200px; min-height: 100px;">
+<a href="https://twitter.com/intent/tweet?button_hashtag=Inspiral&text=Inspiring%20through%20kindness%20by" class="twitter-hashtag-button"
+data-size="large" data-url="http://inspiralapp.herokuapp.com">Tweet #Inspiral</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</li></ul>
+            </div>
+        </div>
+    </section>
 
-      <!-- /END THE FEATURETTES -->
+    <div id="map"></div>
+
+    <!-- Core JavaScript Files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - You will need to use your own API key to use the map feature -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?APIKEY&sensor=false"></script>
+
+    <!-- Custom Theme JavaScript -->
 
 
-      <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2014 Adam, Kathryn & Zalary &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
+</body>
 
-    </div><!-- /.container -->
+</html>
+
 
 
     <!--  PAGE SPECIFIC JS -->

@@ -1,20 +1,10 @@
-body {
-  background: url(../../images/bgs/softblue.png) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding: 0;
-  margin: 0;
-}
+
 
 a:hover {
     text-decoration: none;
 }
 
-div.container.marketing {
-    padding-top: 50px;
-}
+
 
 .form-control {
   margin-bottom: 5px;
@@ -57,61 +47,6 @@ iframe {
     -o-border-radius: 0;
 }
 
-.carousel { margin-bottom: 0px; }
-
-#homepage-landing {
-    height: 500px;
-}
-
-#homepageCanvas {
-    height: 500px;
-    width: 100%;
-    opacity: 0.9;
-    z-index: -1;
-}
-
-#homepageCanvas-2 {
-    height: 600px;
-    width: 850px;
-    opacity: 0.7;
-    margin-left: 8%;
-    position:relative;
-}
-
-#homepage-inspiral {
-    height: 500px;
-    width: 100%;
-    text-align: center;
-}
-
-#inspiral-land-title {
-    font-family: "Lucida Console", Monaco, monospace;
-    color: white;
-    opacity: 0.8;
-    font-size: 32px;
-    position: relative;
-    z-index: 1;
-    margin-top: -150px;
-}
-
-#homepage-row-2 {
-    padding-top: 35px;
-}
-
-.homepage-row-2-text {
-    font-family: "Lucida Console", Monaco, monospace;
-    color: #428bca;
-}
-
-.homepage-para {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 15px;
-}
-
-.lead {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 18px;
-}
 
 #signup-homepage {
     font-family: Verdana, Geneva, sans-serif;
@@ -770,4 +705,4 @@ background: linear-gradient(to bottom, #749bb0 0%,#8eb7c2 55%,#b9e4ea 100%,#feff
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#749bb0', endColorstr='#feffff',GradientType=0 ); /* IE6-9 */
 }
 
-
+.banner-social-buttons iframe { padding: 0px; }
