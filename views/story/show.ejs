@@ -35,15 +35,8 @@
 <% for (var i in story) { %>
   <% for (var x in story[0].events) { %>
 <div class="container">
-  <div class="row story-arrow">
-    <span class="glyphicon glyphicon-arrow-down"></span>
-  </div>
-</div>
-<div class="container">
   <div class="row story-row">
     <div class="col-s-9 col-md-9">
-      <div class="story-gravatar left-gravatar">
-      </div>
         <div class="story-event">
             <p id="pinned-from">pinned from <%= story[0].events[x].event.pinned_from %></p>
             <br>
@@ -53,8 +46,6 @@
               $('.pinned-time-<%=x%>').append(moment("<%= story[0].events[x].event.pinned_time %>").fromNow());
               </script>
         </div>
-      <div class="story-gravatar right-gravatar">
-      </div>
     </div>
   </div>
 </div>
