@@ -49,7 +49,7 @@ $('.group-inspiration-add').on("submit", function(e) {
       group_id: <%= group.id %>,
       text: $('#new-inspiration').val(),
       done: done_status,
-      location: $('#location').val,
+      location: $('#location').val(),
       activitydate: $('#activitydate').val(),
       _csrf: '<%= _csrf %>'
     }
@@ -59,13 +59,11 @@ $('.group-inspiration-add').on("submit", function(e) {
       inspiration: data,
     };
 
-      // $('#allDashboardInspirations').prepend($(JST['assets/linker/templates/addInspiration.ejs'](obj)));
-
       $container = $('#groupInspirations');
 
       $container.masonry({});
 
-      $item = $(JST['assets/linker/templates/addInspiration.ejs'](obj));
+      $item = $(JST['assets/linker/templates/addGroupInspiration.ejs'](obj));
 
       $container
           .prepend($item)
