@@ -41,8 +41,10 @@ module.exports = {
       var title = data.items[i].title;
       var description = data.items[i].snippet;
       if (data.items[i].pagemap) {
-        console.log(data.items[i].pagemap)
-        var thumb = data.items[i].pagemap.cse_image[0].src;
+        if (data.items[i].pagemap.cse_image) {
+          // console.log(data.items[i].pagemap)
+          var thumb = data.items[i].pagemap.cse_image[0].src;
+        }
       }
 
       NewsItem.create({
