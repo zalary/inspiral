@@ -589,6 +589,25 @@ div.group-index ul li {
   width: 900px;
 }
 
+.no-kindness-story-top {
+ background: white;
+    width: 800px;
+    height: 300px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    background: rgb(125,126,125); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(125,126,125,1) 37%, rgba(14,14,14,1) 99%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(37%,rgba(125,126,125,1)), color-stop(99%,rgba(14,14,14,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(125,126,125,1) 37%,rgba(14,14,14,1) 99%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(125,126,125,1) 37%,rgba(14,14,14,1) 99%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(125,126,125,1) 37%,rgba(14,14,14,1) 99%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(125,126,125,1) 37%,rgba(14,14,14,1) 99%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+    border: 1px solid #909090;
+  }
+
 .kindness-story-top {
     background: white;
     width: 800px;
