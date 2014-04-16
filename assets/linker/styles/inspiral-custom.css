@@ -585,8 +585,8 @@ div.group-index ul li {
     word-break: break-all;
 }
 #story-wrapper {
-  margin-top: 50px;
-  margin-left: 20px;
+ margin: 50px auto;
+padding-bottom: 50px;
   background-color: #ccc;
   width: 900px;
 }
