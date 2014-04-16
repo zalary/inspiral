@@ -549,6 +549,7 @@ div.group-index {
     border: 1px solid #fafafa;
     /*border-top: 2px solid #fafafa; */
     background: #f6f6f6; /* Old browsers */
+    width: 380px;
     max-width: 380px;
     min-height: 400px;
     /*max-height: 500px; */
