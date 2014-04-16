@@ -40,7 +40,7 @@ module.exports = {
       var url = data.items[i].link;
       var title = data.items[i].title;
       var description = data.items[i].snippet;
-      if ((data.items[i].pagemap) && (data.items[i].pagemap.cse_image)) {
+      if (data.items[i].pagemap) {
         var thumb = data.items[i].pagemap.cse_image[0].src;
       }
 
