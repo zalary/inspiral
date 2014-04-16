@@ -6,12 +6,12 @@
   <%- partial ('../partials/navbar_loggedout.ejs') %>
   <% } %>
 
-<h4 class="map-header">Click on a spiral to learn more about the kindness added at that spot</h4>
+<h4 class="map-header">Click on a pin to learn more about the kindness added at that spot</h4>
 
 <div id="map-canvas"/>
 
 <script>
-var latitude, longitude, map, marker, markerLatitude, markerLongitude, contentString, infoWindow, inspirationText;
+var latitude, longitude, map, marker, markerLatitude, markerLongitude, contentString, infoWindow=[], inspirationText;
 
 //Locate user and grab their latitude and longitude
 $(document).ready(function() {
@@ -22,7 +22,6 @@ $(document).ready(function() {
 
   //Callback on successful location
   function success(position) {
-    console.log("GOOGLE MAPS SUCCESS");
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     addMap();
@@ -30,8 +29,6 @@ $(document).ready(function() {
 
   //Callback on error
   function error(error) {
-    console.log("ERROR IN GOOGLE MAPS");
-    console.log(error);
     latitude = 30.2500;
     longitude = 97.7500;
     addMap();
@@ -76,28 +73,27 @@ var addMarkers = function() {
     //Define content for infowindow
     contentString = '<h4>Kindness</h4>' + '</br>' + '<p>' + '<a href="/inspiration/show/' + <%= inspirations[i].id %> + '">' + "<%= inspirations[i].text %>" + '</a>' + '</p>' + '</br>' + '<p>Added by: ' + '<a href="/user/show/' + <%= inspirations[i].user_id %> + '">' + "<%= inspirations[i].user_username%>" + '</a>' + '</p>';
 
-
-
     //Add content to infowindow
-    infoWindow = new google.maps.InfoWindow({
+    infoWindow[<%= i + 1 %>] = new google.maps.InfoWindow({
       content: contentString
     });
 
     //Define marker
-    var spiral_image = '../../images/Map_Spiral.svg.png';
+    // var spiral_image = '../../images/Map_Spiral.svg.png';
     markerLatitude = <%= (inspirations[i].latitude / 1000) %>
     markerLongitude = <%= (inspirations[i].longitude / 1000) %>
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(markerLatitude, markerLongitude),
       map: map,
-      icon: spiral_image,
+      // icon: spiral_image,
       animation: google.maps.Animation.DROP,
-      title: "<%= inspirations[i].text %>"
+      title: "<%= inspirations[i].text %>",
+      id_num: <%= inspirations[i].id %>
     });
 
     //Add marker to map as event listener, with infowindow opening on click
     google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.open(map,marker);
+      infoWindow[this.id_num].open(map, this);
     });
 
   <% } %>
