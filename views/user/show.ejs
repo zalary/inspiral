@@ -1,4 +1,7 @@
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
 
 <!-- Check to see which navbar partial to load -->
 <div class='container'>
@@ -16,10 +19,6 @@
     <div class="well well-sm">
       <div id="user-gravatar">
         <img id="user-gravatar-image"></img>
-        <script>
-        var hash = md5("<%= user.email %>");
-          $('#user-gravatar-image').attr('src','http://www.gravatar.com/avatar/' + hash + '?d=identicon');
-        </script>
       </div>
       <h3><%= user.username %></h3>
       <span id="kindness-title">
@@ -149,6 +148,8 @@
 
 <script>
   $(document).ready(function(){
+    var hash = md5("<%= user.email %>");
+    $('#user-gravatar-image').attr('src','http://www.gravatar.com/avatar/' + hash + '?d=identicon');
     //Uses stickyMojo to make sidebar sticky
     $('#sidebar').stickyMojo({footerID: '#footer', contentID: '#main'});
 
@@ -163,13 +164,11 @@
     } else {
       $('#kindness-title').text("Altruistic Enlightenment");
     }
+  });
 </script>
 
 
 <script type="text/javascript">
-
-  If user clicks on main area, box resizes to original size
-  Also hide checkbox and button
   $('#main').on('click', function(e) {
     $('#new-inspiration').height(40);
     $('#new-inspiration').width(250);
