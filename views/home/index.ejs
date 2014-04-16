@@ -16,7 +16,7 @@
 
 <br /><br /><br /><br /><br />
                         <div class="page-scroll">
-                            <p> <a href="http://startbootstrap.com/grayscale" class="btn btn-default btn-lg">Inspire with your own acts of kindness</a> </p>
+                            <p> <a href="#login" class="btn btn-default btn-lg">Inspire with your own acts of kindness</a> </p>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,8 @@
                     <p>Random acts of kindness are contagious. Check out the inspiration feed to be inspired by the acts of kindness that other users are doing, and add them to your own list to do.</p>
 
                 <h2>Share</h2>
-                    <p>Kindness starts with one act, and spirals out from there. Inspire your friends to join you in acts of kindness by tweeting and emailing out your favorite inspirations. </p>           </div>
+                    <p>Kindness starts with one act, and spirals out from there. Inspire your friends to join you in acts of kindness by tweeting and emailing out your favorite inspirations. </p>
+            </div>
         </div>
     </section>
 
@@ -71,18 +72,17 @@
                 </ul>
                 <ul class="list-inline banner-social-buttons">
                     <li style="min-width: 200px; min-height: 100px;">
-<a href="https://twitter.com/intent/tweet?button_hashtag=Inspiral&text=Inspiring%20through%20kindness%20by" class="twitter-hashtag-button"
-data-size="large" data-url="http://inspiralapp.herokuapp.com">Tweet #Inspiral</a>
+                        <a href="https://twitter.com/intent/tweet?button_hashtag=Inspiral&text=Inspiring%20through%20kindness%20by" class="twitter-hashtag-button" data-size="large" data-url="http://inspiralapp.herokuapp.com">Tweet #Inspiral</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </li></ul>
             </div>
         </div>
     </section>
-
-    <div id="map"></div>
-
-    <!-- Google Maps API Key - You will need to use your own API key to use the map feature -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?APIKEY&sensor=false"></script>
+    <a name="login"></a>
+    <div class="custom-navbar-container" style="text-align: center; margin: auto">
+    <iframe src='/user/new' seamless frameborder=0></iframe>
+    <iframe src='/session/new' seamless frameborder=0></iframe>
+    </div>
 
 </body>
 
@@ -110,8 +110,5 @@ data-size="large" data-url="http://inspiralapp.herokuapp.com">Tweet #Inspiral</a
      });
   });
 </script>
-
-
-
 
 
