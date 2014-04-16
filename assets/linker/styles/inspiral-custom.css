@@ -142,11 +142,16 @@ iframe {
 
 .filter-buttons {
     margin-left: 10px;
+    text-transform: none;
 }
 
 .toppish p {
     text-align: center;
-    padding-top: 4px;
+    padding: 6px;
+    line-height: 1.2;
+    text-align: center;
+    margin: 0px;
+    font-size: 14px;
 }
 
 .past-kindness-card {
@@ -289,6 +294,14 @@ div.meta a {
   float: left;
 }
 
+h2, h3, h4, h5, h6 {
+  text-transform: none !important;
+}
+
+#user-gravatar h3 {
+    text-transform: none;
+  }
+
 .get-started-dashboard {
     height: 150px;
     width: 370px;
@@ -316,6 +329,7 @@ div.meta a {
 
 #user-gravatar {
     margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
