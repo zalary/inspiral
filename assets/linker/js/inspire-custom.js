@@ -1,6 +1,7 @@
 WebFontConfig = {
   google: {
-    families: ['Lora:400,700,400italic,700italic:latin']['Montserrat:400,700:latin']['Lato:400,900:latin']
+    families: ['Montserrat:400,700:latin', 'Lato:400,900:latin']
+
   }
 };
 (function() {
