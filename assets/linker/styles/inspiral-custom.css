@@ -249,6 +249,11 @@ div.meta a {
     text-shadow: 0px 0px 0px;
     margin-right: 10px;
 }
+
+div.meta a:hover {
+  color:white;
+}
+
 #done-checkbox {
     margin-top: 15px;
     margin-bottom: 15px;

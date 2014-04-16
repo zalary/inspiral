@@ -58,7 +58,7 @@ module.exports = function(grunt) {
     'linker/js/jquery.validate.min.js',
     'linker/js/underscore-min.js',
     'linker/js/masonry.pkgd.min.js',
-    'linker/js/boostrap/min.js',
+    'linker/js/boostrap.min.js',
 
     // All of the rest of your app scripts imported here
     'linker/**/*.js',
