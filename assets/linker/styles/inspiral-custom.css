@@ -564,11 +564,18 @@ div.group-index ul li {
     list-style-type: none;
 }
 
+#story-wrapper {
+  margin-top: 50px;
+  margin-left: 20px;
+  background-color: #ccc;
+  width: 900px;
+}
+
 .kindness-story-top {
     background: white;
-    width: 900px;
+    width: 800px;
     height: 300px;
-    margin-top: 70px;
+    margin-top: 40px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     background: rgb(125,126,125); /* Old browsers */
@@ -632,11 +639,13 @@ div.group-index ul li {
 }
 
 #pinned-by {
+    font-size: 22px;
     text-align: right;
     margin-right: 20px;
 }
 
 #pinned-from {
+    font-size: 22px;
     text-align: left;
     margin-left: 20px;
 }
@@ -644,10 +653,11 @@ div.group-index ul li {
 .story-event {
     float:left;
     padding-top: 15px;
-    margin-top: 50px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     text-align: center;
     font-size: 13px;
-    width: 900px;
+    width: 800px;
     height: 150px;
     border: 1px solid #fafafa;
     /*border-top: 2px solid #fafafa; */
