@@ -58,7 +58,7 @@
          </button>
          </form>
 
-         <% } else if ((session.authenticated) && (session.User.id != inspirations[i].user_id)) { %>
+         <% } else if ((session.authenticated) && (session.User.id == inspirations[i].user_id)) { %>
 
          <button type="button" class="btn btn-sm btn-danger your-own" title="Like this idea and add it to your own queue">
          <i class="fa fa-heart"></i>
@@ -202,7 +202,7 @@ $('.need-login').on("click", function(e) {
 
 $('.your-own').on("click", function(e) {
 
-           bootbox.alert("<h4>You can't repin your own ideas</h4><div>If you don't have an account yet, why not sign up now and start sharing</div>");
+           bootbox.alert("<h4>It looks like this is already in your queue</h4><div>Thanks for participating.  Create a new kindess from your dashboard or try liking someone else's kindess.  </div>");
 
     });
 
