@@ -22,6 +22,7 @@ $(document).ready(function() {
 
   //Callback on successful location
   function success(position) {
+    console.log("GOOGLE MAPS SUCCESS");
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     addMap();
@@ -29,6 +30,8 @@ $(document).ready(function() {
 
   //Callback on error
   function error(error) {
+    console.log("ERROR IN GOOGLE MAPS");
+    console.log(error);
     latitude = 30.2500;
     longitude = 97.7500;
     addMap();
@@ -68,11 +71,12 @@ var addMap = function() {
 
 //Loop through inspirations and add a marker with infowindow to the map for each inspiration at the location where it was added.
 var addMarkers = function() {
-  <% var i = 0 %>
-  for (i = 0; i < <%= inspirations.length %>; i++) {
+  <% for (var i = 0; i < inspirations.length; i++) { %>
 
     //Define content for infowindow
     contentString = '<h4>Kindness</h4>' + '</br>' + '<p>' + '<a href="/inspiration/show/' + <%= inspirations[i].id %> + '">' + "<%= inspirations[i].text %>" + '</a>' + '</p>' + '</br>' + '<p>Added by: ' + '<a href="/user/show/' + <%= inspirations[i].user_id %> + '">' + "<%= inspirations[i].user_username%>" + '</a>' + '</p>';
+
+
 
     //Add content to infowindow
     infoWindow = new google.maps.InfoWindow({
@@ -96,7 +100,7 @@ var addMarkers = function() {
       infoWindow.open(map,marker);
     });
 
-  }
+  <% } %>
 };
 
 
