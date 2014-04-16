@@ -1,4 +1,3 @@
- <script src="../../linker/js/moment.min.js"></script>
 
  <!-- Check to see which navbar partial to load -->
 <div class='container'>
@@ -9,6 +8,21 @@
   <% } %>
 </div>
 
+<!-- If the kindness hasn't been pinned yet, show this -->
+<% if (!story[0]) { %>
+<div class="container" id="story-wrapper">
+  <div class="row">
+    <div class="col-s-9 col-md-9">
+      <div class="no-kindness-story-top">
+        <h2 id="kindness-story-title">Kindness Story</h2>
+        <p id="kindness-story-para">This kindness hasn't been repinned yet. Repin it to get a story started!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<% if (story[0]) { %>
 <div class="container" id="story-wrapper">
 
 <!-- Kindness card featured on this story page -->
@@ -61,5 +75,5 @@
 </div>
   <% } %>
 <% } %>
-
 </div>
+<% } %>
