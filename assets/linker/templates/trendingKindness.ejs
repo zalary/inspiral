@@ -14,9 +14,7 @@
            <button type="button" id="submit" class="btn btn-sm btn-danger this-inspires inspire_link repin-button" title="Like this idea and add it to your own queue">
            <i class="fa fa-heart"></i>
            </button>
-           <button type="button" class="btn btn-sm btn-info story_link" title="View the story of this inspiration">
-           <i class="fa fa-clipboard"></i>
-           </button>
+           <a href="/story/show/<%= inspiration.original_post_id %>" class="btn btn-info btn-sm" title="View the story of this inspiration"><i class="fa fa-clipboard"></i></a>
            <button type="button" id="submit" class="btn btn-sm btn-success inspiration-email-test" title="Email to a friend" data-toggle="modal" data-text="<%= inspiration.text %>" data-target="#emailModal">
            <i class="fa fa-envelope"></i>
            </button>
