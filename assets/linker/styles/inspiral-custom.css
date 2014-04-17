@@ -790,3 +790,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#749bb0', end
 }
 
 .banner-social-buttons iframe { padding: 0px; }
+
+ul.member {
+display: inline;
+padding: 0px !important;
+}
+
+ul.member li {
+ display: inline;
+ padding: 0;
+ color: #339;
+ }
+
+ ul.member li:after {
+ content: ", ";
+ }
+
+ ul.member li.last:after {
+ content: " ";
+ }
