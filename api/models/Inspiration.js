@@ -28,7 +28,7 @@ module.exports = {
               if (err) {
                 return console.log(err);
               } else {
-                console.log("Inspiration updated:", inspiration);
+                // console.log("Inspiration updated:", inspiration);
               }
             }
           );

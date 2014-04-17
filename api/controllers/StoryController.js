@@ -39,7 +39,7 @@ module.exports = {
         created_at: story_created_time
       }, function(err, doc) {
 
-        console.log(doc);
+        // console.log(doc);
         res.json(doc);
 
 
@@ -82,7 +82,7 @@ module.exports = {
         }
       }, function(err, doc) {
         console.log(err);
-        console.log(doc);
+        // console.log(doc);
       });
     });
 
@@ -91,7 +91,7 @@ module.exports = {
   // render the story view
   show: function(req, res, next) {
     Story.find(req.param('id'), function foundStory(err, story) {
-      console.log(story);
+      // console.log(story);
       res.view({
         story: story
       });
@@ -101,20 +101,6 @@ module.exports = {
 
   },
 
-  //story_pin = req.params.all();
-  //console.log(Story);
-
-  //Story.findOne(req.param('id')).exec(function (err, story) {
-  ////console.log(('{"inspiration_id": ' + req.param('id') + '}'));
-  //console.log(err);
-  ////console.log(story);
-  ////story.save(function (err)  { return console.log(err) });
-
-  //res.json();
-  //});
-
-
-  //},
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to StoryController)
