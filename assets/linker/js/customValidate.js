@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
   $('.form-signin').validate({
     rules: {
@@ -18,8 +18,8 @@ $(document).ready(function () {
         equalTo: "#password"
       }
     },
-    success: function (element) {
-      console.log('ok');
+    success: function(element) {
+      // console.log('ok');
       element
         .text('OK').addClass('valid')
     }
