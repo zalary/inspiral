@@ -70,10 +70,7 @@
          </button>
          </form>
          <% } %>
-
-         <button type="button" class="btn btn-sm btn-info story_link" onclick="location.href='../story/show/<%= inspirations[i].original_post_id %>'" title="View the story of this inspiration">
-         <i class="fa fa-clipboard"></i>
-         </button>
+         <a href="/story/show/<%= inspirations[i].original_post_id %>" class="btn btn-info btn-sm" title="View the story of this inspiration"><i class="fa fa-clipboard"></i></a>
          <% if (session.authenticated) { %>
          <button type="button" id="submit" class="btn btn-sm btn-success inspiration-email-test" title="Email to a friend" data-toggle="modal" data-text="<%=inspirations[i].text %>" data-target="#emailModal">
           <i class="fa fa-envelope"></i>
