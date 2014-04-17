@@ -31,7 +31,7 @@
       </div>
 
 <!-- Email Modal -->
-<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:block">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -61,8 +61,7 @@
   //Grab inspiration text for modal
   $('.inspiration-email-test').on('click', function(e) {
     e.preventDefault();
-    console.log($(this).data('text'));
-    $('#inspiration-share-text').text($(this).data('text'));
+    // $('#inspiration-share-text').text($(this).data('text'));
     $('#inspiration-share-text').val($(this).data('text'));
   });
 </script>
